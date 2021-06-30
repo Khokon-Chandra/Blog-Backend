@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,11 +19,8 @@ Route::get('/', function () {
 
 Route::group(['middleware'=>'auth'],function(){
 
-    Route::get('/profile',function(){
-        return view('profile');
-    })->name('profile');
-    
-    
+    Route::get('/profile',[UserController::class,'profile'])->name('profile');
+        
     Route::get('/posts',[PostController::class,'index'])->name('post');
     
     Route::get('/posts/add-new',[PostController::class,'create'])->name('post.add-new');

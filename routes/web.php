@@ -23,15 +23,15 @@ Route::group(['middleware'=>'auth'],function(){
     })->name('profile');
     
     
-    Route::get('/posts',[PostController::class,'index'])->name('posts');
+    Route::get('/posts',[PostController::class,'index'])->name('post');
     
-    Route::get('/posts/add-new',[PostController::class,'create'])->name('add-new');
-    Route::post('/posts/add-new',[PostController::class,'store'])->name('add-new');
+    Route::get('/posts/add-new',[PostController::class,'create'])->name('post.add-new');
+    Route::post('/posts/add-new',[PostController::class,'store']);
     
-    Route::get('/posts/{post:slug}/',[PostController::class,'edit'])->name('edit');
-    Route::post('/posts/{post:slug}',[PostController::class,'update'])->name('update');
+    Route::get('/posts/{post:slug}',[PostController::class,'edit'])->name('post.update');
+    Route::post('/posts/{post:slug}',[PostController::class,'update']);
 
-    Route::post('/posts/delete',[PostController::class,'destroy'])->name('delete');
+    Route::post('/posts/delete',[PostController::class,'destroy'])->name('post.delete');
 
     Route::get('/posts/category',[CategoryController::class,'create'])->name('category');
 

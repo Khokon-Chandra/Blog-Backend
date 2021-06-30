@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('post.posts',['posts'=>Post::all()]);
+        return view('post.posts',['posts'=>Post::latest()->get()]);
     }
 
     /**
@@ -55,7 +55,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit-post');
+        return view('post.edit-post',[
+            'post'=> $post,
+            'categories'=> Category::latest()->get(),
+        ]);
     }
 
     /**
@@ -65,9 +68,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $result = $post->update($request->validated());
+        if($result){
+            return redirect()->route('post')->with('success','post updated succesfully');
+        }
     }
 
     /**
@@ -78,6 +84,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        dd($post->id);
     }
 }

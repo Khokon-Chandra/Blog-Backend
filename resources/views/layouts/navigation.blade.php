@@ -23,9 +23,9 @@
 
             <x-dropdown :trigger="__('Posts')" :active="strpos(request()->url(),'posts')" :id="__('post')" :icon="__('package')">
                 <x-slot name="content">
-                    <x-dropdown-link :href="route('posts')" :active="request()->routeIs('posts')">{{ __('All Posts') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('post')" :active="request()->routeIs('post')">{{ __('All Posts') }}</x-dropdown-link>
 
-                    <x-dropdown-link :href="route('add-new')" :active="request()->routeIs('add-new')">{{ __('Add New') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('post.add-new')" :active="request()->routeIs('post.add-new')">{{ __('Add New') }}</x-dropdown-link>
 
                     <x-dropdown-link :href="route('category')" :active="request()->routeIs('category')">{{ __('Category') }}</x-dropdown-link>
                 </x-slot>
@@ -36,11 +36,11 @@
 
             <x-dropdown :trigger="__('Users')" :active="request()->routeIs('users')" :id="__('user')" :icon="__('users')">
                 <x-slot name="content">
-                    <x-dropdown-link :href="route('posts')" :active="request()->routeIs('posts')">{{ __('All Posts') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('post')" :active="request()->routeIs('post')">{{ __('All Posts') }}</x-dropdown-link>
 
-                    <x-dropdown-link :href="route('posts')" :active="request()->routeIs('posts')">{{ __('Add New') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('post')" :active="request()->routeIs('post')">{{ __('Add New') }}</x-dropdown-link>
 
-                    <x-dropdown-link :href="route('posts')" :active="request()->routeIs('posts')">{{ __('Category') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('post')" :active="request()->routeIs('post')">{{ __('Category') }}</x-dropdown-link>
                 </x-slot>
             </x-dropdown>
 

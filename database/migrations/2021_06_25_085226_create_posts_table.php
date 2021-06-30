@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->text('title');
             $table->text('excerpt')->nullable();
             $table->text('description');
+            $table->bigInteger('comments')->default(0);
             $table->string('post_status')->default('publish');
             $table->timestamps();
         });

@@ -22,11 +22,14 @@ Route::group(['middleware'=>'auth'],function(){
     Route::prefix('posts')->group(function () {
            
         Route::get('/',[PostController::class,'index'])->name('post');
-        Route::get('/add-new',[PostController::class,'create'])->name('post.add-new');
-        Route::post('/add-new',[PostController::class,'store']);
+        
         Route::get('/{post:slug}',[PostController::class,'edit'])->name('post.update');
         Route::post('/{post:slug}',[PostController::class,'update']);
-        Route::get('/delete',[PostController::class,'destroy'])->name('post.delete');
+
+        Route::get('/add-new',[PostController::class,'create'])->name('post.add-new');
+        Route::post('/add-new',[PostController::class,'store']);
+        
+        Route::post('/delete',[PostController::class,'destroy'])->name('post.delete');
         Route::get('/category',[CategoryController::class,'create'])->name('category');
     });
 
@@ -40,7 +43,7 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('/{user:username}',[UserController::class,'show']);
         Route::post('/{user:username}',[UserController::class,'update']);
         Route::get('/add-new',[UserController::class,'create'])->name('user.add-new');
-        
+        Route::post('/delete',[UserController::class,'destroy'])->name('user.delete');
     });
 
 

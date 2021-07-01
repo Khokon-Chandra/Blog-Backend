@@ -56,6 +56,9 @@ class PostController extends Controller
     
     public function destroy()
     {
-       return "deleted by Controller";
+       return "post deleted";
     }
+
+
+    
 }

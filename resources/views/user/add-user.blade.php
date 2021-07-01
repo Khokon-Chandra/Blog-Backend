@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container-fluid p-0">
-    <x-page-title pagename="Edit Post" />
+    <x-page-title pagename="Add new user" />
 
     <div class="card">
             <div class="card-header">

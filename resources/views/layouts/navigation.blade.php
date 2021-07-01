@@ -14,10 +14,6 @@
                 {{ __('Dashboard') }}
             </x-nav-link>
 
-            <x-nav-link :icon="__('user')" :href="route('profile')" :active="request()->routeIs('profile')">
-                {{ __('Profile') }}
-            </x-nav-link>
-
 
             <!-- Dropdown link -->
 
@@ -34,29 +30,31 @@
 
             <!-- Dropdown link -->
 
-            <x-dropdown :trigger="__('Users')" :active="request()->routeIs('users')" :id="__('user')" :icon="__('users')">
-                <x-slot name="content">
-                    <x-dropdown-link :href="route('post')" :active="request()->routeIs('post')">{{ __('All Posts') }}</x-dropdown-link>
-
-                    <x-dropdown-link :href="route('post')" :active="request()->routeIs('post')">{{ __('Add New') }}</x-dropdown-link>
-
-                    <x-dropdown-link :href="route('post')" :active="request()->routeIs('post')">{{ __('Category') }}</x-dropdown-link>
+            <x-dropdown :trigger="__('Users')" :active="strpos(request()->url(),'users')" :id="__('user')" :icon="__('users')">
+                <x-slot name="content">                    
+                    <x-dropdown-link :href="route('user.profile')" :active="request()->routeIs('user.profile')">{{ __('Profile') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('user')" :active="request()->routeIs('user')">{{ __('All Users') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('user.add-new')" :active="request()->routeIs('user.add-new')">{{ __('Add New') }}</x-dropdown-link>
                 </x-slot>
             </x-dropdown>
 
 
+            <x-nav-link :icon="__('layers')" :href="route('menu')" :active="request()->routeIs('menu')">
+                {{ __('Menu') }}
+            </x-nav-link>
 
-            <x-nav-link :icon="__('settings')" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-nav-link :icon="__('folder')" :href="route('media')" :active="request()->routeIs('media')">
+                {{ __('Media') }}
+            </x-nav-link>
+
+            <x-nav-link :icon="__('settings')" :href="route('setting')" :active="request()->routeIs('setting')">
                 {{ __('Settings') }}
             </x-nav-link>
 
-            <x-nav-link :icon="__('credit-card')" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Invoice') }}
-            </x-nav-link>
-
-            <x-nav-link :icon="__('book')" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            
+            <!-- <x-nav-link :icon="__('book')" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Blank') }}
-            </x-nav-link>
+            </x-nav-link> -->
 
             <li class="sidebar-header">
                 Tools & Components

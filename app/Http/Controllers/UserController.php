@@ -40,9 +40,12 @@ class UserController extends Controller
     }
 
 
-    public function destroy()
+    public function destroy(User $user)
     {
-        return "user deleted";
+        if($user->delete()){
+            return redirect()->route('user')->with('success','user deleted successfully');
+        }
+        return redirect()->back()->with('error','Delation faild');
     }
 
 

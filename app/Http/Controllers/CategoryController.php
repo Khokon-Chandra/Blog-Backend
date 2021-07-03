@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    public function index()
+    {
+        return view('post.category',['categories'=>Category::all()]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -14,7 +19,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('post.category',['categories'=>Category::latest()->get()]);
+        return view('post.add-category',['categories'=>Category::latest()->get()]);
     }
 
     /**
@@ -37,7 +42,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('post.edit-category',[
+            'category'=>$category,
+            'categories'=>Category::latest()->get(),
+        ]);
     }
 
     /**

@@ -2,25 +2,9 @@
     <div class="container-fluid p-0">
     <x-page-title pagename="Edit Post" />
 
-    <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">Basic Table</h5>
-                <h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
-            </div>
+    <x-content-card :title="__('Card Title')" :subTitle="__('card subtitle')">
 
-
-
-           
-            <form action="/demo" method="POST">
-            @csrf
-                <input type="text" name="name">
-                <input type="submit" value="10">
-            </form>
-
-
-
-
-
-        </div>
+        <h1>Blank card</h1>
+    </x-content-card>
     </div>
 </x-app-layout>

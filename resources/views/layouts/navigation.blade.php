@@ -21,7 +21,7 @@
                 <x-slot name="content">
                     <x-dropdown-link :href="route('post')" :active="request()->routeIs('post')">{{ __('All Posts') }}</x-dropdown-link>
 
-                    <x-dropdown-link :href="route('post.add-new')" :active="request()->routeIs('post.add-new')">{{ __('Add New') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('post.create')" :active="request()->routeIs('post.create')">{{ __('Add New') }}</x-dropdown-link>
 
                     <x-dropdown-link :href="route('category')" :active="request()->routeIs('category')">{{ __('Category') }}</x-dropdown-link>
                 </x-slot>
@@ -34,7 +34,7 @@
                 <x-slot name="content">                    
                     <x-dropdown-link :href="route('user.profile')" :active="request()->routeIs('user.profile')">{{ __('Profile') }}</x-dropdown-link>
                     <x-dropdown-link :href="route('user')" :active="request()->routeIs('user')">{{ __('All Users') }}</x-dropdown-link>
-                    <x-dropdown-link :href="route('user.add-new')" :active="request()->routeIs('user.add-new')">{{ __('Add New') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('user.create')" :active="request()->routeIs('user.create')">{{ __('Add New') }}</x-dropdown-link>
                 </x-slot>
             </x-dropdown>
 

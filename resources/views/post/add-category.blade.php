@@ -2,6 +2,7 @@
     <div class="container-fluid p-0">
     <x-page-title pagename="Create New Category" />
         <x-content-card :title="__('Add New Category')" :subTitle="__('Category addition form')">
+        <x-success-alert />
             <div class="card-body">
                 <form action="{{ route('category.create') }}" method="POST">
                     @csrf

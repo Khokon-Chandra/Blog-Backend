@@ -1,7 +1,8 @@
 <x-app-layout>
     <div class="container-fluid p-0">
     <x-page-title pagename="Edit Category" />
-        <x-content-card class="col-md-8 offset-md-2" :title="__('Edit Category')" :subTitle="__('Category addition form')">
+        <x-content-card :title="__('Edit Category')" :subTitle="__('Category addition form')">
+        <x-success-alert />
             <div class="card-body">
                 <form action="{{ route('category.update',['category'=>$category->slug]) }}" method="POST">
                     @csrf

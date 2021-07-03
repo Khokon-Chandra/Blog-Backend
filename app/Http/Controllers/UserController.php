@@ -30,8 +30,7 @@ class UserController extends Controller
 
     public function create()
     {
-        // return view('user.add-user');
-        return "add new user";
+        return view('user.add-user');
     }
 
 

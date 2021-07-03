@@ -22,15 +22,15 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('/{post:slug}',[PostController::class,'edit'])->name('post.update');
         Route::post('/{post:slug}',[PostController::class,'update']);
         Route::post('/delete/{post:slug}',[PostController::class,'destroy'])->name('post.delete');
-        Route::get('/category',[CategoryController::class,'create'])->name('category');
+        Route::get('/category/all',[CategoryController::class,'create'])->name('category');
     });
 
     Route::prefix('users')->group(function () {
         Route::get('/',[UserController::class,'index'])->name('user');
         Route::get('/profile',[UserController::class,'profile'])->name('user.profile');
+        Route::get('/add-new',[UserController::class,'create'])->name('user.add-new');
         Route::get('/{user:username}',[UserController::class,'edit']);
         Route::post('/{user:username}',[UserController::class,'update'])->name('user.update');
-        Route::get('/add-new',[UserController::class,'create'])->name('user.add-new');
         Route::post('/delete/{user:username}',[UserController::class,'destroy'])->name('user.delete');
     });
 

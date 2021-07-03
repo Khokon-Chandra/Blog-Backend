@@ -18,25 +18,26 @@ class UserController extends Controller
 
     }
 
-    public function show()
+    public function edit()
     {
-
+        return "edit method";
     }
 
     public function update()
     {
-
+        return "update";
     }
 
     public function create()
     {
-
+        // return view('user.add-user');
+        return "add new user";
     }
 
 
     public function store()
     {
-
+        return "store";
     }
 
 

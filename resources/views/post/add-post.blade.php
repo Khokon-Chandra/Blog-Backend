@@ -27,7 +27,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             <x-label for="category" :value="__('Choose Category')" />
                             <select id="category" name="category_id" class="form-control">
                                 <option selected>Choose..</option>

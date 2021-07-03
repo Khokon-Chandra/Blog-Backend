@@ -22,7 +22,14 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('/{post:slug}',[PostController::class,'edit'])->name('post.update');
         Route::post('/{post:slug}',[PostController::class,'update']);
         Route::post('/delete/{post:slug}',[PostController::class,'destroy'])->name('post.delete');
+        /**
+         * category routes
+         */
         Route::get('/category/all',[CategoryController::class,'create'])->name('category');
+        Route::post('/category/add-new',[CategoryController::class,'store'])->name('category.add-category');
+        Route::get('/category/edit/{category:slug}',[CategoryController::class,'edit']);
+        Route::post('/category/edit/{category:slug}',[CategoryController::class,'update'])->name('category.update');
+        Route::post('/category/delete/{category:slug}',[CategoryController::class,'destroy'])->name('category.delete');
     });
 
     Route::prefix('users')->group(function () {

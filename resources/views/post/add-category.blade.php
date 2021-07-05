@@ -1,8 +1,12 @@
 <x-app-layout>
+
     <div class="container-fluid p-0">
     <x-page-title pagename="Create New Category" />
         <x-content-card :title="__('Add New Category')" :subTitle="__('Category addition form')">
         <x-success-alert />
+        @if(session()->get('error'))
+        {{ session()->get('error') }}
+        @endif
             <div class="card-body">
                 <form action="{{ route('category.create') }}" method="POST">
                     @csrf
@@ -14,7 +18,7 @@
                                                 
                     <div class="mb-3">
                     <x-label for="category"> Parent Category <i class="text-secondary">(optional)</i> </x-label>
-                        <select id="category" name="category_id" class="form-control">
+                        <select id="category" name="parent_id" class="form-control">
                             <option selected>Choose..</option>
                             @foreach($categories as $category)
                             <option value="{{ $category->id }}"> {{ $category->name }} </option>

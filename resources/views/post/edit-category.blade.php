@@ -14,7 +14,7 @@
                                                 
                     <div class="mb-3">
                         <x-label for="category" :value="__('Parent category')" />
-                        <select id="category" name="category_id" class="form-control">
+                        <select id="category" name="parent_id" class="form-control">
                             <option selected>Choose..</option>
                             @foreach($categories as $category)
                             <option value="{{ $category->id }}"> {{ $category->name }} </option>

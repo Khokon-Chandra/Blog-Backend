@@ -23,7 +23,7 @@ Route::group(['middleware'=>'auth'],function(){
          * category routes
          */
         Route::get('/category/all',[CategoryController::class,'index'])->name('category');
-        Route::get('/category/add-new',[CategoryController::class,'create'])->name('category.create');
+        Route::get('/category/add-new',[CategoryController::class,'create']);
         Route::post('/category/add-new',[CategoryController::class,'store'])->name('category.create');
         Route::get('/category/edit/{category:slug}',[CategoryController::class,'edit']);
         Route::post('/category/edit/{category:slug}',[CategoryController::class,'update'])->name('category.update');

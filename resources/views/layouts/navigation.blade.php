@@ -19,11 +19,11 @@
 
             <x-dropdown :trigger="__('Posts')" :active="strpos(request()->url(),'posts')" :id="__('post')" :icon="__('package')">
                 <x-slot name="content">
-                    <x-dropdown-link :href="route('post')" :active="request()->routeIs('post')">{{ __('All Posts') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">{{ __('All Posts') }}</x-dropdown-link>
 
-                    <x-dropdown-link :href="route('post.create')" :active="request()->routeIs('post.create')">{{ __('Add New') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">{{ __('Add New') }}</x-dropdown-link>
 
-                    <x-dropdown-link :href="route('category')" :active="request()->routeIs('category')">{{ __('Category') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">{{ __('Category') }}</x-dropdown-link>
                 </x-slot>
             </x-dropdown>
 
@@ -32,9 +32,9 @@
 
             <x-dropdown :trigger="__('Users')" :active="strpos(request()->url(),'users')" :id="__('user')" :icon="__('users')">
                 <x-slot name="content">                    
-                    <x-dropdown-link :href="route('user.profile')" :active="request()->routeIs('user.profile')">{{ __('Profile') }}</x-dropdown-link>
-                    <x-dropdown-link :href="route('user')" :active="request()->routeIs('user')">{{ __('All Users') }}</x-dropdown-link>
-                    <x-dropdown-link :href="route('user.create')" :active="request()->routeIs('user.create')">{{ __('Add New') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('users.profile')" :active="request()->routeIs('user.profile')">{{ __('Profile') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('users.index')" :active="request()->routeIs('users.index')">{{ __('All Users') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('users.create')" :active="request()->routeIs('users.create')">{{ __('Add New') }}</x-dropdown-link>
                 </x-slot>
             </x-dropdown>
 

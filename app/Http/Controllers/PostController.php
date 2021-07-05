@@ -10,58 +10,95 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-   
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('post.posts',['posts'=>Post::latest()->get()]);
     }
 
-   
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('post.add-post',['categories'=>Category::latest()->get()]);
     }
 
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(PostRequest $request)
     {
         $attributes = $request->validated();
         $attributes['slug'] = $request->createUniqueSlug();
         $attributes['user_id'] = Auth::id();
         Post::create($attributes);
-        return redirect()->back()->with('success','Successfully a new post created');
+        return redirect()->route('posts.index')->with('success','Successfully a new post created');
         
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return "show";
+    }
 
-
-    public function edit(Post $post)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($slug)
     {
         return view('post.edit-post',[
-            'post'=> $post,
+            'post'=> Post::where('slug',$slug)->first(),
             'categories'=> Category::latest()->get(),
         ]);
     }
 
-    
-
-    public function update(PostRequest $request, Post $post)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $slug)
     {
-        $result = $post->update($request->validated());
-        if($result){
-            return redirect()->route('post')->with('success','post updated succesfully');
+        if(Post::where('slug',$slug)->update($request->validate([
+            'title'=>'required|min:10',
+            'description'=>'required|min:200',
+        ]))){
+            return redirect()->route('posts.index')->with('success','post updated succesfully');
         }
     }
 
-    
-    public function destroy(Post $post)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($slug)
     {
-       if($post->delete()){
-           return redirect()->route('post')->with('success','Successfully Deleted');
-       }
-       return redirect()->back();
+        if(Post::where('slug',$slug)->delete()){
+            return redirect()->route('posts.index')->with('success','Successfully Deleted');
+        }
+        return redirect()->back();
     }
-
-
-    
 }

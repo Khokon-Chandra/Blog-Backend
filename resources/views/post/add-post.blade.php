@@ -14,7 +14,8 @@
                 @if(session()->get('success'))
                 <div class="alert alert-success p-4"> {{ session()->get('success') }} </div>
                 @endif
-                <form method="POST" action="{{ route('post.add-new') }}">
+                <form method="POST" action="{{ route('posts.store') }}">
+               
                     @csrf
                         <div class="form-group">
                             <x-label for="title" :value="__('Post Title')" />

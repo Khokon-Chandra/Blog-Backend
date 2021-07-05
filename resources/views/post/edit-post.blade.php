@@ -10,7 +10,8 @@
 
            <div class="card-body">
 
-                <form method="POST" action="{{ request()->url() }}">
+                <form method="POST" action="{{ route('posts.update',['post'=>$post->slug]) }}">
+                @method('PUT')
                 @csrf
                     <div class="form-group">
                         <x-label for="title" :value="__('Post Title')" />

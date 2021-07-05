@@ -53,10 +53,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($slug)
     {
         return view('post.edit-category',[
-            'category'=>$category,
+            'category'=>Category::where('slug',$slug)->first(),
             'categories'=>Category::latest()->get(),
         ]);
     }
@@ -68,18 +68,18 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $slug)
     {
     
        $request->validate(['name'=>['required']]);
-       $update = $category->update([
+       $update = Category::where('slug',$slug)->update([
            'slug'=>Str::slug($request->name) . (Category::max('id') + random_int(99, 99999)),
            'name'=>$request->name,
            'parent_id'=>is_numeric($request->parent_id)?$request->parent_id : null,
            'description'=> !empty($request->description)?$request->description:'',
        ]);
        if($update){
-           return redirect()->route('category')->with('success','Category successfully updated');
+           return redirect()->route('categories.index')->with('success','Category successfully updated');
        }
        return redirect()->back()->with('error','something went wrong');
     }
@@ -90,10 +90,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($slug)
     {
-        if($category->delete()){
-            return redirect()->route('category')->with('success','successfully deleted');
+        if(Category::where('slug',$slug)->delete()){
+            return redirect()->route('categories.index')->with('success','successfully deleted');
         }
         return redirect()->back()->with('error','something went wrong');
     }

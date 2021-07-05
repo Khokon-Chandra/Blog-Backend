@@ -4,7 +4,8 @@
         <x-content-card :title="__('Edit Category')" :subTitle="__('Category addition form')">
         <x-success-alert />
             <div class="card-body">
-                <form action="{{ route('category.update',['category'=>$category->slug]) }}" method="POST">
+                <form action="{{ route('categories.update',['category'=>$category->slug]) }}" method="POST">
+                    @method('PUT')
                     @csrf
                     <div class="mb-3">
                     <x-label for="name" :value="__('Category name')" />

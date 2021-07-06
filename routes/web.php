@@ -26,7 +26,7 @@ Route::group(['middleware'=>'auth'],function(){
     })->name('media');
     Route::get('/settings',function(){
         return "This section is comming soon !!";
-    })->name('setting');
+    })->name('settings');
 
 });
 

@@ -25,7 +25,7 @@ class UserFactory extends Factory
         return [
             'username'=>$this->faker->unique()->userName(),
             'name' => $this->faker->name(),
-            'role'=>$this->faker->jobTitle(),
+            'role'=>random_int(1,6),
             'email' => $this->faker->unique()->safeEmail(),
             'avatar'=> $this->faker->imageUrl(100,100),
             

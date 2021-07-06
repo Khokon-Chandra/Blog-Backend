@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->string('name');
-            $table->string('role')->default('subscriber');
+            $table->integer('role')->default(6);
             $table->string('email')->unique();
             $table->string('avatar')->nullable();
             $table->text('scocial_links')->nullable();

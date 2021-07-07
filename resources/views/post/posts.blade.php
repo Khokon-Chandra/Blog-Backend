@@ -1,5 +1,4 @@
 <x-app-layout>
-    <div class="container-fluid p-0">
 
     <x-page-title pagename="Posts" />
         <a href="{{route('posts.create')}}" class="btn text-white mb-3" style="background:#222e3c;"> Add new</a>
@@ -43,7 +42,7 @@
                         </td>
                     </tr>
                     @empty
-                    <tr><th>No post yet</th></tr>
+                    <tr><th class="text-center" colspan="6">No post yet</th></tr>
                     @endforelse
                 </tbody>
             </table>
@@ -55,8 +54,7 @@
                 </div>
             </div>
         <!-- card end -->
-    </div>
-    <!-- container-fluid end -->
+   
 </x-app-layout>
 
 

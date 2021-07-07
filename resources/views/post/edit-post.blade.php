@@ -1,15 +1,7 @@
 <x-app-layout>
-    <div class="container-fluid p-0">
     <x-page-title pagename="Edit Post" />
-
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">Basic Table</h5>
-                <h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look in Bootstrap.</h6>
-            </div>
-
+        <x-content-card :title="__('Edit post')" :subTitle="__('Edit post subtitle')">
            <div class="card-body">
-
                 <form method="POST" action="{{ route('posts.update',['post'=>$post->slug]) }}">
                 @method('PUT')
                 @csrf
@@ -53,7 +45,5 @@
                     </div>
                 </form>
            </div>
-
-        </div>
-    </div>
+    </x-content-card>
 </x-app-layout>

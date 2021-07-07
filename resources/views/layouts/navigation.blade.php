@@ -43,7 +43,7 @@
                 {{ __('Menu') }}
             </x-nav-link>
 
-            <x-nav-link :icon="__('folder')" :href="route('media')" :active="request()->routeIs('media')">
+            <x-nav-link :icon="__('folder')" :href="route('media.index')" :active="request()->routeIs('media.index')">
                 {{ __('Media') }}
             </x-nav-link>
 

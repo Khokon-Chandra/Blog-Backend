@@ -11,28 +11,23 @@
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-
 <body>
+
+
 	<div class="wrapper">
-
 		@include('layouts.navigation')
-
 		<div class="main">
 			@include('layouts.header')
-
 			<main class="content">
-				{{ $slot }}
+				<div class="container-fluid p-0">
+					{{ $slot }}
+				</div>
 			</main>
-
             @include('layouts.footer')
-
 		</div>
-		
 	</div>
 
 	<script src="{{ asset('js/vendor.js') }}"></script>
 	<script src="{{ asset('js/app.js') }}"></script>
-
 </body>
-
 </html>

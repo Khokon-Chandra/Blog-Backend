@@ -1,5 +1,4 @@
 <x-app-layout>
-    <div class="container-fluid p-0">
     <x-page-title pagename="Category" />
 
     <x-success-alert />
@@ -42,6 +41,5 @@
             {{ $categories->links() }}
             </div>
         </x-content-card>
-    </div>
-    <!-- container-fluid end -->
+  
 </x-app-layout>

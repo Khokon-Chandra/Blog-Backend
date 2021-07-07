@@ -1,6 +1,4 @@
 <x-app-layout>
-<div class="container-fluid p-0">
-
 <h1 class="h3 mb-3">Profile</h1>
 
 <div class="row">
@@ -171,5 +169,4 @@
     </div>
 </div>
 
-</div>
 </x-app-layout>

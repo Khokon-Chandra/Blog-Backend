@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when( $filters['search'] ?? false, fn($query,$search)=>
+            $query->where('name','like','%'.$search.'%')
+                    ->orWhere('username','like','%'.$search.'%')
+                    ->orWhere('email','like','%'.$search.'%')->paginate(5));
+        
+    }
+
 }

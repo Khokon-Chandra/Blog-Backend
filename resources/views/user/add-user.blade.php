@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container-fluid p-0">
+    
         <x-page-title pagename="Create New User" />
         <x-content-card class="col-md-6 offset-md-3" :title="__('Card Title')" :subTitle="__('card subtitle')">
 
@@ -75,5 +75,5 @@
 
       
     </x-content-card>
-    </div>
+
 </x-app-layout>

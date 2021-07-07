@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="container-fluid p-0">
+
     <x-page-title pagename="Create New Category" />
         <x-content-card :title="__('Add New Category')" :subTitle="__('Category addition form')">
         <x-success-alert />
@@ -42,5 +42,5 @@
                 </form>
             </div>
         </x-content-card>
-    </div>
+
 </x-app-layout>

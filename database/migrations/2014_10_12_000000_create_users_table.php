@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->integer('role')->default(6);
             $table->string('email')->unique();
-            $table->string('avatar')->nullable();
+            $table->string('avatar')->default('https://merics.org/sites/default/files/styles/ct_team_member_default/public/2020-04/avatar-placeholder.png?itok=Vhm0RCa3');
             $table->text('scocial_links')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

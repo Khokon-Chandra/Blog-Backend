@@ -3,11 +3,11 @@
 <i class="hamburger align-self-center"></i>
 </a>
 
-    <form class="form-inline d-none d-sm-inline-block">
+    <form method="GET" action="{{request()->url()}}" class="form-inline d-none d-sm-inline-block">
         <div class="input-group input-group-navbar">
-            <input type="text" class="form-control" placeholder="Search…" aria-label="Search">
+            <input type="search" name="search" value="{{request('search')}}" class="form-control" placeholder="Search…" aria-label="Search">
             <div class="input-group-append">
-                <button class="btn" type="button">
+                <button class="btn" type="submit">
     <i class="align-middle" data-feather="search"></i>
     </button>
             </div>
@@ -154,7 +154,7 @@
     </a>
 
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
-    <img src="{{ asset('img/avatars/avatar.jpg') }}" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> <span class="text-dark"> {{ Auth::user()->name }} </span>
+    <img src="{{ Auth::user()->avatar }}" class="avatar img-fluid rounded mr-1" alt="Charles Hall" /> <span class="text-dark"> {{ Auth::user()->name }} </span>
     </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="{{ route('users.profile') }}"><i class="align-middle mr-1" data-feather="user"></i> Profile</a>

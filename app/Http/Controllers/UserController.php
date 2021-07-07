@@ -12,8 +12,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        
-        return view('user.users',['users'=>User::latest()->paginate(5)]);
+        $users = User::latest()->filter(request(['search']))->paginate(5);
+        return view('user.users',['users'=>$users]);
     }
 
     public function profile()

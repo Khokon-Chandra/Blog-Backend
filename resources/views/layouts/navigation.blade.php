@@ -17,7 +17,7 @@
 
             <!-- Dropdown link -->
 
-            <x-dropdown :trigger="__('Posts')" :active="strpos(request()->url(),'posts')" :id="__('post')" :icon="__('package')">
+            <x-dropdown :trigger="__('Posts')" :active="strpos(request()->url(),'posts') | strpos(request()->url(),'categories')" :id="__('post')" :icon="__('package')">
                 <x-slot name="content">
                     <x-dropdown-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">{{ __('All Posts') }}</x-dropdown-link>
 
@@ -47,7 +47,7 @@
                 {{ __('Media') }}
             </x-nav-link>
 
-            <x-nav-link :icon="__('settings')" :href="route('setting')" :active="request()->routeIs('setting')">
+            <x-nav-link :icon="__('settings')" :href="route('settings')" :active="request()->routeIs('settings')">
                 {{ __('Settings') }}
             </x-nav-link>
 

@@ -12,7 +12,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('user.users',['users'=>User::latest()->get()]);
+        
+        return view('user.users',['users'=>User::latest()->paginate(5)]);
     }
 
     public function profile()

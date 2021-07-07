@@ -48,7 +48,12 @@
                 </tbody>
             </table>
                 <!-- tab;e end -->
-        </div>
+                
+            <!-- pagination -->
+            <div class="px-3 mt-3">
+                {{ $posts->links() }}
+                </div>
+            </div>
         <!-- card end -->
     </div>
     <!-- container-fluid end -->

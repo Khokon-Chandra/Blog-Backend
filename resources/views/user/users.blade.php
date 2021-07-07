@@ -39,6 +39,10 @@
                     @endforelse
                 </tbody>
             </table>
+            <!-- pagination -->
+            <div class="px-3 mt-3">
+            {{ $users->links() }}
+            </div>
         </x-content-card>
     </div>
 </x-app-layout>

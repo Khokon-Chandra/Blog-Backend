@@ -11,7 +11,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('post.category',['categories'=>Category::all()]);
+        return view('post.category',['categories'=>Category::paginate(5)]);
     }
     /**
      * Show the form for creating a new resource.

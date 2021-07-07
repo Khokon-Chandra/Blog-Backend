@@ -1,7 +1,7 @@
 
 <div class="row mb-2 mb-xl-3">
     <div class="col-auto d-none d-sm-block">
-        <h3><strong>{{$pagename}}:</strong></h3>
+        <h1 class="h3">{{$pagename}}:</h1>
     </div>
 
     <div class="col-auto ml-auto text-right mt-n1">

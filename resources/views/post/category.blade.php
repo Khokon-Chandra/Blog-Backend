@@ -4,7 +4,7 @@
 
     <x-success-alert />
 
-    <div class="my-3"><a class="btn btn-dark" href="{{ route('categories.create') }}">Add new</a></div>
+    <div class="mb-3"><a class="btn btn-dark" href="{{ route('categories.create') }}">Add new</a></div>
         
         <x-content-card :title="__('Category Table')" :subTitle="__('Category Table subtitle')">
             <table class="table table-striped">
@@ -12,7 +12,7 @@
             <tr>
                 <th>Name</th>
                 <th>Parent Category</th>
-                <th>description</th>
+                <th style="width:50%">description</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -37,6 +37,10 @@
                 @endforelse
             </tbody>
             </table>
+            <!-- paginantion -->
+            <div class="px-3 mt-3">
+            {{ $categories->links() }}
+            </div>
         </x-content-card>
     </div>
     <!-- container-fluid end -->

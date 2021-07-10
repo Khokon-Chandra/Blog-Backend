@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-page-title pagename="Category" />
 
-    <x-success-alert />
+    <x-alert /> <!-- alert -->
 
     <div class="mb-3"><a class="btn btn-dark" href="{{ route('article.categories.create') }}">Add new</a></div>
         

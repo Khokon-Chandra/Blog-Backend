@@ -1,18 +1,14 @@
 <x-app-layout>
-
-
     <x-page-title pagename="Create New Category" />
         <x-content-card :title="__('Add New Category')" :subTitle="__('Category addition form')">
-        <x-success-alert />
-        @if(session()->get('error'))
-        {{ session()->get('error') }}
-        @endif
+            <x-alert /> <!-- alert -->
             <div class="card-body">
-                <form action="{{ route('category.create') }}" method="POST">
+                <form action="{{ route('article.categories.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                     <x-label for="name" :value="__('Category name')" />
                     <input id="name" type="text" name="name" class="form-control" value="{{ @old('name') }}">
+                    <x-invalid-feedback attribute="name" />
                     </div>
 
                                                 
@@ -24,9 +20,7 @@
                             <option value="{{ $category->id }}"> {{ $category->name }} </option>
                             @endforeach
                         </select>
-                        @error('category_id')
-                        <div class="invalid-feedback d-block mb-3"> {{ $message }} </div>
-                        @enderror
+                        <x-invalid-feedback attribute="parent_id" />
                     </div>
 
                     <div class="mb-3">
@@ -42,5 +36,4 @@
                 </form>
             </div>
         </x-content-card>
-
 </x-app-layout>

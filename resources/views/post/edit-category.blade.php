@@ -2,9 +2,9 @@
 
     <x-page-title pagename="Edit Category" />
         <x-content-card :title="__('Edit Category')" :subTitle="__('Category addition form')">
-        <x-success-alert />
+        <x-alert />
             <div class="card-body">
-                <form action="{{ route('categories.update',['category'=>$category->slug]) }}" method="POST">
+                <form action="{{ route('article.categories.update',['category'=>$category->slug]) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="mb-3">

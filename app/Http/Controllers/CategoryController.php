@@ -40,7 +40,7 @@ class CategoryController extends Controller
             'description'=> !empty($request->description)?$request->description:'',
         ]);
         if($store){
-            return redirect()->route('category')->with('success','Category successfully inserted');
+            return redirect()->route('article.categories.index')->with('success','Category successfully inserted');
         }
         echo "store";
         return redirect()->back()->with('error','something went wrong');
@@ -79,7 +79,7 @@ class CategoryController extends Controller
            'description'=> !empty($request->description)?$request->description:'',
        ]);
        if($update){
-           return redirect()->route('categories.index')->with('success','Category successfully updated');
+           return redirect()->route('article.categories.index')->with('success','Category successfully updated');
        }
        return redirect()->back()->with('error','something went wrong');
     }
@@ -93,7 +93,7 @@ class CategoryController extends Controller
     public function destroy($slug)
     {
         if(Category::where('slug',$slug)->delete()){
-            return redirect()->route('categories.index')->with('success','successfully deleted');
+            return redirect()->route('article.categories.index')->with('success','successfully deleted');
         }
         return redirect()->back()->with('error','something went wrong');
     }

@@ -9,7 +9,7 @@
             </div>
 
 
-          <x-success-alert />
+          <x-alert />
 
             <table class="table table-striped">
                 <thead>

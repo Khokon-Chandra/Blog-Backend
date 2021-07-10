@@ -12,18 +12,21 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware'=>'auth'],function(){
 
     Route::get('/',[IndexController::class,'dashboard'])->name('dashboard');
-    Route::resource('posts',PostController::class);
-    Route::resource('categories',CategoryController::class);
+    Route::group(['as'=>'article.'],function(){
+        Route::resource('posts',PostController::class);
+        Route::resource('categories',CategoryController::class);
+    });
     Route::resource('users',UserController::class);
     Route::get('users/profile',[UserController::class,'profile'])->name('users.profile');
+    
     Route::resource('media',MediaController::class);
 
     Route::get('/menu',function(){
-        return "This section is comming soon !!";
+        return view('page');
     })->name('menu');
-    
+
     Route::get('/settings',function(){
-        return "This section is comming soon !!";
+        return view('page');
     })->name('settings');
 
 });

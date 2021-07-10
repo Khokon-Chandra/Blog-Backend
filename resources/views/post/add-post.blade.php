@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-page-title pagename="Edit Post" />
+    <x-page-title pagename="Add New Post" />
     <x-content-card :title="__('Add new post')" :subTitle="__('New post addition subtitle')">
             <!-- card body content goes here -->
            <div class="card-body">

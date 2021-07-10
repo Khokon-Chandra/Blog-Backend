@@ -1,6 +1,9 @@
 <x-app-layout>
-    <x-page-title pagename="Edit Post" />
-        <x-content-card :title="__('Card Title')" :subTitle="__('card subtitle')">
+    <x-page-title pagename="Media Gallery" />
+        <div class="mb-3">
+            <a href="{{ route('media.create') }}" class="btn btn-primary" >Add Media Files</a>
+        </div>
+        <x-content-card >
 
             <div class="row no-gutters"> 
                     @forelse($media as $medium)

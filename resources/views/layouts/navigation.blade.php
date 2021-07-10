@@ -17,13 +17,13 @@
 
             <!-- Dropdown link -->
 
-            <x-dropdown :trigger="__('Posts')" :active="strpos(request()->url(),'posts') | strpos(request()->url(),'categories')" :id="__('post')" :icon="__('package')">
+            <x-dropdown :trigger="__('Posts')" :active="request()->routeIs('article')" :id="__('user')" :icon="__('users')">
                 <x-slot name="content">
-                    <x-dropdown-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">{{ __('All Posts') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('article.posts.index')" :active="request()->routeIs('article.posts.index')">{{ __('All Posts') }}</x-dropdown-link>
 
-                    <x-dropdown-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">{{ __('Add New') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('article.posts.create')" :active="request()->routeIs('article.posts.create')">{{ __('Add New') }}</x-dropdown-link>
 
-                    <x-dropdown-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">{{ __('Category') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('article.categories.index')" :active="request()->routeIs('article.categories.index')">{{ __('Category') }}</x-dropdown-link>
                 </x-slot>
             </x-dropdown>
 

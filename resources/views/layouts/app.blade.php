@@ -10,6 +10,7 @@
         <link rel="shortcut icon" href="{{ asset('img/icons/icon-48x48.png') }}" />
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+		<script src="{{ asset('js/app.js') }}"></script>
     </head>
 <body>
 
@@ -27,7 +28,5 @@
 		</div>
 	</div>
 
-	<script src="{{ asset('js/vendor.js') }}"></script>
-	<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

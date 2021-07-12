@@ -1,6 +1,5 @@
 @props(['active','icon'])
 
-
 <li class="sidebar-item {{ $active ? 'active':'' }}">
     <a {{ $attributes->merge(['class' => 'sidebar-link']) }} >
 

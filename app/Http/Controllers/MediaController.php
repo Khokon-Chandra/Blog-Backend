@@ -24,7 +24,7 @@ class MediaController extends Controller
      */
     public function create()
     {
-        //
+        return view('media.add-media');
     }
 
     /**
@@ -35,7 +35,7 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->media);
     }
 
     /**

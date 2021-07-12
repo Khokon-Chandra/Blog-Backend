@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>'auth:web'],function(){
 
     Route::get('/',[IndexController::class,'dashboard'])->name('dashboard');
     Route::group(['as'=>'article.'],function(){

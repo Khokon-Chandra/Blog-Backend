@@ -33,9 +33,10 @@
                             <textarea
                             name="description"
                             id="description" cols="30" rows="10"
-                            class="form-control"> {{old('description')}} </textarea>
+                            class="form-control">{{old('description')}} </textarea>
+                            <x-invalid-feedback attribute="description" />
                         </div>
-                        <x-invalid-feedback attribute="description" />
+                        
                         <div class="mb-3">
                             <x-button class="btn-dark" type="submit">Create</x-button>
                         </div>

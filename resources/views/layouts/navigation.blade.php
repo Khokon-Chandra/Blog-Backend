@@ -10,14 +10,15 @@
                 Pages
             </li>
 
+            
             <x-nav-link :icon="__('sliders')" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-nav-link>
 
-
+           
             <!-- Dropdown link -->
 
-            <x-dropdown :trigger="__('Posts')" :active="strpos(Route::currentRouteName(),'article')==0" :id="__('posts')" :icon="__('users')">
+            <x-dropdown :trigger="__('Posts')" :active="is_int(strpos(Route::currentRouteName(),'article'))" :id="__('posts')" :icon="__('users')">
                 <x-slot name="content">
                     <x-dropdown-link :href="route('article.posts.index')" :active="request()->routeIs('article.posts.index')">{{ __('All Posts') }}</x-dropdown-link>
 

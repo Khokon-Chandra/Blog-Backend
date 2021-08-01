@@ -12,7 +12,8 @@
                 <div class="icon d-flex align-items-center justify-content-center">
                     <span class="fa fa-user-o"></span>
                 </div>
-                <a href="{{ route('register') }}"><h3 class="text-center mb-4">Have an account?</h3></a>
+                <span class="mb-4 d-block text-center px-2"><h3 class="d-inline">Have an account? </h3><a href="{{ route('register') }}">Register</a></span>
+                
                 <form action="{{ route('login') }}" method="POST" class="login-form">
                     @csrf
                     <div class="form-group">

@@ -33,7 +33,7 @@
 
             <x-dropdown :trigger="__('Users')" :active="strpos(request()->url(),'users')" :id="__('user')" :icon="__('users')">
                 <x-slot name="content">                    
-                    <x-dropdown-link :href="route('users.profile')" :active="request()->routeIs('user.profile')">{{ __('Profile') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('users.show',['user'=>Auth::user()->username])" :active="request()->routeIs('user.show')">{{ __('Profile') }}</x-dropdown-link>
                     <x-dropdown-link :href="route('users.index')" :active="request()->routeIs('users.index')">{{ __('All Users') }}</x-dropdown-link>
                     <x-dropdown-link :href="route('users.create')" :active="request()->routeIs('users.create')">{{ __('Add New') }}</x-dropdown-link>
                 </x-slot>

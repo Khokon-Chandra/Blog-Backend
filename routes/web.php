@@ -9,18 +9,19 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::group(['middleware'=>'auth:web'],function(){
+Route::group(['middleware'=>['auth:web','verified']],function(){
 
     Route::get('/',[IndexController::class,'dashboard'])->name('dashboard');
+    
     Route::group(['as'=>'article.'],function(){
         Route::resource('posts',PostController::class);
         Route::resource('categories',CategoryController::class);
     });
-    Route::resource('users',UserController::class);
-    Route::get('users/profile',[UserController::class,'profile'])->name('users.profile');
+    Route::resources([
+        'users'=>UserController::class,
+        'media'=>MediaController::class,
+    ]);
     
-    Route::resource('media',MediaController::class);
-
     Route::get('/menu',function(){
         return view('page');
     })->name('menu');

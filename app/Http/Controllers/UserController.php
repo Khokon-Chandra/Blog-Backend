@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
@@ -54,12 +55,15 @@ class UserController extends Controller
     }
 
 
-    public function destroy(User $user)
+    public function destroy($user)
     {
-        if($user->delete()){
-            return redirect()->route('user')->with('success','user deleted successfully');
+        if(Gate::denies('can-delete')){
+            return view('403');
         }
-        return redirect()->back()->with('error','Delation faild');
+        if(User::where('username',$user)->delete()){
+            return redirect()->route('users.index')->with('success','user deleted successfully');
+        }
+        return redirect()->back()->with('error','Deletation faild');
     }
 
 

@@ -12,9 +12,9 @@
                 <div class="icon d-flex align-items-center justify-content-center">
                     <span class="fa fa-user-o"></span>
                 </div>
-                <a href="{{ route('login') }}">
-                    <h3 class="text-center mb-4">Already registered?</h3>
-                </a>
+                <span class="text-center mb-4 d-block">
+                <h3 class="d-inline">Already registered? </h3><a href="{{ route('login') }}"> Log in</a>
+                </span>
                 <form action="{{ route('register') }}" method="POST" class="login-form">
                     @csrf
                     <div class="form-group">
@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="password" name="confirm-password" class="form-control rounded-left" placeholder="Confirm Password">
+                        <input type="password" name="password_confirmation" class="form-control rounded-left" placeholder="Confirm Password">
                     </div>
 
                     <div class="form-group">

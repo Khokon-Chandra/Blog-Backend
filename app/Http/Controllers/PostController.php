@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -27,8 +28,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, Post $post)
     {
+        if($request->user()->cannot('create',$post)){
+            return view('403');
+        }
         return view('post.add-post',['categories'=>Category::latest()->get()]);
     }
 
@@ -38,13 +42,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(PostRequest $request, Post $post)
     {
+        if($request->user()->cannot('create',$post)){
+            return view('403');
+        }
         $attributes = $request->validated();
         $attributes['slug'] = $request->createUniqueSlug();
         $attributes['user_id'] = Auth::id();
         Post::create($attributes);
-        return redirect()->route('posts.index')->with('success','Successfully a new post created');
+        return redirect()->route('article.posts.index')->with('success','Successfully a new post created');
         
     }
 
@@ -86,7 +93,7 @@ class PostController extends Controller
             'title'=>'required|min:10',
             'description'=>'required|min:200',
         ]))){
-            return redirect()->route('posts.index')->with('success','post updated succesfully');
+            return redirect()->route('article.posts.index')->with('success','post updated succesfully');
         }
     }
 
@@ -98,9 +105,12 @@ class PostController extends Controller
      */
     public function destroy($slug)
     {
-        if(Post::where('slug',$slug)->delete()){
-            return redirect()->route('posts.index')->with('success','Successfully Deleted');
+        if(Gate::denies('can-delete')){
+            return view('403');
         }
-        return redirect()->back();
+        if(Post::where('slug',$slug)->delete()){
+            return redirect()->route('article.posts.index')->with('success','Successfully Deleted');
+        }
+        return redirect()->back()->with("error","Something went wrong");
     }
 }

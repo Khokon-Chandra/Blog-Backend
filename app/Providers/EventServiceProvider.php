@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\UserDeleted;
+use App\Listeners\SendUserDeletationNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        UserDeleted::class => [
+            SendUserDeletationNotification::class,
+        ],
     ];
 
     /**
@@ -29,4 +34,16 @@ class EventServiceProvider extends ServiceProvider
     {
         //
     }
+
+    /**
+     * Discover ements
+     */
+
+     /* public function shouldDiscoverEvents()
+     {
+         return true;
+     } */
+
+
+     
 }

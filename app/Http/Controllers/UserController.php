@@ -29,9 +29,9 @@ class UserController extends Controller
         return view('user.profile');
     }
 
-    public function edit()
+    public function edit($user)
     {
-        return view('user.edit-user');
+        return view('user.edit-user',['user'=>User::where('username',$user)->first()]);
     }
 
     public function update()

@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('can-delete',function(User $user){
-            return $user->id === 2;
+            return $user->role === 1;
         });
     }
 }

@@ -18,10 +18,10 @@
 
                 @forelse($users as $user)
                 <tr>
-                    <td> <img width="100px" src="{{ $user->avatar }}" alt="profile photo"> </td>
+                    <td> <img class="rounded-circle" width="70px" src="{{ $user->avatar }}" alt="profile photo"> </td>
                     <td> {{ $user->name }} </td>
-                    <td> {{ $user->email }} </td>
-                    <td> {{ $user->post->count() }} </td>
+                    <td> <i class="rounded alert alert-success">{{ $user->email }}</i> </td>
+                    <td>{{ $user->post->count() }}</td>
                     <td class="d-none d-md-table-cell"> {{ $user->created_at->format("j F  Y") }} </td>
                     <td class="table-action">
                         <a href="{{ route('users.show',['user'=>$user->username]) }}"><i class="align-middle" data-feather="user"></i></a>

@@ -41,6 +41,7 @@ class UserDeleted
      */
     public function broadcastOn()
     {
+        return [];
         return new PrivateChannel('channel-name');
     }
 }

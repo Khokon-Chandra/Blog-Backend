@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserDeleted;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->filter(request(['search']))->paginate(5);
+        $users = User::latest()->filter(request(['search']))->paginate(10);
         return view('user.users',['users'=>$users]);
     }
 
@@ -62,6 +63,7 @@ class UserController extends Controller
         }
         if(User::where('username',$user)->delete()){
             return redirect()->route('users.index')->with('success','user deleted successfully');
+            UserDeleted::dispatch(User::where('username',$user));
         }
         return redirect()->back()->with('error','Deletation faild');
     }

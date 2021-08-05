@@ -18,9 +18,9 @@
 
                 @forelse($users as $user)
                 <tr>
-                    <td> <img class="rounded-circle" width="70px" src="{{ $user->avatar }}" alt="profile photo"> </td>
+                    <td> <img class="rounded-circle" width="60px" src="{{ $user->avatar }}" alt="profile photo"> </td>
                     <td> {{ $user->name }} </td>
-                    <td> <i class="rounded alert alert-success">{{ $user->email }}</i> </td>
+                    <td> <i class="rounded d-inline alert alert-success">{{ $user->email }}</i> </td>
                     <td>{{ $user->post->count() }}</td>
                     <td class="d-none d-md-table-cell"> {{ $user->created_at->format("j F  Y") }} </td>
                     <td class="table-action">

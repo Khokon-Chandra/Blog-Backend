@@ -1,5 +1,9 @@
 <x-app-layout>
     <x-page-title pagename="Users" />
+    <div class="d-flex justify-content-between mb-3">
+        <a href="{{ route('users.create') }}" class="btn btn-primary d-block">Add New</a>
+        <a href="{{ route('users.trash') }}" class="btn btn-danger d-block">Trash</a>
+    </div>
     <x-alert />
     <x-content-card :title="__('Card Title')" :subTitle="__('card subtitle')">
        

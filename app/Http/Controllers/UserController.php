@@ -18,13 +18,20 @@ class UserController extends Controller
         return view('user.users',['users'=>$users]);
     }
 
-    public function profile()
+    public function trashed()
     {
-        return view('user.profile');
-
+        return view('user.trashes',[
+            'trashes'=>User::onlyTrashed()->paginate(10),
+        ]);
     }
 
-    public function show($slug)
+    // public function profile()
+    // {
+    //     return view('user.profile');
+
+    // }
+
+    public function show($username)
     {
         return view('user.profile');
     }
@@ -38,6 +45,9 @@ class UserController extends Controller
     {
         return "update";
     }
+
+    
+
 
     public function create()
     {
@@ -58,14 +68,29 @@ class UserController extends Controller
 
     public function destroy($user)
     {
-        if(Gate::denies('can-delete')){
-            return view('403');
-        }
+        // if(Gate::denies('can-delete')){
+        //     return view('403');
+        // }
         if(User::where('username',$user)->delete()){
-            return redirect()->route('users.index')->with('success','user deleted successfully');
+            return redirect()->route('users.index')
+            ->with('success','user deleted successfully');
             UserDeleted::dispatch(User::where('username',$user));
         }
         return redirect()->back()->with('error','Deletation faild');
+    }
+
+    public function restore($user)
+    {
+        User::where('username',$user)->restore();
+        return redirect()->route('users.trash')
+        ->with('success','Successfully user restored');
+    }
+
+    public function deletePermanently($user)
+    {
+        User::where('username',$user)->forceDelete();
+        return redirect()->route('users.trash')
+        ->with('success','User Permanently Deleted');
     }
 
 

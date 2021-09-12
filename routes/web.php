@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\CategoryController;
-
-
+use App\Http\Controllers\CommentController;
 
 Route::group(['middleware'=>['auth:web','verified']],function(){
 
@@ -20,9 +19,8 @@ Route::group(['middleware'=>['auth:web','verified']],function(){
         Route::resource('categories',CategoryController::class);
     });
 
-    Route::resource('users', UserController::class)->missing(function (User $username) {
-        return "this request is missing";
-    });
+    Route::resource('users', UserController::class);
+    Route::resource('comments', CommentController::class);
     Route::resource('media', MediaController::class);
 
     Route::name('users.')->prefix('users/trashed')->group(function(){

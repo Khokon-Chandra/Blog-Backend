@@ -27,7 +27,7 @@
                     @forelse($posts as $post)
                     <tr>
                         <td> {{ $post->title }} </td>
-                        <td> {{ $post->author->name }} </td>
+                        <td> {{ $post->author->name??'  ' }} </td>
                         <td> {{ $post->category->name??'Unknown' }} </td>
                         <td> {{ $post->comments }} </td>
                         <td class="d-none d-md-table-cell"> {{ $post->created_at->format("j F  Y") }} </td>

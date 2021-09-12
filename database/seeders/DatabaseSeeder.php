@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             PostSeeder::class,
             MediaSeeder::class,
+            CommentSeeder::class,
         ]);
 
     }

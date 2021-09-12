@@ -14,7 +14,7 @@ class Comment extends Model
 
     public function childs()
     {
-        return $this->hasMany(Comment::class,'comment_id');
+        return $this->hasMany(Comment::class,'parent_id');
     }
     
     public function user()

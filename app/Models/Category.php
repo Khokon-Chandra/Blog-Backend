@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     
     protected $fillable = [
         'slug',
@@ -16,14 +17,14 @@ class Category extends Model
         'parent_id',
     ];
 
-    public function post()
+    public function posts()
     {
-       return $this->hasMany(Post::class);
+       return $this->morphToMany(Post::class,'postable');
     }
 
-    public function parentCategory()
+    public function childs()
     {
-        return $this->belongsTo(Category::class,'parent_id');
+        return $this->hasMany(Category::class,'parent_id');
     }
 
 }

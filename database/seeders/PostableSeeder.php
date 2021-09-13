@@ -14,7 +14,7 @@ class PostableSeeder extends Seeder
      */
     public function run()
     {
-        $models = ['Category','Comment','Tag'];
+        $models = ['App\Models\Category','App\Models\Comment','App\Models\Tag'];
         for($i=1; $i<=50; $i++){
             DB::insert('insert into postables (post_id, postable_id, postable_type) values (?, ?, ?)', [rand(1,10), rand(1,10), $models[rand(0,2)]]);
         }

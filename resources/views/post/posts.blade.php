@@ -28,7 +28,13 @@
                     <tr>
                         <td> {{ $post->title }} </td>
                         <td> {{ $post->author->name??'  ' }} </td>
-                        <td> {{ $post->categories }} </td>
+                        <td>
+                            @forelse ($post->categories as $category)
+                                {{ $category->name }},
+                            @empty
+                                 Uncategorized 
+                            @endforelse
+                        </td>
                         <td> {{ $post->comments }} </td>
                         <td class="d-none d-md-table-cell"> {{ $post->created_at->format("j F  Y") }} </td>
                         <td class="table-action">

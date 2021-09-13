@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\UserDeleted;
-use App\Http\Requests\UserRequest;
+use App\Models\Post;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use App\Events\UserDeleted;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->filter(request(['search']))->paginate(10);
+        $users = User::with('posts')->latest()->filter(request(['search']))->paginate(10);
         return view('user.users',['users'=>$users]);
     }
 

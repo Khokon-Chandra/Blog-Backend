@@ -24,9 +24,9 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'=>User::factory(),
-            'post_id'=>Post::factory(),
-            'message'=>$this->faker->paragraph(rand(1,3)),
+            'user_id'=>rand(1,10),
+            'post_id'=>rand(1,10),
+            'message'=>$this->faker->paragraph(rand(1,5)),
         ];
     }
 }

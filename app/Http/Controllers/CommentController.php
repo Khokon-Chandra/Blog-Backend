@@ -14,7 +14,10 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return Comment::all();
+        return Comment::with(['author','post'])->get();
+        return view('comment.comments',[
+            'comments'=>Comment::with('author','post')->get(),
+        ]);
     }
 
     /**

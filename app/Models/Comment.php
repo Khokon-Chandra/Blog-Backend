@@ -10,16 +10,15 @@ class Comment extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $with = ['post','childs'];
-
+    protected $with = ['childs'];
     public function childs()
     {
         return $this->hasMany(Comment::class,'parent_id');
     }
     
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
     public function post()

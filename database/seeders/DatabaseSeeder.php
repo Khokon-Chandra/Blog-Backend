@@ -26,10 +26,10 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => Str::random(10),
         ]);
 
-        User::factory()->create();
+        User::factory(10)->create();
         $this->call([
-            CategorySeeder::class,
             PostSeeder::class,
+            CategorySeeder::class,
             MediaSeeder::class,
             CommentSeeder::class,
             TagSeeder::class,

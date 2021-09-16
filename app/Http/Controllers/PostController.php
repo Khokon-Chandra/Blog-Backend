@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['categories','author'])->latest()->filter(request(['search']))->paginate(10);
+        $posts = Post::with(['categories:name','author'])->latest()->filter(request(['search']))->paginate(10);
         
         return view('post.posts',['posts'=>$posts]);
     }

@@ -25,7 +25,7 @@
                     <td> <img class="rounded-circle" width="60px" src="{{ $user->avatar }}" alt="profile photo"> </td>
                     <td> {{ $user->name }} </td>
                     <td> <i class="rounded d-inline alert alert-success">{{ $user->email }}</i> </td>
-                    <td>{{ $user->posts->count() }}</td>
+                    <td>{{ $user->posted }}</td>
                     <td class="d-none d-md-table-cell"> {{ $user->created_at->format("j F  Y") }} </td>
                     <td class="table-action">
                         <a href="{{ route('users.show',['user'=>$user->username]) }}"><i class="align-middle" data-feather="user"></i></a>

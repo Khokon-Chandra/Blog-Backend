@@ -28,6 +28,10 @@
                 </x-slot>
             </x-dropdown>
 
+            <x-nav-link :icon="__('message-square')" :href="route('comments.index')" :active="is_int(strpos(Route::currentRouteName(),'comments'))">
+                {{ __('Comments') }}
+            </x-nav-link>
+
 
             <!-- Dropdown link -->
 

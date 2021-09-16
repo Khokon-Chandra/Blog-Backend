@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('posts')->latest()->filter(request(['search']))->paginate(10);
+        $users = User::latest()->filter(request(['search']))->paginate(10);       
         return view('user.users',['users'=>$users]);
     }
 

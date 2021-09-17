@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-backend.app-layout>
     <x-page-title pagename="Edit User" />
     <div class="row">
         
@@ -14,4 +14,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-backend.app-layout>

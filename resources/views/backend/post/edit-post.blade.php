@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-backend.app-layout>
     <x-page-title pagename="Edit Post" />
         <x-content-card :title="__('Edit post')" :subTitle="__('Edit post subtitle')">
            <div class="card-body">
@@ -41,4 +41,4 @@
                 </form>
            </div>
     </x-content-card>
-</x-app-layout>
+</x-backend.app-layout>

@@ -20,7 +20,7 @@ class PostController extends Controller
     {
         $posts = Post::with(['categories:name','author'])->latest()->filter(request(['search']))->paginate(10);
         
-        return view('post.posts',['posts'=>$posts]);
+        return view('backend.post.posts',['posts'=>$posts]);
     }
 
     /**
@@ -33,7 +33,7 @@ class PostController extends Controller
         if($request->user()->cannot('create',$post)){
             return view('403');
         }
-        return view('post.add-post',['categories'=>Category::latest()->get()]);
+        return view('backend.post.add-post',['categories'=>Category::latest()->get()]);
     }
 
     /**

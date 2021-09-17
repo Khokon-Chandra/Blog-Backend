@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-backend.app-layout>
 <h1 class="h3 mb-3">Profile</h1>
 
 <div class="row">
@@ -169,4 +169,4 @@
     </div>
 </div>
 
-</x-app-layout>
+</x-backend.app-layout>

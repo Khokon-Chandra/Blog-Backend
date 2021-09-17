@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-backend.app-layout>
     <x-page-title pagename="Add New Post" />
     <x-content-card :title="__('Add new post')" :subTitle="__('New post addition subtitle')">
             <!-- card body content goes here -->
@@ -44,4 +44,4 @@
             </div>
 
     </x-content-card>
-</x-app-layout>
+</x-backend.app-layout>

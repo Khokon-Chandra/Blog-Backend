@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-backend.app-layout>
     <x-page-title pagename="Media Gallery" />
         <div class="mb-3">
             <a href="{{ route('media.create') }}" class="btn btn-primary" >Add Media Files</a>
@@ -15,4 +15,4 @@
                     @endforelse
             </div>
     </x-content-card>
-</x-app-layout>
+</x-backend.app-layout>

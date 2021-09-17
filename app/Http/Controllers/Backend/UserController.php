@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\Post;
 use App\Models\User;
@@ -8,6 +8,7 @@ use App\Events\UserDeleted;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,12 +17,12 @@ class UserController extends Controller
     public function index()
     {
         $users = User::latest()->filter(request(['search']))->paginate(10);       
-        return view('user.users',['users'=>$users]);
+        return view('backend.user.users',['users'=>$users]);
     }
 
     public function trashed()
     {
-        return view('user.trashes',[
+        return view('backend.user.trashes',[
             'trashes'=>User::onlyTrashed()->paginate(10),
         ]);
     }
@@ -34,12 +35,12 @@ class UserController extends Controller
 
     public function show($username)
     {
-        return view('user.profile');
+        return view('backend.user.profile');
     }
 
     public function edit($user)
     {
-        return view('user.edit-user',['user'=>User::where('username',$user)->first()]);
+        return view('backend.user.edit-user',['user'=>User::where('username',$user)->first()]);
     }
 
     public function update()
@@ -52,7 +53,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('user.add-user');
+        return view('backend.user.add-user');
         // return view('auth.register');
     }
 

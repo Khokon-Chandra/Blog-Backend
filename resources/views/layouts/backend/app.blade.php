@@ -16,15 +16,15 @@
 
 
 	<div class="wrapper">
-		@include('layouts.navigation')
+		@include('layouts.backend.navigation')
 		<div class="main">
-			@include('layouts.header')
+			@include('layouts.backend.header')
 			<main class="content">
 				<div class="container-fluid p-0">
 					{{ $slot }}
 				</div>
 			</main>
-            @include('layouts.footer')
+            @include('layouts.backend.footer')
 		</div>
 	</div>
 

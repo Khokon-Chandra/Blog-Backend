@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Models\Media;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class MediaController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return view('media.media',['media'=>Media::all()]);
+        //
     }
 
     /**
@@ -24,7 +25,7 @@ class MediaController extends Controller
      */
     public function create()
     {
-        return view('media.add-media');
+        //
     }
 
     /**
@@ -35,16 +36,16 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->media);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Media  $media
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show(Media $media)
+    public function show(Tag $tag)
     {
         //
     }
@@ -52,10 +53,10 @@ class MediaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Media  $media
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Media $media)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -64,10 +65,10 @@ class MediaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Media  $media
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Media $media)
+    public function update(Request $request, Tag $tag)
     {
         //
     }
@@ -75,10 +76,10 @@ class MediaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Media  $media
+     * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $media)
+    public function destroy(Tag $tag)
     {
         //
     }

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-backend.app-layout>
     <x-page-title pagename="Users" />
     <div class="d-flex justify-content-between mb-3">
         <a href="{{ route('users.create') }}" class="btn btn-primary d-block">Add New</a>
@@ -48,4 +48,4 @@
         {{ $users->links() }}
         </div>
     </x-content-card>
-</x-app-layout>
+</x-backend.app-layout>

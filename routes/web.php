@@ -3,12 +3,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\IndexController;
-use App\Http\Controllers\MediaController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Backend\IndexController;
+use App\Http\Controllers\Backend\MediaController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CommentController;
 
 Route::group(['middleware'=>['auth:web','verified']],function(){
 
@@ -31,11 +31,11 @@ Route::group(['middleware'=>['auth:web','verified']],function(){
     
 
     Route::get('/menu',function(){
-        return view('page');
+        return view('backend.page');
     })->name('menu');
 
     Route::get('/settings',function(){
-        return view('page');
+        return view('backend.page');
     })->name('settings');
 
 });

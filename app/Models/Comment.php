@@ -10,7 +10,6 @@ class Comment extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $with = ['childs'];
     public function childs()
     {
         return $this->hasMany(Comment::class,'parent_id');
@@ -25,6 +24,9 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::class,'post_id');
     }
+
+
+ 
 
 
 

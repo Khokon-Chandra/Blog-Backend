@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-backend.app-layout>
 
     <x-page-title pagename="Add Media file" />
 
@@ -15,4 +15,4 @@
             </div>
         </form>
     </x-content-card>
-</x-app-layout>
+</x-backend.app-layout>

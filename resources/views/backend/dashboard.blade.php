@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-backend.app-layout>
     <div class="container-fluid p-0">
 
         <x-page-title pagename="Analytics" />
@@ -137,4 +137,4 @@
 
     </div>
     <script src="{{ asset('js/dashboard.js') }}" ></script>
-</x-app-layout>
+</x-backend.app-layout>

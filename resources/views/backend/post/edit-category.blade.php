@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-backend.app-layout>
 
     <x-page-title pagename="Edit Category" />
         <x-content-card :title="__('Edit Category')" :subTitle="__('Category addition form')">
@@ -39,4 +39,4 @@
             </div>
         </x-content-card>
 
-</x-app-layout>
+</x-backend.app-layout>

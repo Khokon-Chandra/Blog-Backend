@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
 
     public function index()
     {
-        return view('post.category',['categories'=>Category::paginate(5)]);
+        return view('backend.post.category',['categories'=>Category::paginate(5)]);
     }
     /**
      * Show the form for creating a new resource.
@@ -20,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('post.add-category',['categories'=>Category::latest()->get()]);
+        return view('backend.post.add-category',['categories'=>Category::latest()->get()]);
     }
 
     /**
@@ -55,7 +56,7 @@ class CategoryController extends Controller
      */
     public function edit($slug)
     {
-        return view('post.edit-category',[
+        return view('backend.post.edit-category',[
             'category'=>Category::where('slug',$slug)->first(),
             'categories'=>Category::latest()->get(),
         ]);

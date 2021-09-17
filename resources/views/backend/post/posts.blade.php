@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-backend.app-layout>
 
     <x-page-title pagename="Posts" />
         <a href="{{route('article.posts.create')}}" class="btn text-white mb-3" style="background:#222e3c;"> Add new</a>
@@ -61,7 +61,7 @@
             </div>
         <!-- card end -->
    
-</x-app-layout>
+</x-backend.app-layout>
 
 
 

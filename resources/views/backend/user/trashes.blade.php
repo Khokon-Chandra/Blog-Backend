@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-backend.app-layout>
     <x-page-title pagename="Trashes User" />
     <x-alert />
     <x-content-card :title="__('Card Title')" :subTitle="__('card subtitle')">
@@ -43,4 +43,4 @@
         </div>
         
     </x-content-card>
-</x-app-layout>
+</x-backend.app-layout>

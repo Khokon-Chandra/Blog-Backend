@@ -5,9 +5,9 @@
         <a href="{{ route('users.trash') }}" class="btn btn-danger d-block">Trash</a>
     </div>
     <x-alert />
-    <x-content-card :title="__('Card Title')" :subTitle="__('card subtitle')">
-       
-        <table class="table table-striped">
+    <x-content-card >
+        <div class="card-body">
+        <table id="datatable" class="table table-striped">
             <thead>
                 <tr>
                     <th >Avatar</th>
@@ -43,9 +43,6 @@
                 @endforelse
             </tbody>
         </table>
-        <!-- pagination -->
-        <div class="px-3 mt-3">
-        {{ $users->links() }}
-        </div>
+    </div>
     </x-content-card>
 </x-backend.app-layout>

@@ -17,7 +17,7 @@ class CommentController extends Controller
     {
         return view('backend.comment.comments',[
             'comments'=>Comment::with(['childs','author','post'])
-            ->paginate(10),
+            ->get(),
         ]);
     }
 

@@ -6,10 +6,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-
         <link rel="shortcut icon" href="{{ asset('img/icons/icon-48x48.png') }}" />
-
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
 		<script src="{{ asset('js/app.js') }}"></script>
     </head>
 <body>
@@ -27,6 +26,13 @@
             @include('layouts.backend.footer')
 		</div>
 	</div>
-
+	<script type="text/javascript" src="{{ asset('js/jquery-3.5.1.js') }}"></script>
+	<script type="text/javascript" charset="utf8" src="{{ asset('js/jquery.dataTables.min.js') }}"></script> 
+	<script type="text/javascript" src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#datatable').DataTable();
+		} );
+	</script>
 </body>
 </html>

@@ -10,7 +10,7 @@ use App\Http\Controllers\Backend\MediaController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CommentController;
 
-Route::group(['middleware'=>['auth:web','verified']],function(){
+Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(){
 
     Route::get('/',[IndexController::class,'dashboard'])->name('dashboard');
 
@@ -42,5 +42,5 @@ Route::group(['middleware'=>['auth:web','verified']],function(){
 
 
 
-
 require __DIR__.'/auth.php';
+require __DIR__.'/frontend.php';

@@ -3,17 +3,10 @@
     <x-page-title pagename="Posts" />
     <a href="{{route('article.posts.create')}}" class="btn text-white mb-3" style="background:#222e3c;"> Add new</a>
     <div class="card">
-        <div class="card-header">
-            <h5 class="card-title">Basic Table</h5>
-            <h6 class="card-subtitle text-muted">Using the most basic table markup, here’s how .table-based tables look
-                in Bootstrap.</h6>
-        </div>
-
-
         <x-alert />
 
         <div class="card-body">
-            <table id="datatable" class="table table-striped hover" style="width: 100%">
+            <table id="datatable" class="display table table-striped hover" style="width: 100%">
                 <thead>
                     <tr>
                         <th style="width:35%;">Title</th>

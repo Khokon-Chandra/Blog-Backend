@@ -1,6 +1,6 @@
 <x-backend.app-layout>
     <x-page-title pagename="Edit Post" />
-        <x-content-card :title="__('Edit post')" :subTitle="__('Edit post subtitle')">
+        <x-backend.content-card :title="__('Edit post')" :subTitle="__('Edit post subtitle')">
            <div class="card-body">
            <x-alert /> <!-- alert -->
                 <form method="POST" action="{{ route('article.posts.update',['post'=>$post->slug]) }}">
@@ -12,7 +12,7 @@
                         id="title"
                         class="block mt-1 w-full"
                         type="text" name="title" :value="$post->title" autofocus />
-                        <x-invalid-feedback attribute="title" />
+                        <x-backend.invalid-feedback attribute="title" />
                     </div>
 
                     <div class="form-group">
@@ -20,10 +20,10 @@
                         <select id="category" name="category_id" class="form-control">
                             <option >Choose..</option>
                             @foreach($categories as $category)
-                            <option {{ $post->category->id == $category->id ? 'selected':'' }} value="{{ $category->id }}"> {{ $category->name }} </option>
+                            <option {{ $post->categories()->id == $category->id ? 'selected':'' }} value="{{ $category->id }}"> {{ $category->name }} </option>
                             @endforeach
                         </select>
-                        <x-invalid-feedback attribute="category_id" />
+                        <x-backend.invalid-feedback attribute="category_id" />
 
                     </div>
 
@@ -34,11 +34,11 @@
                         id="description" cols="30" rows="10"
                         class="form-control">{{ $post->description }}</textarea>
                     </div>
-                    <x-invalid-feedback attribute="description" />
+                    <x-backend.invalid-feedback attribute="description" />
                     <div class="mb-3">
                         <x-button class="btn-dark" type="submit">Save change</x-button>
                     </div>
                 </form>
            </div>
-    </x-content-card>
+    </x-backend.content-card>
 </x-backend.app-layout>

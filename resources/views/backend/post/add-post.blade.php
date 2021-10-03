@@ -1,11 +1,11 @@
 <x-backend.app-layout>
     <x-page-title pagename="Add New Post" />
-    <x-content-card :title="__('Add new post')" :subTitle="__('New post addition subtitle')">
+    <x-backend.content-card :title="__('Add new post')" :subTitle="__('New post addition subtitle')">
             <!-- card body content goes here -->
            <div class="card-body">
                 <x-alert />
                 <form method="POST" action="{{ route('article.posts.store') }}">
-               
+
                     @csrf
                         <div class="form-group">
                             <x-label for="title" :value="__('Post Title')" />
@@ -13,7 +13,7 @@
                             id="title"
                             class="block mt-1 w-full"
                             type="text" name="title" :value="old('title')" autofocus />
-                            <x-invalid-feedback attribute="title" />
+                            <x-backend.invalid-feedback attribute="title" />
                         </div>
 
                         <div class="mb-3">
@@ -24,7 +24,7 @@
                                 <option value="{{ $category->id }}"> {{ $category->name }} </option>
                                 @endforeach
                             </select>
-                            <x-invalid-feedback attribute="category_id" />
+                            <x-backend.invalid-feedback attribute="category_id" />
 
                         </div>
 
@@ -34,14 +34,14 @@
                             name="description"
                             id="description" cols="30" rows="10"
                             class="form-control">{{old('description')}} </textarea>
-                            <x-invalid-feedback attribute="description" />
+                            <x-backend.invalid-feedback attribute="description" />
                         </div>
-                        
+
                         <div class="mb-3">
                             <x-button class="btn-dark" type="submit">Create</x-button>
                         </div>
                     </form>
             </div>
 
-    </x-content-card>
+    </x-backend.content-card>
 </x-backend.app-layout>

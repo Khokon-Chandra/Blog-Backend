@@ -5,7 +5,7 @@
         <div class="card-body">
             <table id="datatable" class="table table-striped">
                 <thead>
-                    <tr>              
+                    <tr>
                         <th style="width:20%">Author</th>
                         <th style="width:30%">Comment</th>
                         <th style="width:10%">In response to</th>
@@ -36,7 +36,5 @@
             </table>
             </div>
         <!-- card end -->
-
-        
     </x-content-card>
 </x-backend.app-layout>

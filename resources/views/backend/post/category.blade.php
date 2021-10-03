@@ -5,7 +5,7 @@
 
     <div class="mb-3"><a class="btn btn-dark" href="{{ route('article.categories.create') }}">Add new</a></div>
 
-    <x-content-card :title="__('Category Table')" :subTitle="__('Category Table subtitle')">
+    <x-backend.content-card :title="__('Category Table')" :subTitle="__('Category Table subtitle')">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -54,6 +54,6 @@
         <div class="px-3 mt-3">
             {{ $categories->links() }}
         </div>
-    </x-content-card>
+    </x-backend.content-card>
 
 </x-backend.app-layout>

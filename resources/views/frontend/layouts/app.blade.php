@@ -4,11 +4,11 @@
 
 <!-- Mirrored from rstheme.com/products/html/news24/news-magazine/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 May 2021 18:52:00 GMT -->
 <head>
-    <meta charset="utf-8">    
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Darpan | Home</title>    
+    <title>Darpan | Home</title>
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/images/fav.png') }}">
     <!-- Place favicon.ico in the root directory -->
@@ -44,22 +44,22 @@
 	<!--Preloader area Start here-->
 	{{-- @include('frontend.layouts.preloader') --}}
 	<!--Preloader area end here-->
-	
+
     <!--Header area start here-->
     @include('frontend.layouts.header')
     <!--Header area end here-->
      {{ $slot }}
     <!-- Footer Area Section Start Here -->
-    @include('backend.layouts.footer')
+    @include('frontend.layouts.footer')
 
     <!-- Start scrollUp  -->
     <div id="return-to-top">
         <span>Top</span>
     </div>
     <!-- End scrollUp  -->
-    
+
     <!-- Footer Area Section End Here -->
-    
+
     <!-- all js here -->
 	<script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
     <!-- jquery latest version -->
@@ -76,7 +76,7 @@
     <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
     <!-- magnific-popup js -->
     <script src="{{ asset('frontend/js/jquery.magnific-popup.js') }}"></script>
-	
+
     <!-- jquery.counterup js -->
     <script src="{{ asset('frontend/js/jquery.counterup.min.js') }}"></script>
     <script src="{{ asset('frontend/js/waypoints.min.js') }}"></script>

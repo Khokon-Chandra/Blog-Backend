@@ -20,7 +20,7 @@ class PostController extends Controller
     {
         $posts = Post::with(['categories:name','author'])->latest()
         ->filter(request(['search']))->get();
-        
+
         return view('backend.post.posts',['posts'=>$posts]);
     }
 
@@ -53,7 +53,7 @@ class PostController extends Controller
         $attributes['user_id'] = Auth::id();
         Post::create($attributes);
         return redirect()->route('article.posts.index')->with('success','Successfully a new post created');
-        
+
     }
 
     /**
@@ -75,8 +75,9 @@ class PostController extends Controller
      */
     public function edit($slug)
     {
-        return view('post.edit-post',[
-            'post'=> Post::where('slug',$slug)->first(),
+        dd(Post::where('slug',$slug)->first());
+        return view('backend.post.edit-post',[
+            'post'=> Post::with('categories')->where('slug',$slug)->first(),
             'categories'=> Category::latest()->get(),
         ]);
     }

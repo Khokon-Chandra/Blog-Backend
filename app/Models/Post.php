@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use HasFactory,SoftDeletes;
-    
+
     protected $guarded = ['id'];
 
 
     /**
-     * auther method : User::class 
+     * auther method : User::class
      *
      * @return void
      */
@@ -58,8 +58,8 @@ class Post extends Model
     {
         $query->when( $filters['search'] ?? false, fn($query,$search)=>
             $query->where('title','like','%'.$search.'%')
-                    ->orWhere('description','like','%'.$search.'%')->paginate(5));
-        
+                    ->orWhere('description','like','%'.$search.'%')->get());
+
     }
 
 

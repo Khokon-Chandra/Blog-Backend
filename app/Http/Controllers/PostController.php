@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
+
         $posts = Post::with(['categories:name','author','comments'])->latest()
         ->filter(request(['search']))->get();
 
@@ -31,6 +33,7 @@ class PostController extends Controller
      */
     public function create(Request $request, Post $post)
     {
+
         if($request->user()->cannot('create',$post)){
             return view('403');
         }
@@ -45,14 +48,13 @@ class PostController extends Controller
      */
     public function store(PostRequest $request, Post $post)
     {
-        if($request->user()->cannot('create',$post)){
-            return view('403');
-        }
+
         $attributes = $request->validated();
         $attributes['slug'] = $request->createUniqueSlug();
         $attributes['user_id'] = Auth::id();
-        Post::create($attributes);
-        return redirect()->route('article.posts.index')->with('success','Successfully a new post created');
+        $post     = Post::create($attributes);
+        Category::findOrFail($attributes['category_id'])->posts()->attach($post);
+        return redirect()->route('posts.index')->with('success','Successfully a new post created');
 
     }
 
@@ -95,7 +97,7 @@ class PostController extends Controller
             'title'=>'required|min:10',
             'description'=>'required|min:200',
         ]))){
-            return redirect()->route('article.posts.index')->with('success','post updated succesfully');
+            return redirect()->route('posts.index')->with('success','post updated succesfully');
         }
     }
 
@@ -111,7 +113,7 @@ class PostController extends Controller
             return view('403');
         }
         if(Post::where('slug',$slug)->delete()){
-            return redirect()->route('article.posts.index')->with('success','Successfully Deleted');
+            return redirect()->route('posts.index')->with('success','Successfully Deleted');
         }
         return redirect()->back()->with("error","Something went wrong");
     }

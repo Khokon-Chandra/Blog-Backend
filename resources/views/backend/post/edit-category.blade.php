@@ -4,7 +4,7 @@
         <x-content-card :title="__('Edit Category')" :subTitle="__('Category addition form')">
         <x-alert />
             <div class="card-body">
-                <form action="{{ route('article.categories.update',['category'=>$category->slug]) }}" method="POST">
+                <form action="{{ route('categories.update',['category'=>$category->slug]) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="mb-3">
@@ -12,7 +12,7 @@
                     <input type="text" name="name" class="form-control" value="{{ $category->name??'' }}">
                     </div>
 
-                                                
+
                     <div class="mb-3">
                         <x-label for="category" :value="__('Parent category')" />
                         <select id="category" name="parent_id" class="form-control">

@@ -1,9 +1,9 @@
 <x-backend.app-layout>
     <x-page-title pagename="Edit Post" />
-        <x-backend.content-card :title="__('Edit post')" :subTitle="__('Edit post subtitle')">
+        <x-backend.content-card >
            <div class="card-body">
            <x-alert /> <!-- alert -->
-                <form method="POST" action="{{ route('article.posts.update',['post'=>$post->slug]) }}">
+                <form method="POST" action="{{ route('posts.update',['post'=>$post->slug]) }}">
                 @method('PUT')
                 @csrf
                     <div class="form-group">

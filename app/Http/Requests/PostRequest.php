@@ -6,6 +6,7 @@ use App\Models\Post;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PostRequest extends FormRequest
 {
@@ -35,12 +36,13 @@ class PostRequest extends FormRequest
     }
 
 
-    // protected function prepareForValidation()
-    // {
-    //     $this->merge([
-    //         'title' => Str::slug($this->title),
-    //     ]);
-    // }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_id'=> Auth::id(),
+            'slug' => $this->createUniqueSlug(),
+        ]);
+    }
 
 
 
@@ -67,13 +69,13 @@ class PostRequest extends FormRequest
      */
     private function getRow()
     {
-        $lastchar = substr($this->str,-1);   
+        $lastchar = substr($this->str,-1);
         if($hasRow = Post::where('title',$this->str)->count()){
             if(is_numeric($lastchar)){
                 $this->str[strlen($this->str)-1] = intval($lastchar)+$hasRow;
             }else{
                 $this->str = $this->str."_{$hasRow}";
-            }   
+            }
             $this->createUniqueSlug($this->str);
         }
     }

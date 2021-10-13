@@ -3,6 +3,7 @@
 namespace App\View\Components\Backend;
 
 use Illuminate\View\Component;
+use Spatie\Menu\Laravel\Facades\Menu;
 
 class AppLayout extends Component
 {
@@ -11,6 +12,15 @@ class AppLayout extends Component
      *
      * @return \Illuminate\View\View
      */
+
+    public $menu;
+
+    public function __construct()
+    {
+        $this->menu = Menu::new();
+    }
+
+
     public function render()
     {
         return view('backend.layouts.app');

@@ -13,23 +13,21 @@ use App\Http\Controllers\Backend\CommentController;
 Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(){
 
     Route::get('/',[IndexController::class,'dashboard'])->name('dashboard');
-
-    Route::group(['as'=>'article.'],function(){
-        Route::resource('posts',PostController::class);
-        Route::resource('categories',CategoryController::class);
-    });
-
+    Route::resource('posts',PostController::class);
+    Route::resource('categories',CategoryController::class);
     Route::resource('users', UserController::class);
     Route::resource('comments', CommentController::class);
-    Route::resource('media', MediaController::class);
-
     Route::name('users.')->prefix('users/trashed')->group(function(){
         Route::get('/all', [UserController::class,'trashed'])->name('trash');
         Route::put('restore/{user:username}',[UserController::class,'restore'])->name('restore');
         Route::delete('delete_permanently/{user:username}', [UserController::class,'deletePermanently'])->name('delete_permanently');
     });
-    
 
+
+
+
+
+    Route::resource('media', MediaController::class);
     Route::get('/menu',function(){
         return view('backend.page');
     })->name('menu');

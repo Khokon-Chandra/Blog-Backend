@@ -3,7 +3,7 @@
 
     <x-alert /> <!-- alert -->
 
-    <div class="mb-3"><a class="btn btn-dark" href="{{ route('article.categories.create') }}">Add new</a></div>
+    <div class="mb-3"><a class="btn btn-dark" href="{{ route('categories.create') }}">Add new</a></div>
 
     <x-backend.content-card :title="__('Category Table')" :subTitle="__('Category Table subtitle')">
         <table class="table table-striped">
@@ -22,7 +22,7 @@
                     <td> {{ $category->parentCategory->name ?? 'No parent' }} </td>
                     <td> {{ $category->description ?? '' }} </td>
                     <td class="table-action">
-                        <a href=" {{ route('article.categories.edit',['category'=>$category->slug]) }} "><svg
+                        <a href=" {{ route('categories.edit',['category'=>$category->slug]) }} "><svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="feather feather-edit-2 align-middle">
@@ -30,7 +30,7 @@
                             </svg></a>
 
                         <form method="POST" class="d-inline"
-                            action="{{ route('article.categories.destroy',['category'=>$category->slug]) }}">
+                            action="{{ route('categories.destroy',['category'=>$category->slug]) }}">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn px-0 d-inline"><svg xmlns="http://www.w3.org/2000/svg"

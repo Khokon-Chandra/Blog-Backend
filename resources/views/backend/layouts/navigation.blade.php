@@ -1,3 +1,8 @@
+{{-- @php
+    $menu->add(Spatie\Menu\Laravel\Link::to('/', 'Home'));
+    echo $menu->render();
+@endphp --}}
+
 <nav id="sidebar" class="sidebar">
     <div class="sidebar-content js-simplebar">
 
@@ -18,13 +23,13 @@
 
             <!-- Dropdown link -->
 
-            <x-backend.dropdown :trigger="__('Posts')" :active="is_int(strpos(Route::currentRouteName(),'article'))" :id="__('posts')" :icon="__('users')">
+            <x-backend.dropdown :trigger="__('Posts')" :active="__('posts-categories.tags')" :id="__('posts')" :icon="__('users')">
                 <x-slot name="content">
-                    <x-backend.dropdown-link :href="route('article.posts.index')" :active="request()->routeIs('article.posts.index')">{{ __('All Posts') }}</x-backend.dropdown-link>
+                    <x-backend.dropdown-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">{{ __('All Posts') }}</x-backend.dropdown-link>
 
-                    <x-backend.dropdown-link :href="route('article.posts.create')" :active="request()->routeIs('article.posts.create')">{{ __('Add New') }}</x-backend.dropdown-link>
+                    <x-backend.dropdown-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">{{ __('Add New') }}</x-backend.dropdown-link>
 
-                    <x-backend.dropdown-link :href="route('article.categories.index')" :active="request()->routeIs('article.categories.index')">{{ __('Category') }}</x-backend.dropdown-link>
+                    <x-backend.dropdown-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">{{ __('Category') }}</x-backend.dropdown-link>
                 </x-slot>
             </x-backend.dropdown>
 

@@ -1,5 +1,8 @@
 @props(['active','trigger','icon','id'])
-
+@php
+    $arr = explode('.',$active);
+    Route::currentRouteName();
+@endphp
 <li class="sidebar-item {{ $active ?'active':'' }}">
     <a href="#{{$id}}" data-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
     <i class="align-middle" data-feather="{{ $icon }}"></i>

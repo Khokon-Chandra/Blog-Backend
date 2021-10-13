@@ -1,10 +1,11 @@
 <x-backend.app-layout>
     <x-page-title pagename="Add New Post" />
-    <x-backend.content-card :title="__('Add new post')" :subTitle="__('New post addition subtitle')">
+    <div class="row">
+        <div class="col-md-8"><x-backend.content-card>
             <!-- card body content goes here -->
            <div class="card-body">
                 <x-alert />
-                <form method="POST" action="{{ route('article.posts.store') }}">
+                <form method="POST" action="{{ route('posts.store') }}">
 
                     @csrf
                         <div class="form-group">
@@ -44,4 +45,21 @@
             </div>
 
     </x-backend.content-card>
+</div>
+<div class="col-md-4">
+    <x-backend.content-card>
+        <div class="card-body">
+            <div class="featured-image mb-3">
+                <h4>Featured Image</h4>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <input type="file" name="feature_image" class="form-control">
+                </form>
+            </div>
+        </div>
+    </x-backend.content-card>
+</div>
+        {{-- card end here --}}
+    </div>
 </x-backend.app-layout>

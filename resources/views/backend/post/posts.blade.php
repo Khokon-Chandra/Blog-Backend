@@ -1,8 +1,9 @@
 <x-backend.app-layout>
 
     <x-page-title pagename="Posts" />
-    <a href="{{route('article.posts.create')}}" class="btn text-white mb-3" style="background:#222e3c;"> Add new</a>
+    <a href="{{route('posts.create')}}" class="btn text-white mb-3" style="background:#222e3c;"> Add new</a>
     <div class="card">
+
         <x-alert />
 
         <div class="card-body">
@@ -33,7 +34,7 @@
                         <td> {{ $post->comments()->count() }} </td>
                         <td class="d-none d-md-table-cell"> {{ $post->created_at->format("j F  Y") }} </td>
                         <td class="table-action">
-                            <a href=" {{ route('article.posts.edit',['post'=>$post->slug]) }} "><svg
+                            <a href=" {{ route('posts.edit',['post'=>$post->slug]) }} "><svg
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-edit-2 align-middle">
@@ -41,7 +42,7 @@
                                 </svg></a>
 
                             <form method="POST" class="d-inline"
-                                action="{{ route('article.posts.destroy',['post'=>$post->slug]) }}">
+                                action="{{ route('posts.destroy',['post'=>$post->slug]) }}">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn px-0 d-inline"><svg xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,7 @@
 <x-backend.app-layout>
     <x-page-title pagename="Comments" />
     <x-alert />
-    <x-content-card :title="__('See all comments')" :subTitle="__('card subtitle')">
+    <x-backend.content-card :title="__('See all comments')" :subTitle="__('card subtitle')">
         <div class="card-body">
             <table id="datatable" class="table table-striped">
                 <thead>
@@ -36,5 +36,5 @@
             </table>
             </div>
         <!-- card end -->
-    </x-content-card>
+    </x-backend.content-card>
 </x-backend.app-layout>

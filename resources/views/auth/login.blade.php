@@ -13,16 +13,16 @@
                     <span class="fa fa-user-o"></span>
                 </div>
                 <span class="mb-4 d-block text-center px-2"><h3 class="d-inline">Have an account? </h3><a href="{{ route('register') }}">Register</a></span>
-                
+
                 <form action="{{ route('login') }}" method="POST" class="login-form">
                     @csrf
                     <div class="form-group">
                         <input type="email" name="email" class="form-control rounded-left" placeholder="Email Address" required>
-                        <x-invalid-feedback attribute="email" />
+                        <x-backend.invalid-feedback attribute="email" />
                     </div>
                     <div class="form-group">
                         <input type="password" name="password" class="form-control rounded-left" placeholder="Password" >
-                        <x-invalid-feedback attribute="password" />
+                        <x-backend.invalid-feedback attribute="password" />
                     </div>
                     <div class="form-group d-md-flex">
                         <div class="w-50">

@@ -14,7 +14,7 @@ class Postables extends Migration
     public function up()
     {
         Schema::create('postables',function(Blueprint $table){
-            $table->foreignId('post_id')->constrained();
+            $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('postable_id');
             $table->string('postable_type');
             $table->timestamps();

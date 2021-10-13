@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['categories:name','author'])->latest()
+        $posts = Post::with(['categories:name','author','comments'])->latest()
         ->filter(request(['search']))->get();
 
         return view('backend.post.posts',['posts'=>$posts]);
@@ -75,7 +75,7 @@ class PostController extends Controller
      */
     public function edit($slug)
     {
-        dd(Post::where('slug',$slug)->first());
+
         return view('backend.post.edit-post',[
             'post'=> Post::with('categories')->where('slug',$slug)->first(),
             'categories'=> Category::latest()->get(),

@@ -18,7 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-    
+
                     @forelse($posts as $post)
                     <tr>
                         <td> {{ $post->title }} </td>
@@ -30,7 +30,7 @@
                             Uncategorized
                             @endforelse
                         </td>
-                        <td> {{ $post->comments }} </td>
+                        <td> {{ $post->comments()->count() }} </td>
                         <td class="d-none d-md-table-cell"> {{ $post->created_at->format("j F  Y") }} </td>
                         <td class="table-action">
                             <a href=" {{ route('article.posts.edit',['post'=>$post->slug]) }} "><svg
@@ -39,7 +39,7 @@
                                     stroke-linejoin="round" class="feather feather-edit-2 align-middle">
                                     <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                                 </svg></a>
-    
+
                             <form method="POST" class="d-inline"
                                 action="{{ route('article.posts.destroy',['post'=>$post->slug]) }}">
                                 @method('DELETE')

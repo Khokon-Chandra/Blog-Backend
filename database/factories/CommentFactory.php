@@ -23,9 +23,10 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
+        $postIdArr = json_decode(Post::pluck('id'));
         return [
             'user_id'=>rand(1,10),
-            'post_id'=>rand(1,10),
+            'post_id'=>$postIdArr[array_rand($postIdArr)],
             'message'=>$this->faker->paragraph(rand(1,5)),
         ];
     }

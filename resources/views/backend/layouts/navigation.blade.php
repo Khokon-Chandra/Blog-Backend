@@ -23,7 +23,7 @@
 
             <!-- Dropdown link -->
 
-            <x-backend.dropdown :trigger="__('Posts')" :active="__('posts-categories.tags')" :id="__('posts')" :icon="__('users')">
+            <x-backend.dropdown :trigger="__('Posts')" :active="__('posts.categories.tags')" :id="__('posts')" :icon="__('users')">
                 <x-slot name="content">
                     <x-backend.dropdown-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">{{ __('All Posts') }}</x-backend.dropdown-link>
 
@@ -40,7 +40,7 @@
 
             <!-- Dropdown link -->
 
-            <x-backend.dropdown :trigger="__('Users')" :active="strpos(request()->url(),'users')" :id="__('user')" :icon="__('users')">
+            <x-backend.dropdown :trigger="__('Users')" :active="__('users')" :id="__('user')" :icon="__('users')">
                 <x-slot name="content">
                     <x-backend.dropdown-link :href="route('users.show',['user'=>Auth::user()->username])" :active="request()->routeIs('user.show')">{{ __('Profile') }}</x-backend.dropdown-link>
                     <x-backend.dropdown-link :href="route('users.index')" :active="request()->routeIs('users.index')">{{ __('All Users') }}</x-backend.dropdown-link>

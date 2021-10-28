@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -20,7 +21,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::with(['categories:name','author','comments'])->latest()
+        $posts = Post::with(['categories:name','author',])->latest()
         ->filter(request(['search']))->get();
 
         return view('backend.post.posts',['posts'=>$posts]);
@@ -37,7 +38,10 @@ class PostController extends Controller
         if($request->user()->cannot('create',$post)){
             return view('403');
         }
-        return view('backend.post.add-post',['categories'=>Category::latest()->get()]);
+        return view('backend.post.add-post.add-post',[
+            'categories'=>Category::all(),
+            'tags'=>Tag::all(),
+        ]);
     }
 
     /**
@@ -55,6 +59,15 @@ class PostController extends Controller
         $post     = Post::create($attributes);
         Category::findOrFail($attributes['category_id'])->posts()->attach($post);
         return redirect()->route('posts.index')->with('success','Successfully a new post created');
+
+    }
+
+    /**
+     * Post Feature Image store
+     */
+
+    public function StoreFeatureImage()
+    {
 
     }
 
@@ -109,9 +122,6 @@ class PostController extends Controller
      */
     public function destroy($slug)
     {
-        if(Gate::denies('can-delete')){
-            return view('403');
-        }
         if(Post::where('slug',$slug)->delete()){
             return redirect()->route('posts.index')->with('success','Successfully Deleted');
         }

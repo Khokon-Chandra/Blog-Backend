@@ -62,6 +62,14 @@ class Post extends Model
 
     }
 
+    public static function updateCommentCount($postId)
+    {
+        self::where('id',$postId)->update([
+            'comment_count'=> count(self::where('id',$postId)->select('comment_count')->get())+1,
+        ]);
+        return $postId;
+    }
+
 
 
 

@@ -31,7 +31,7 @@
                             Uncategorized
                             @endforelse
                         </td>
-                        <td> {{ $post->comments()->count() }} </td>
+                        <td> {{ $post->comment_count }} </td>
                         <td class="d-none d-md-table-cell"> {{ $post->created_at->format("j F  Y") }} </td>
                         <td class="table-action">
                             <a href=" {{ route('posts.edit',['post'=>$post->slug]) }} "><svg

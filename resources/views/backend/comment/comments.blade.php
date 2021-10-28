@@ -1,7 +1,7 @@
 <x-backend.app-layout>
     <x-page-title pagename="Comments" />
     <x-alert />
-    <x-backend.content-card :title="__('See all comments')" :subTitle="__('card subtitle')">
+    <x-backend.content-card >
         <div class="card-body">
             <table id="datatable" class="table table-striped">
                 <thead>

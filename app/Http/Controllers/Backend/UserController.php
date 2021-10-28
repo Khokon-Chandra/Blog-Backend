@@ -16,7 +16,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->filter(request(['search']))->paginate(10);       
+        $users = User::latest()->filter(request(['search']))->paginate(10);
         return view('backend.user.users',['users'=>$users]);
     }
 
@@ -27,11 +27,11 @@ class UserController extends Controller
         ]);
     }
 
-    // public function profile()
-    // {
-    //     return view('user.profile');
+    public function profile()
+    {
+        return view('user.profile');
 
-    // }
+    }
 
     public function show($username)
     {
@@ -48,7 +48,7 @@ class UserController extends Controller
         return "update";
     }
 
-    
+
 
 
     public function create()

@@ -10,10 +10,19 @@ use App\Http\Controllers\Backend\MediaController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CommentController;
 
+
+
+
 Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(){
 
     Route::get('/',[IndexController::class,'dashboard'])->name('dashboard');
+
+
     Route::resource('posts',PostController::class);
+    Route::group(['prefix'=>'posts'],function(){
+        Route::post('/feature-image',[PostController::class,'StoreFeatureImage']);
+    });
+
     Route::resource('categories',CategoryController::class);
     Route::resource('users', UserController::class);
     Route::resource('comments', CommentController::class);
@@ -40,5 +49,6 @@ Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(
 
 
 
-require __DIR__.'/auth.php';
 require __DIR__.'/frontend.php';
+require __DIR__.'/auth.php';
+

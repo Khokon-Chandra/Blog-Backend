@@ -24,9 +24,10 @@ class CommentFactory extends Factory
     public function definition()
     {
         $postIdArr = json_decode(Post::pluck('id'));
+        $randPostId = $postIdArr[array_rand($postIdArr)];
         return [
             'user_id'=>rand(1,10),
-            'post_id'=>$postIdArr[array_rand($postIdArr)],
+            'post_id'=>Post::updateCommentCount($randPostId),
             'message'=>$this->faker->paragraph(rand(1,5)),
         ];
     }

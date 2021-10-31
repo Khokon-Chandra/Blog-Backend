@@ -1,7 +1,7 @@
 <x-backend.app-layout>
 
     <x-page-title pagename="Posts" />
-    <a href="{{route('posts.create')}}" class="btn text-white mb-3" style="background:#222e3c;"> Add new</a>
+    <a href="{{route('posts.create')}}" class="btn btn-primary text-white mb-3"> Add new</a>
     <div class="card">
 
         <x-alert />
@@ -31,7 +31,7 @@
                             Uncategorized
                             @endforelse
                         </td>
-                        <td> {{ $post->comment_count }} </td>
+                        <td> {{ $post->comments_count }} </td>
                         <td class="d-none d-md-table-cell"> {{ $post->created_at->format("j F  Y") }} </td>
                         <td class="table-action">
                             <a href=" {{ route('posts.edit',['post'=>$post->slug]) }} "><svg

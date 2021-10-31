@@ -5,7 +5,7 @@
         <a href="{{ route('users.trash') }}" class="btn btn-danger d-block">Trash</a>
     </div>
     <x-alert />
-    <x-content-card >
+    <x-backend.content-card >
         <div class="card-body">
         <table id="datatable" class="table table-striped">
             <thead>
@@ -44,5 +44,5 @@
             </tbody>
         </table>
     </div>
-    </x-content-card>
+    </x-backend.content-card>
 </x-backend.app-layout>

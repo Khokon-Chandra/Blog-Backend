@@ -1,14 +1,9 @@
 <x-backend.app-layout>
-
     <x-page-title pagename="Create New User" />
-    <x-content-card class="col-md-6 offset-md-3" :title="__('Card Title')" :subTitle="__('card subtitle')">
-
+    <x-backend.content-card class="col-md-6 offset-md-3" >
         <div class="card-body">
-            @if(session()->get('success'))
-            <div class="alert alert-success p-4"> {{ session()->get('success') }} </div>
-            @endif
+           <x-alert />
             <form method="POST" action="{{ route('users.store') }}">
-
                 @csrf
                 <div class="row">
                     <div class="col mb-3">
@@ -68,5 +63,5 @@
                 </div>
             </form>
         </div>
-    </x-content-card>
+    </x-backend.content-card>
 </x-backend.app-layout>

@@ -5,7 +5,7 @@
             <span>{{ $collapsHeader }}</span>
             <span class="fa fa-angle-right"></span>
         </a>
-        <div id="{{ $collapsId }}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div id="{{ $collapsId }}" {{ $attributes->merge(['class'=>'collapse pl-3']) }}  aria-labelledby="headingTwo" data-parent="#accordion">
             {{ $slot }}
         </div>
     </div>

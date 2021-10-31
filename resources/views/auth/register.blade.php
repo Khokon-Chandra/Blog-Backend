@@ -19,15 +19,15 @@
                     @csrf
                     <div class="form-group">
                         <input type="text" name="name" class="form-control rounded-left" placeholder="Name" required>
-                        <x-invalid-feedback attribute="name" />
+                        <x-backend.invalid-feedback attribute="name" />
                     </div>
                     <div class="form-group">
                         <input type="email" name="email" class="form-control rounded-left" placeholder="Email Address" required>
-                        <x-invalid-feedback attribute="email" />
+                        <x-backend.invalid-feedback attribute="email" />
                     </div>
                     <div class="form-group">
                         <input type="password" name="password" class="form-control rounded-left" placeholder="Password">
-                        <x-invalid-feedback attribute="password" />
+                        <x-backend.invalid-feedback attribute="password" />
                     </div>
 
                     <div class="form-group">

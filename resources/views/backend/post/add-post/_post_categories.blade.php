@@ -1,19 +1,21 @@
 <x-backend.post-collaps :header="__('Category')" id="categoryCollaps">
-    <form action="" method="POST" class="px-3">
-        @csrf
-        @method('PUT')
-        @foreach($categories as $category)
-            <div class="form-check mb-3">
-                <input name="categories[]" class="form-check-input" type="checkbox"
-                    value="{{ $category->slug }}" id="cat{{ $category->id }}">
-                <label class="form-check-label d-block" for="cat{{ $category->id }}">
-                    {{ $category->name }}
-                </label>
-            </div>
-        @endforeach
-        <x-backend.invalid-feedback attribute="categories" />
-        <div class="mb-3">
-            <input type="submit" class="btn btn-outline-primary btn-block" value="save">
+
+    @foreach ($categories as $category)
+        <div class="form-check">
+            <input name="categories[]"
+            @isset($post)
+                @foreach ($post->categories as $item)
+                        @if ($item->slug == $category->slug)
+                            checked
+                        @endif
+                @endforeach
+            @endisset
+            class="form-check-input" style="margin-top: 0.8rem;" type="checkbox" value="{{ $category->id }}"
+            id="cat{{ $category->id }}">
+            <label class="form-check-label d-block p-2" for="cat{{ $category->id }}">
+                {{ $category->name }}
+            </label>
         </div>
-    </form>
+    @endforeach
+<x-backend.invalid-feedback attribute="categories" />
 </x-backend.post-collaps>

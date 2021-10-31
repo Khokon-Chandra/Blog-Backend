@@ -21,7 +21,6 @@ class CreatePostsTable extends Migration
             $table->text('feature_image')->nullable();
             $table->text('excerpt')->nullable();
             $table->text('description');
-            $table->bigInteger('comment_count')->default(0);
             $table->string('post_status')->default('publish');
             $table->timestamps();
             $table->softDeletes();

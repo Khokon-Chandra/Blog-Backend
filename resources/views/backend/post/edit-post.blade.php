@@ -1,44 +1,35 @@
 <x-backend.app-layout>
     <x-page-title pagename="Edit Post" />
-        <x-backend.content-card >
-           <div class="card-body">
-           <x-alert /> <!-- alert -->
-                <form method="POST" action="{{ route('posts.update',['post'=>$post->slug]) }}">
-                @method('PUT')
-                @csrf
-                    <div class="form-group">
-                        <x-label for="title" :value="__('Post Title')" />
-                        <x-input class="py-2"
-                        id="title"
-                        class="block mt-1 w-full"
-                        type="text" name="title" :value="$post->title" autofocus />
-                        <x-backend.invalid-feedback attribute="title" />
-                    </div>
-
-                    <div class="form-group">
-                        <x-label for="category" :value="__('Choose Category')" />
-                        <select id="category" name="category_id" class="form-control">
-                            <option >Choose..</option>
-                            @foreach($categories as $category)
-                            <option value="{{ $category->id }}"> {{ $category->name }} </option>
-                            @endforeach
-                        </select>
-                        <x-backend.invalid-feedback attribute="category_id" />
-
-                    </div>
-
-                    <div class="form-group">
-                        <x-label for="description" :value="__('Description')" />
-                        <textarea
-                        name="description"
-                        id="description" cols="30" rows="10"
-                        class="form-control">{{ $post->description }}</textarea>
-                    </div>
-                    <x-backend.invalid-feedback attribute="description" />
-                    <div class="mb-3">
-                        <x-button class="btn-dark" type="submit">Save change</x-button>
-                    </div>
-                </form>
-           </div>
-    </x-backend.content-card>
+    <form method="POST" action="{{ route('posts.update',['post'=>$post->slug]) }}" >
+        @method('PATCH')
+        @csrf
+        <div class="mb-3 d-flex justify-content-between">
+            <div>
+                <a href="{{route('posts.index')}}" class="btn btn-primary text-white mb-3">Go to Posts</a>
+            </div>
+            <div>
+                <x-button class="btn-primary" name="inherit" type="submit">Save</x-button>
+                <x-button class="btn-success" type="submit">Update & Publish</x-button>
+            </div>
+        </div>
+        <x-alert />
+        <div class="row">
+            <div class="col-md-8">
+                @include('backend.post.add-post._post_principale')
+            </div>
+            <div class="col-md-4">
+                @include('backend.post.add-post._post_feature_image')
+                @include('backend.post.add-post._post_categories')
+                @include('backend.post.add-post._post_tags')
+                @include('backend.post.add-post._post_excerpt')
+            </div>
+        </div>
+    </form>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('description');
+    </script>
 </x-backend.app-layout>
+
+
+

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Media;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class MediaController extends Controller
 {
@@ -36,7 +39,16 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->media);
+        $data = [];
+        $files = $request->validate(['media'=>'required']);
+        foreach($files['media'] as $image){
+            $filename = uniqid().".".$image->getClientOriginalExtension();
+            $directory = uniqid()."_".now()->timestamp;
+            $image->storeAs('public/'.$directory, $filename);
+            $data[] = ['link'=>Storage::disk('public')->url($directory."/".$filename)];
+        }
+        Media::upsert($data,['link']);
+        return back()->with('success','Successfully Files Uploaded');
     }
 
     /**

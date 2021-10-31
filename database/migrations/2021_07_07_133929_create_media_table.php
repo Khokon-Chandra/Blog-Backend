@@ -20,6 +20,7 @@ class CreateMediaTable extends Migration
             $table->text('meta_data')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -30,27 +30,19 @@ class PostRequest extends FormRequest
     {
         return [
             "title"=>"required|max:255",
-            "category_id"=>"required | integer",
-            "description"=>"required|min:200",
+            "description"=>"required",
+            'excerpt'=>'nullable|max:200',
+            'feature_image'=>'nullable',
+            'categories'=>'nullable',
+            'tags'=>'nullable',
         ];
     }
-
-
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'user_id'=> Auth::id(),
-            'slug' => $this->createUniqueSlug(),
-        ]);
-    }
-
 
 
     public function attributes()
     {
         return [
             'title' => 'post title',
-            'category_id' => 'post category',
             'description ' => 'post description',
         ];
     }
@@ -70,11 +62,11 @@ class PostRequest extends FormRequest
     private function getRow()
     {
         $lastchar = substr($this->str,-1);
-        if($hasRow = Post::where('title',$this->str)->count()){
+        if($hasRow = Post::withTrashed()->where('title',$this->str)->count()){
             if(is_numeric($lastchar)){
                 $this->str[strlen($this->str)-1] = intval($lastchar)+$hasRow;
             }else{
-                $this->str = $this->str."_{$hasRow}";
+                $this->str = $this->str."-{$hasRow}";
             }
             $this->createUniqueSlug($this->str);
         }
@@ -85,7 +77,16 @@ class PostRequest extends FormRequest
     {
         $this->str = $str??$this->title;
         $this->getRow();
-        return $this->str;
+        return str_replace(' ','-',$this->str);
+    }
+
+
+    public function isInherit()
+    {
+        if(isset($_POST['inherit'])){
+            return 'inherit';
+        }
+        return 'publish';
     }
 
 

@@ -24,8 +24,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'slug'=>$this->faker->unique()->sentence(),
-            'user_id'=>rand(1,10),
+            'slug'=>$this->faker->unique()->slug,
+            'user_id'=>rand(1,User::count()),
             'title'=>$this->faker->sentence(),
             'feature_image'=>$this->faker->imageUrl,
             'excerpt'=>$this->faker->paragraph(),

@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Category;
+use App\Models\Media;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -20,10 +19,8 @@ class PostController extends Controller
      */
     public function index()
     {
-
-        $posts = Post::with(['categories:name','author',])->latest()
+        $posts = Post::with(['categories:name','author',])->withCount('comments')->latest()
         ->filter(request(['search']))->get();
-
         return view('backend.post.posts',['posts'=>$posts]);
     }
 
@@ -32,15 +29,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, Post $post)
+    public function create()
     {
-
-        if($request->user()->cannot('create',$post)){
-            return view('403');
-        }
         return view('backend.post.add-post.add-post',[
             'categories'=>Category::all(),
             'tags'=>Tag::all(),
+            'media'=>Media::all(),
         ]);
     }
 
@@ -50,26 +44,25 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request, Post $post)
+    public function store(PostRequest $request)
     {
+        $attribute            = $request->only(['title','description','feature_image','excerpt']);
+        $attribute['slug']    = $request->createUniqueSlug();
+        $attribute['user_id'] = Auth::id();
+        $post['post_status']  = $request->isInherit();
+        $categories           = $request->only('categories')['categories']??1;
+        $tags                 = $request->only('tags')['tags']??1;
 
-        $attributes = $request->validated();
-        $attributes['slug'] = $request->createUniqueSlug();
-        $attributes['user_id'] = Auth::id();
-        $post     = Post::create($attributes);
-        Category::findOrFail($attributes['category_id'])->posts()->attach($post);
-        return redirect()->route('posts.index')->with('success','Successfully a new post created');
+        $categoryInstance     = Category::find($categories);
+        $tagInstance          = Tag::find($tags);
+        $postInstance         = Post::create($attribute);
+        $postInstance->categories()->sync($categoryInstance);
+        $postInstance->tags()->sync($tagInstance);
 
+        return back()->with('success','Successfully a new post created');
     }
 
-    /**
-     * Post Feature Image store
-     */
 
-    public function StoreFeatureImage()
-    {
-
-    }
 
     /**
      * Display the specified resource.
@@ -90,10 +83,11 @@ class PostController extends Controller
      */
     public function edit($slug)
     {
-
         return view('backend.post.edit-post',[
-            'post'=> Post::with('categories')->where('slug',$slug)->first(),
-            'categories'=> Category::latest()->get(),
+            'post'=> Post::with('categories','tags')->where('slug',$slug)->firstOrFail(),
+            'categories'=> Category::all(),
+            'tags'=> Tag::all(),
+            'media'=>Media::all(),
         ]);
     }
 
@@ -104,14 +98,21 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(PostRequest $request, $slug)
     {
-        if(Post::where('slug',$slug)->update($request->validate([
-            'title'=>'required|min:10',
-            'description'=>'required|min:200',
-        ]))){
-            return redirect()->route('posts.index')->with('success','post updated succesfully');
-        }
+
+        $attribute                = $request->only(['title','description','feature_image','excerpt']);
+        $attribute['post_status'] = $request->isInherit();
+        $categories               = $request->only('categories')['categories']??1;
+        $tags                     = $request->only('tags')['tags']??1;
+        $categoryInstance         = Category::find($categories);
+        $tagInstance              = Tag::find($tags);
+        $postInstance             =  Post::where('slug',$slug)->firstOrFail();
+
+        $postInstance->update($attribute);
+        $postInstance->categories()->attach($categoryInstance);
+        $postInstance->tags()->attach($tagInstance);
+        return back()->with('success','post updated succesfully');
     }
 
     /**
@@ -127,4 +128,6 @@ class PostController extends Controller
         }
         return redirect()->back()->with("error","Something went wrong");
     }
+
+
 }

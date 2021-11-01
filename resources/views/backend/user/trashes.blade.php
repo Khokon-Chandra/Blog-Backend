@@ -1,7 +1,7 @@
 <x-backend.app-layout>
     <x-page-title pagename="Trashes User" />
     <x-alert />
-    <x-content-card :title="__('Card Title')" :subTitle="__('card subtitle')">
+    <x-backend.content-card :title="__('Card Title')" :subTitle="__('card subtitle')">
 
         <table class="table table-striped">
             <thead>
@@ -41,6 +41,6 @@
         <div class="px-3 mt-3">
         {{ $trashes->links() }}
         </div>
-        
-    </x-content-card>
+
+    </x-backend.content-card>
 </x-backend.app-layout>

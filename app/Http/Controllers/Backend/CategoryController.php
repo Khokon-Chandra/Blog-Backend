@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('backend.post.category',['categories'=>Category::paginate(5)]);
+        return view('backend.post.category.category', ['categories' => Category::paginate(5)]);
     }
     /**
      * Show the form for creating a new resource.
@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.post.add-category',['categories'=>Category::latest()->get()]);
+        return view('backend.post.category.add-category', ['categories' => Category::latest()->get()]);
     }
 
     /**
@@ -32,33 +32,30 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-    
-        $request->validate(['name'=>'required']);
-        $store = Category::create([
-            'slug'=>Str::slug($request->name) . (Category::max('id') + random_int(99, 99999)),
-            'name'=>$request->name,
-            'parent_id'=>is_numeric($request->parent_id)?$request->parent_id : null,
-            'description'=> !empty($request->description)?$request->description:'',
+
+        $request->validate(['name' => 'required']);
+        Category::create([
+            'slug' => Str::slug($request->name) . (Category::max('id') + random_int(99, 99999)),
+            'name' => $request->name,
+            'parent_id' => is_numeric($request->parent_id) ? $request->parent_id : null,
+            'description' => !empty($request->description) ? $request->description : '',
         ]);
-        if($store){
-            return redirect()->route('article.categories.index')->with('success','Category successfully inserted');
-        }
-        echo "store";
-        return redirect()->back()->with('error','something went wrong');
+
+        return back()->with('success', 'Category successfully inserted');
     }
 
-    
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit(Category $category)
     {
-        return view('backend.post.edit-category',[
-            'category'=>Category::where('slug',$slug)->first(),
-            'categories'=>Category::latest()->get(),
+        return view('backend.post.category.edit-category', [
+            'category' => $category,
+            'categories' => Category::latest()->get(),
         ]);
     }
 
@@ -69,20 +66,17 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, Category $category)
     {
-    
-       $request->validate(['name'=>['required']]);
-       $update = Category::where('slug',$slug)->update([
-           'slug'=>Str::slug($request->name) . (Category::max('id') + random_int(99, 99999)),
-           'name'=>$request->name,
-           'parent_id'=>is_numeric($request->parent_id)?$request->parent_id : null,
-           'description'=> !empty($request->description)?$request->description:'',
-       ]);
-       if($update){
-           return redirect()->route('article.categories.index')->with('success','Category successfully updated');
-       }
-       return redirect()->back()->with('error','something went wrong');
+
+        $request->validate(['name' => ['required']]);
+        $update = $category->update([
+            'slug' => Str::slug($request->name) . (Category::max('id') + random_int(99, 99999)),
+            'name' => $request->name,
+            'parent_id' => is_numeric($request->parent_id) ? $request->parent_id : null,
+            'description' => !empty($request->description) ? $request->description : '',
+        ]);
+        return redirect()->route('categories.index')->with('success', 'Category successfully updated');
     }
 
     /**
@@ -91,11 +85,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy(Category $category)
     {
-        if(Category::where('slug',$slug)->delete()){
-            return redirect()->route('article.categories.index')->with('success','successfully deleted');
-        }
-        return redirect()->back()->with('error','something went wrong');
+        $category->delete();
+        return back()->with('success', 'successfully deleted');
+
     }
 }

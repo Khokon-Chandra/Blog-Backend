@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Tag;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.post.tag.tags',['tags'=>Tag::all()]);
     }
 
     /**
@@ -25,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.post.tag.add-tag',['tags'=>Tag::all()]);
     }
 
     /**
@@ -36,7 +37,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(['name'=>'required|min:4']);
+        Tag::create([
+            'slug' => Str::slug($request->name) . (Tag::max('id') + random_int(99, 99999)),
+            'name' => $request->name,
+            'parent_id' => is_numeric($request->parent_id) ? $request->parent_id : null,
+            'description' => !empty($request->description) ? $request->description : '',
+        ]);
+        return back()->with('success','Successfully a new Tag Created');
     }
 
     /**
@@ -58,7 +66,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('backend.post.tag.edit-tag',['tag'=>$tag,'tags'=>Tag::all()]);
     }
 
     /**
@@ -70,7 +78,9 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $attribute = $request->validate(['name'=>'required|min:4']);
+        $tag->update($attribute);
+        return back()->with('success','Successfully Tag Updated !!');
     }
 
     /**
@@ -81,6 +91,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return back()->with('success','Successfully Tag Deleted !!');
     }
 }

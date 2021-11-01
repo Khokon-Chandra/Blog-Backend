@@ -81,10 +81,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit(Post $post)
     {
+
         return view('backend.post.edit-post',[
-            'post'=> Post::with('categories','tags')->where('slug',$slug)->firstOrFail(),
+            'post'=> $post,
             'categories'=> Category::all(),
             'tags'=> Tag::all(),
             'media'=>Media::all(),
@@ -98,7 +99,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, $slug)
+    public function update(PostRequest $request, Post $post)
     {
 
         $attribute                = $request->only(['title','description','feature_image','excerpt']);
@@ -107,7 +108,7 @@ class PostController extends Controller
         $tags                     = $request->only('tags')['tags']??1;
         $categoryInstance         = Category::find($categories);
         $tagInstance              = Tag::find($tags);
-        $postInstance             =  Post::where('slug',$slug)->firstOrFail();
+        $postInstance             =  $post;
 
         $postInstance->update($attribute);
         $postInstance->categories()->attach($categoryInstance);
@@ -121,12 +122,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy(Post $post)
     {
-        if(Post::where('slug',$slug)->delete()){
-            return redirect()->route('posts.index')->with('success','Successfully Deleted');
-        }
-        return redirect()->back()->with("error","Something went wrong");
+        $post->delete();
+        return redirect()->route('posts.index')->with('success','Successfully Deleted');
     }
 
 

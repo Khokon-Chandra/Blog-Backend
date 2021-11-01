@@ -12,7 +12,6 @@ class Post extends Model
 
     protected $guarded = ['id'];
 
-
     /**
      * auther method : User::class
      *

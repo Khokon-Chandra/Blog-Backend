@@ -1,6 +1,6 @@
 <x-backend.app-layout>
     <x-page-title pagename="Edit Post" />
-    <form method="POST" action="{{ route('posts.update',['post'=>$post->slug]) }}" >
+    <form method="POST" action="{{ route('posts.update',$post->id) }}" >
         @method('PATCH')
         @csrf
         <div class="mb-3 d-flex justify-content-between">

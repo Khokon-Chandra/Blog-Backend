@@ -30,6 +30,7 @@
                     <x-backend.dropdown-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">{{ __('Add New') }}</x-backend.dropdown-link>
 
                     <x-backend.dropdown-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">{{ __('Category') }}</x-backend.dropdown-link>
+                    <x-backend.dropdown-link :href="route('tags.index')" :active="request()->routeIs('tags.index')">{{ __('Tag') }}</x-backend.dropdown-link>
                 </x-slot>
             </x-backend.dropdown>
 

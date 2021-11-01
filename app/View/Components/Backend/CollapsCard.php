@@ -1,19 +1,25 @@
 <?php
 
-namespace App\View\Components\Frontend;
+namespace App\View\Components\Backend;
 
 use Illuminate\View\Component;
 
-class Sidebar extends Component
+class CollapsCard extends Component
 {
+    public $collapsHeader;
+    public $collapsId;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+
+
+    public function __construct($header,$id)
     {
-        //
+        $this->collapsHeader = $header;
+        $this->collapsId = $id;
+
     }
 
     /**
@@ -23,6 +29,6 @@ class Sidebar extends Component
      */
     public function render()
     {
-        return view('components.frontend.sidebar');
+        return view('components.backend.collaps-card');
     }
 }

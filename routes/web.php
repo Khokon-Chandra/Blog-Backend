@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\IndexController;
 use App\Http\Controllers\Backend\MediaController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CommentController;
+use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\TagController;
 
 Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(){
@@ -34,9 +35,7 @@ Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(
 
 
     Route::resource('media', MediaController::class);
-    Route::get('/menu',function(){
-        return view('backend.page');
-    })->name('menu');
+    Route::resource('menus', MenuController::class);
 
     Route::get('/settings',function(){
         return view('backend.page');

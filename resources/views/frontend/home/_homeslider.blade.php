@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-0">
-            <x-frontend.news-slider />
-        </div>            
+            @include('frontend.home._news-slider')
+        </div>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 padding-0">
             <div class="slider-area">
                 <div class="bend niceties preview-2">
@@ -17,9 +17,9 @@
                                 <div class="slider-botton">
                                     <ul>
                                         <li>
-                                            <a class="cat-link" href="category.html">Business</a> 
-                                            <span class="date"> 
-                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>November 28, 2017 
+                                            <a class="cat-link" href="category.html">Business</a>
+                                            <span class="date">
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>November 28, 2017
                                             </span>
                                             <span class="comment">
                                                 <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -40,9 +40,9 @@
                                 <div class="slider-botton">
                                     <ul>
                                         <li>
-                                            <a class="cat-link" href="category-world.html">World</a> 
-                                            <span class="date"> 
-                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>November 28, 2017 
+                                            <a class="cat-link" href="category-world.html">World</a>
+                                            <span class="date">
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>November 28, 2017
                                             </span>
                                             <span class="comment">
                                                 <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 50
@@ -65,7 +65,7 @@
                 <ul>
                     <li>
                         <div class="right-content">
-                            <span class="category"><a class="cat-link" href="blog.html">Business</a></span> 
+                            <span class="category"><a class="cat-link" href="blog.html">Business</a></span>
                             <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017</span>
                             <h3><a href="blog-single.html">Trudeau forced to refugees.</a></h3>
                         </div>
@@ -73,7 +73,7 @@
                     </li>
                     <li>
                         <div class="right-content">
-                            <span class="category"><a class="cat-link" href="blog.html">Health</a></span> 
+                            <span class="category"><a class="cat-link" href="blog.html">Health</a></span>
                             <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>June  28,  2017 </span>
                             <h3><a href="blog-single.html">The exhibition Bankasy</a></h3>
                         </div>
@@ -81,9 +81,9 @@
                     </li>
                     <li>
                         <div class="right-content">
-                            <span class="category"><a class="cat-link" href="blog.html">Science</a></span> 
-                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017 </span> 
-                            <h3><a href="blog-single.html">Hurricane Harvey: evacuations.</a></h3>                  
+                            <span class="category"><a class="cat-link" href="blog.html">Science</a></span>
+                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i> June  28,  2017 </span>
+                            <h3><a href="blog-single.html">Hurricane Harvey: evacuations.</a></h3>
                         </div>
                         <div class="right-image"><a href="blog-single.html"><img src="{{ asset('frontend/images/sidebar-images/3.jpg') }}" alt="sidebar image"></a></div>
                     </li>

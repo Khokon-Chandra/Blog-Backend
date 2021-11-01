@@ -1,15 +1,15 @@
 <x-frontend.app-layout>
     <!-- Slider Section Start Here -->
-    <x-frontend.homeslider />
+    @include('frontend.home._homeslider')
     <!-- Slider Section end Here -->
     <!-- All News Section Start Here -->
     <div class="all-news-area">
         <div class="container">
             <!-- latest news Start Here -->
             <div class="row">
-                <x-frontend.latest-news />
+                @include('frontend.home._latest-news')
                 <!--Sidebar Start Here -->
-                <x-frontend.sidebar />
+                @include('frontend.home._sidebar')
             </div>
         </div>
     </div>

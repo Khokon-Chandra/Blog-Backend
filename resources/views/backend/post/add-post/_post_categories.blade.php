@@ -1,5 +1,4 @@
-<x-backend.post-collaps :header="__('Category')" id="categoryCollaps">
-
+<x-backend.collaps-card :header="__('Category')" id="categoryCollaps">
     @foreach ($categories as $category)
         <div class="form-check">
             <input name="categories[]"
@@ -18,4 +17,4 @@
         </div>
     @endforeach
 <x-backend.invalid-feedback attribute="categories" />
-</x-backend.post-collaps>
+</x-backend.collaps-card>

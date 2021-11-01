@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->text('description');
             $table->string('type')->nullable();
             $table->string('post_status')->default('publish');
+            $table->boolean('is_featured')->default(false);
             $table->string('meta_title',200)->nullable();
             $table->text('meta_keyword')->nullable();
             $table->text('meta_description')->nullable();

@@ -1,4 +1,4 @@
-<x-backend.post-collaps :header="__('Feature Image')" id="featureCollaps" class="show">
+<x-backend.collaps-card :header="__('Feature Image')" id="featureCollaps" class="show">
     <div class="border-top p-3 mb-3">
         <p>Feature Image</p>
         <a id="featureImagePlaceholder" type="button" data-toggle="modal" data-target="#defaultModalSuccess">
@@ -23,4 +23,4 @@
 
 
     </script>
-</x-backend.post-collaps>
+</x-backend.collaps-card>

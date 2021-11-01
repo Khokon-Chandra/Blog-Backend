@@ -1,4 +1,4 @@
-<x-backend.post-collaps :header="__('Tags')" id="tagCollaps">
+<x-backend.collaps-card :header="__('Tags')" id="tagCollaps">
     @foreach ($tags as $tag)
         <div class="form-check">
             <input name="tags[]" @isset($post) @foreach ($post->tags as $item)
@@ -15,4 +15,4 @@ id="tag{{ $tag->id }}">
 </div>
 @endforeach
 <x-backend.invalid-feedback attribute="tags" />
-</x-backend.post-collaps>
+</x-backend.collaps-card>

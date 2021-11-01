@@ -50,7 +50,7 @@
             </x-backend.dropdown>
 
 
-            <x-backend.nav-link :icon="__('layers')" :href="route('menu')" :active="request()->routeIs('menu')">
+            <x-backend.nav-link :icon="__('layers')" :href="route('menus.index')" :active="request()->routeIs('menus.index')">
                 {{ __('Menu') }}
             </x-backend.nav-link>
 

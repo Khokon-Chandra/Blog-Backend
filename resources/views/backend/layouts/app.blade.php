@@ -26,6 +26,7 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="{{ asset('js/jquery-3.5.1.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" charset="utf8" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
 	<script type="text/javascript">

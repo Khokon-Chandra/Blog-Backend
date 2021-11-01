@@ -1,32 +1,53 @@
 
 <x-backend.collaps-card :header="__('Category')" id="categoryCollaps">
     @foreach ($categories as $category)
-        <div class="form-check">
-            <input name="categories[]"
-                   class="form-check-input" style="margin-top: 0.8rem;" type="checkbox" value="{{ $category->id }}"
-                   id="cat{{ $category->id }}">
-            <label class="form-check-label d-block p-2" for="cat{{ $category->id }}">
+        <label class="form-check">
+            <input name="category[]" class="form-check-input" type="checkbox" value="{{ $category->id }}">
+            <small class="form-check-label">
                 {{ $category->name }}
-            </label>
-        </div>
+            </small>
+        </label>
     @endforeach
     <x-backend.invalid-feedback attribute="categories" />
+
+        <div class="d-flex justify-content-between mb-3">
+            <input type="button" class="btn btn-outline-primary" value="Select All">
+            <input type="button" class="btn btn-primary" value="Add to menu">
+        </div>
 </x-backend.collaps-card>
+{{--category section end here--}}
+
+
+
+
+
+
 
 
 <x-backend.collaps-card :header="__('Post')" id="postCollaps">
 
     @foreach ($posts as $post)
-        <div class="form-check">
-            <input name="post[]" class="form-check-input" style="margin-top: 0.8rem;" type="checkbox" value="{{ $category->id }}"
-                   id="post{{ $post->id }}">
-            <label class="form-check-label d-block p-2" for="post{{ $post->id }}">
-                {{ substr($post->title,0,30) }}
-            </label>
-        </div>
+        <label class="form-check">
+            <input name="post[]" class="form-check-input" type="checkbox" value="{{ $post->id }}">
+            <small class="form-check-label">
+              {{ substr($post->title,0,30) }}
+            </small>
+        </label>
     @endforeach
 
+        <div class="d-flex justify-content-between mb-3">
+            <input type="button" class="btn btn-outline-primary" value="Select All">
+            <input type="button" class="btn btn-primary" value="Add to menu">
+        </div>
+
 </x-backend.collaps-card>
+
+{{--Post section end --}}
+
+
+
+
+
 
 
 <x-backend.collaps-card :header="__('Custom links')" id="customCollaps" class="p-3 px-4">
@@ -48,5 +69,6 @@
     <div class="text-right p-0">
         <input type="submit" class="btn btn-primary" value="Add to menu">
     </div>
-
 </x-backend.collaps-card>
+
+{{--Custom links end here --}}

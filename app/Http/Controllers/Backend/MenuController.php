@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Menu;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,11 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view('backend.menu.menus');
+        return view('backend.menu.menus',[
+            'menus'=>Menu::all(),
+            'categories'=>Category::all(),
+            'posts'=>Post::all(),
+        ]);
     }
 
     /**
@@ -40,7 +45,12 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->menu == 'new'){
+           Menu::create(['name'=>$request->name]);
+
+        }
+        return "success";
+
     }
 
     /**

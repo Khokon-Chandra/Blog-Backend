@@ -45,8 +45,6 @@ Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(
 
 
 
-
-
 require __DIR__.'/frontend.php';
 require __DIR__.'/auth.php';
 

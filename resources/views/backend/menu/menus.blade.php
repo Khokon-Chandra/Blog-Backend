@@ -1,7 +1,7 @@
 <x-backend.app-layout>
     <x-page-title pagename="Menus" />
-    <x-alert />
 
+    <x-alert />
 
     <div class="border d-flex p-2 mb-3 align-items-center bg-white">
         <p class="mx-2 mb-0">Select a menu</p>
@@ -30,32 +30,24 @@
             <hr class="bg-theme mt-0 p-0 ">
             @if(request('menu')== 'new')
                 <h4>Create new menu</h4>
-                <div class="d-flex justify-content-between">
-                    <input id="menu-name" type="text" class="d-block" placeholder="Menu Name">
-                    <input id="add-menu" type="submit" class="btn btn-primary d-block" value="Create Menu">
-                </div>
+                <form id="newMenu" action="{{ route('menus.store') }}?menu=new" method="POST">
+                    @csrf
+                    <div class="d-flex justify-content-between">
+                        <input name="name" id="menu-name" type="text" class="d-block" placeholder="Menu Name">
+                        <input id="add-menu" type="submit" class="btn btn-primary d-block" value="Create Menu">
+                    </div>
+                </form>
             @else
                 <p>Add menu items form the column on the left</p>
+                    {{ $menu->name }}
+                <ul>
+                    @foreach($menu->menuItems as $item)
+                       <li>$item->name</li>
+                    @endforeach
+                </ul>
 
             @endif
         </div>
     </div>
-    <script>
-        $('#add-menu').click(function(event){
-
-           data = {'name':$(this).parent().children().first().val()}
-
-
-            axios.post("{{route('menus.store')}}?menu=new", data)
-            .then(function (response) {
-               location.reload();
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-
-        });
-    </script>
 
 </x-backend.app-layout>

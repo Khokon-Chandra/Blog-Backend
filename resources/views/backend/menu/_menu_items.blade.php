@@ -1,26 +1,20 @@
 
-<x-backend.collaps-card :header="__('Category')" id="categoryCollaps">
+<x-backend.collaps-card :header="__('Category')" id="categoryCollaps" class="show">
     @foreach ($categories as $category)
         <label class="form-check">
-            <input name="category[]" class="form-check-input" type="checkbox" value="{{ $category->id }}">
+            <input name="category" class="form-check-input" type="checkbox" value="{{ $category->id }}">
             <small class="form-check-label">
                 {{ $category->name }}
             </small>
         </label>
     @endforeach
-    <x-backend.invalid-feedback attribute="categories" />
-
+        <x-backend.invalid-feedback attribute="categories" />
         <div class="d-flex justify-content-between mb-3">
-            <input type="button" class="btn btn-outline-primary" value="Select All">
-            <input type="button" class="btn btn-primary" value="Add to menu">
+            <input class="selectAll" type="button" class="btn btn-outline-primary" value="Select All">
+            <input class="addToMenu" type="button" class="btn btn-primary" value="Add to menu">
         </div>
 </x-backend.collaps-card>
 {{--category section end here--}}
-
-
-
-
-
 
 
 
@@ -28,7 +22,7 @@
 
     @foreach ($posts as $post)
         <label class="form-check">
-            <input name="post[]" class="form-check-input" type="checkbox" value="{{ $post->id }}">
+            <input name="post" class="form-check-input" type="checkbox" value="{{ $post->id }}">
             <small class="form-check-label">
               {{ substr($post->title,0,30) }}
             </small>
@@ -36,17 +30,13 @@
     @endforeach
 
         <div class="d-flex justify-content-between mb-3">
-            <input type="button" class="btn btn-outline-primary" value="Select All">
-            <input type="button" class="btn btn-primary" value="Add to menu">
+            <input class="selectAll" type="button" class="btn btn-outline-primary" value="Select All">
+            <input class="addToMenu" type="button" class="btn btn-primary" value="Add to menu">
         </div>
 
 </x-backend.collaps-card>
 
 {{--Post section end --}}
-
-
-
-
 
 
 
@@ -71,4 +61,57 @@
     </div>
 </x-backend.collaps-card>
 
+
+
 {{--Custom links end here --}}
+<script>
+    $('.selectAll').click(function (){
+       $(this).parents('.collapse').find('input').each(function (){
+           let input = $(this)
+           if(input.prop('checked')){
+               input.prop('checked',false)
+           }else{
+               input.prop('checked',true)
+           }
+       })
+
+    });
+
+
+
+    $('.addToMenu').click(function (event){
+
+        if($.isNumeric("{{request('menu')}}")){
+            var ids = [];
+            var type = '';
+            $(this).parents('.collapse').find('input').each(function (index){
+                let input = $(this)
+                if(input.prop('checked')&& input.attr('type') == 'checkbox'){
+                    ids[index] = input.val()
+                    type = input.attr('name');
+                }
+            });
+            var url = "{{ route('menus.store').'?menu='.request('menu') }}"
+            var data = {menu:'{{request('menu')}}',type:type,data:ids,}
+            axios.post(url,data)
+                .then(function (response){
+                    if(response.status == 200){
+                        console.log(response.data);
+                        location.reload();
+                    }
+                })
+                .catch(function (error){
+                    console.log(error)
+                })
+        }else {
+            alert('Select a Menu on the top selection')
+        }
+
+
+    })
+
+
+
+
+</script>
+

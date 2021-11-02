@@ -13,12 +13,11 @@ class CreateMenuitemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('menuitems', function (Blueprint $table) {
+        Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('menu_id')->constrained('menus');
             $table->string('slug')->unique();
-            $table->string('name')->nullable();
-            $table->string('title');
+            $table->string('name');
             $table->string('type');
             $table->string('target')->nullable();
             $table->timestamps();

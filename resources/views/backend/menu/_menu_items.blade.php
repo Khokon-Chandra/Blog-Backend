@@ -10,8 +10,8 @@
     @endforeach
         <x-backend.invalid-feedback attribute="categories" />
         <div class="d-flex justify-content-between mb-3">
-            <input class="selectAll" type="button" class="btn btn-outline-primary" value="Select All">
-            <input class="addToMenu" type="button" class="btn btn-primary" value="Add to menu">
+            <input type="button" class="selectAll btn btn-outline-primary" value="Select All">
+            <input type="button" class="addToMenu btn btn-primary" value="Add to menu">
         </div>
 </x-backend.collaps-card>
 {{--category section end here--}}
@@ -30,8 +30,8 @@
     @endforeach
 
         <div class="d-flex justify-content-between mb-3">
-            <input class="selectAll" type="button" class="btn btn-outline-primary" value="Select All">
-            <input class="addToMenu" type="button" class="btn btn-primary" value="Add to menu">
+            <input type="button" class="selectAll btn btn-outline-primary" value="Select All">
+            <input type="button" class="addToMenu btn btn-primary" value="Add to menu">
         </div>
 
 </x-backend.collaps-card>
@@ -65,49 +65,51 @@
 
 {{--Custom links end here --}}
 <script>
-    $('.selectAll').click(function (){
-       $(this).parents('.collapse').find('input').each(function (){
-           let input = $(this)
-           if(input.prop('checked')){
-               input.prop('checked',false)
-           }else{
-               input.prop('checked',true)
-           }
-       })
 
-    });
-
-
-
-    $('.addToMenu').click(function (event){
-
-        if($.isNumeric("{{request('menu')}}")){
-            var ids = [];
-            var type = '';
-            $(this).parents('.collapse').find('input').each(function (index){
+    $( document ).ready(function (){
+        $('.selectAll').click(function (){
+            $(this).parents('.collapse').find('input').each(function (){
                 let input = $(this)
-                if(input.prop('checked')&& input.attr('type') == 'checkbox'){
-                    ids[index] = input.val()
-                    type = input.attr('name');
+                if(input.prop('checked')){
+                    input.prop('checked',false)
+                }else{
+                    input.prop('checked',true)
                 }
-            });
-            var url = "{{ route('menus.store').'?menu='.request('menu') }}"
-            var data = {menu:'{{request('menu')}}',type:type,data:ids,}
-            axios.post(url,data)
-                .then(function (response){
-                    if(response.status == 200){
-                        console.log(response.data);
-                        location.reload();
+            })
+
+        });
+
+
+
+        $('.addToMenu').click(function (event){
+
+            if($.isNumeric("{{request('menu')}}")){
+                var ids = [];
+                var type = '';
+                $(this).parents('.collapse').find('input').each(function (index){
+                    let input = $(this)
+                    if(input.prop('checked')&& input.attr('type') == 'checkbox'){
+                        ids[index] = input.val()
+                        type = input.attr('name');
                     }
-                })
-                .catch(function (error){
-                    console.log(error)
-                })
-        }else {
-            alert('Select a Menu on the top selection')
-        }
+                });
+                var url = "{{ route('menus.store').'?menu='.request('menu') }}"
+                var data = {menu:'{{request('menu')}}',type:type,data:ids,}
+                axios.post(url,data)
+                    .then(function (response){
+                        if(response.status == 200){
+                            console.log(response.data);
+                            location.reload();
+                        }
+                    })
+                    .catch(function (error){
+                        console.log(error)
+                    })
+            }else {
+                alert('Select a Menu on the top selection')
+            }
 
-
+        })
     })
 
 

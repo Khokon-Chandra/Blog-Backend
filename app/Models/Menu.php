@@ -10,7 +10,7 @@ class Menu extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
-    protected $with =['menuItems'];
+//    protected $with =['menuItems'];
 
     public function menuItems()
     {

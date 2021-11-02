@@ -19,8 +19,8 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         return view('backend.menu.menus',[
+            'selectedMenu' => Menu::find($request->get('menu')),
             'menus'=>Menu::all(),
-            'menu' =>Menu::find($request->get('menu')),
             'categories'=>Category::all(),
             'posts'=>Post::all(),
         ]);
@@ -65,7 +65,7 @@ class MenuController extends Controller
                 $menuItemsData[]=[
                     'menu_id'=>$parentMenu,
                     'slug'=>$model->slug,
-                    'name'=>$model->name,
+                    'name'=>$model->name??$model->title,
                     'type'=>$request->type,
                 ];
             }

@@ -3,6 +3,8 @@
 
     <x-alert />
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
     <div class="border d-flex p-2 mb-3 align-items-center bg-white">
         <p class="mx-2 mb-0">Select a menu</p>
         <form class="d-flex" action="{{route('menus.index')}}" method="get">
@@ -39,15 +41,24 @@
                 </form>
             @else
                 <p>Add menu items form the column on the left</p>
-                    {{ $menu->name }}
-                <ul>
-                    @foreach($menu->menuItems as $item)
-                       <li>$item->name</li>
+
+                <ul class=" pl-0" id="sortable">
+                    @foreach($selectedMenu->menuItems as $item)
+                       <li class=" bg-white border p-2 mb-1">
+                           {{ $item->name }}
+                           <ul></ul>
+                       </li>
+
                     @endforeach
                 </ul>
 
             @endif
         </div>
     </div>
+    <script>
+
+        $( "#sortable" ).sortable();
+
+    </script>
 
 </x-backend.app-layout>

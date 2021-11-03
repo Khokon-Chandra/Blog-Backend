@@ -61,58 +61,6 @@
     </div>
 </x-backend.collaps-card>
 
-
-
 {{--Custom links end here --}}
-<script>
 
-    $( document ).ready(function (){
-        $('.selectAll').click(function (){
-            $(this).parents('.collapse').find('input').each(function (){
-                let input = $(this)
-                if(input.prop('checked')){
-                    input.prop('checked',false)
-                }else{
-                    input.prop('checked',true)
-                }
-            })
-
-        });
-
-
-
-        $('.addToMenu').click(function (event){
-
-            if($.isNumeric("{{request('menu')}}")){
-                var ids = [];
-                var type = '';
-                $(this).parents('.collapse').find('input').each(function (index){
-                    let input = $(this)
-                    if(input.prop('checked')&& input.attr('type') == 'checkbox'){
-                        ids[index] = input.val()
-                        type = input.attr('name');
-                    }
-                });
-                var url = "{{ route('menus.store').'?menu='.request('menu') }}"
-                var data = {menu:'{{request('menu')}}',type:type,data:ids,}
-                axios.post(url,data)
-                    .then(function (response){
-                        if(response.status == 200){
-                            console.log(response.data);
-                            location.reload();
-                        }
-                    })
-                    .catch(function (error){
-                        console.log(error)
-                    })
-            }else {
-                alert('Select a Menu on the top selection')
-            }
-
-        })
-    })
-
-
-
-</script>
 

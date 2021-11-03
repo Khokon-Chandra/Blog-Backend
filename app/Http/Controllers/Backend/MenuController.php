@@ -14,71 +14,61 @@ class MenuController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        return view('backend.menu.menus',[
-            'selectedMenu' => Menu::find($request->menu),
-            'menus'=>Menu::all(),
-            'categories'=>Category::all(),
-            'posts'=>Post::all(),
+        return view('backend.menu.menus', [
+            'selectedMenu' => Menu::find($request->menu)?? [],
+            'menus' => Menu::all(),
+            'categories' => Category::all(),
+            'posts' => Post::all(),
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-       return view('backend.menu.add-menu',[
-           'categories'=>Category::all(),
-           'posts'=>Post::all(),
-       ]);
+        return view('backend.menu.add-menu', [
+            'menus' => Menu::all(),
+            'categories' => Category::all(),
+            'posts' => Post::all(),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        if($request->menu == 'new') {
-            Menu::create(['name' => $request->name]);
-
-            return redirect(route('menus.index').'?menu=new')
-                ->with('success','Successfully menu created');
-        }else{
-
-            $parentMenu = $request->menu;
-            $menus = $request->data;
-
-            $modelData = $request->type === 'category'? Category::find($menus):Post::find($menus);
+        Menu::create($request->validate(['name' => 'required|min:5']));
+        return back()->with('success', 'Successfully menu created');
+    }
 
 
-            $menuItemsData =[];
-            foreach($modelData as $model){
-                $menuItemsData[]=[
-                    'menu_id'=>$parentMenu,
-                    'slug'=>$model->slug,
-                    'name'=>$model->name??$model->title,
-                    'type'=>$request->type,
-                ];
-            }
-
-            MenuItem::upsert($menuItemsData,['menu_id','slug','name','type']);
-            return 'success';
-
+    public function addToMenu(Request $request)
+    {
+        $parentMenu = $request->menu;
+        $menus = $request->data;
+        $modelData = $request->type === 'category' ? Category::find($menus) : Post::find($menus);
+        $menuItemsData = [];
+        foreach ($modelData as $model) {
+            $menuItemsData[] = [
+                'menu_id' => $parentMenu,
+                'slug' => $model->slug,
+                'name' => $model->name ?? $model->title,
+                'type' => $request->type,
+            ];
         }
-
-
-
-
-
+        MenuItem::upsert($menuItemsData, ['menu_id', 'slug', 'name', 'type']);
+        return 'success';
     }
 
     /**
@@ -107,17 +97,13 @@ class MenuController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int
+     * @var $id $request->content
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Menu $menu)
     {
-
-        $result = $menu->update([
-            "content"=>$request->content,
-        ]);
-        return response($request->content,200);
-
+        return Menu::where('id',$request->menuId)->update(['content'=>$request->content]);
     }
 
     /**
@@ -126,8 +112,8 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,Menu $menu)
     {
-        //
+        return $menu->delete();
     }
 }

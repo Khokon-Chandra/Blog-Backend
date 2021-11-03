@@ -18,6 +18,7 @@ class MenuController extends Controller
      */
     public function index(Request $request)
     {
+        dd(Menu::find(1)->content);
         return view('backend.menu.menus', [
             'selectedMenu' => Menu::find($request->menu)?? [],
             'menus' => Menu::all(),

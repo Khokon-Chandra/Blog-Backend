@@ -19,7 +19,7 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         return view('backend.menu.menus',[
-            'selectedMenu' => Menu::find($request->get('menu')),
+            'selectedMenu' => Menu::find($request->menu),
             'menus'=>Menu::all(),
             'categories'=>Category::all(),
             'posts'=>Post::all(),
@@ -110,9 +110,14 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Menu $menu)
     {
-        //
+
+        $result = $menu->update([
+            "content"=>$request->content,
+        ]);
+        return response($request->content,200);
+
     }
 
     /**

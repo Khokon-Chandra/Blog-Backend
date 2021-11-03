@@ -44,21 +44,60 @@
 
                 <ul class=" pl-0" id="sortable">
                     @foreach($selectedMenu->menuItems as $item)
-                       <li class=" bg-white border p-2 mb-1">
+                       <li data-id="{{ $item->id }}" class=" bg-white border p-2 mb-1">
                            {{ $item->name }}
                            <ul></ul>
                        </li>
 
                     @endforeach
                 </ul>
+                <div class="text-right">
+                    <button id="saveMenu" class="btn btn-primary" >Save menu</button>
+                </div>
+
+               <pre>
+                    <div id="serialize_output2" class="d-none"></div>
+               </pre>
 
             @endif
         </div>
     </div>
     <script>
 
-        $( "#sortable" ).sortable();
+        var group = $("#sortable").sortable({
+            group: 'serialization',
+            delay: 500,
+            onDrop: function ($item, container, _super) {
+                var data = group.sortable("serialize").get();
 
+                var jsonString = JSON.stringify(data, null, ' ');
+
+                $('#serialize_output2').text(jsonString);
+                _super($item, container);
+            }
+        });
+
+    </script>
+
+    <script>
+        $('#saveMenu').click(function(){
+            selectedMenu = {{ $selectedMenu->id }}
+            newContent = $('#serialize_output2').text();
+            url        = "{{ route('menus.update',$selectedMenu->id) }}"
+
+            axios.put(url,{menuId:selectedMenu,content:newContent})
+                .then(function (response){
+                    if(response.status == 200){
+                        // location.reload();
+                        console.log(response.data);
+                    }
+                })
+                .catch(function (error){
+                    console.log(error)
+                })
+
+
+        });
     </script>
 
 </x-backend.app-layout>

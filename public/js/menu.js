@@ -76,7 +76,6 @@ $(document).ready(function () {
             axios.post(url, data)
                 .then(function (response) {
                     if (response.status == 200) {
-                        console.log(response.data);
                         location.reload();
                     }
                 })

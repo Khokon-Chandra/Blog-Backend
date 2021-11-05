@@ -8,19 +8,61 @@ use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
-     */
+
+
+
+    public function recursive($arr)
+    {
+        foreach ($arr as $value) {
+            if (is_array($value) || is_object($value)) {
+                if (is_object($value)) {
+                    echo $value->id;
+                    $this->recursive($value->children);
+                } else {
+                    $this->recursive($value);
+                }
+            }
+        }
+    }
+
+
+    public function processMenuContent($content)
+    {
+        foreach ($content as $key => $value) {
+            if (is_array($value) || is_object($value)) {
+                if (is_object($value)) {
+                    echo $value->id;
+                    $this->recursive($value->children);
+                } else {
+                    $this->recursive($value);
+                }
+            }
+        }
+    }
+
+
+
+
+
     public function index(Request $request)
     {
-        dd(Menu::find(1)->content);
+
+        $selectedMenu = Menu::find($request->menu);
+
+        if (!is_null($selectedMenu)) {
+
+            $selectedMenu->content = !is_null($selectedMenu->content) ? json_decode($selectedMenu->content) : null;
+
+        }
+
+
+
         return view('backend.menu.menus', [
-            'selectedMenu' => Menu::find($request->menu)?? [],
+            'selectedMenu' => $selectedMenu,
             'menus' => Menu::all(),
             'categories' => Category::all(),
             'posts' => Post::all(),
@@ -56,20 +98,23 @@ class MenuController extends Controller
 
     public function addToMenu(Request $request)
     {
+
         $parentMenu = $request->menu;
         $menus = $request->data;
         $modelData = $request->type === 'category' ? Category::find($menus) : Post::find($menus);
-        $menuItemsData = [];
+        $queryPlaceholder = '';
+        $queryValues      = [];
         foreach ($modelData as $model) {
-            $menuItemsData[] = [
-                'menu_id' => $parentMenu,
-                'slug' => $model->slug,
-                'name' => $model->name ?? $model->title,
-                'type' => $request->type,
-            ];
+            $queryPlaceholder .= '(?,?,?,?),';
+            $queryValues[] = $parentMenu;
+            $queryValues[] = $model->slug;
+            $queryValues[] = $model->name ?? $model->title;
+            $queryValues[] = $request->type;
         }
-        MenuItem::upsert($menuItemsData, ['menu_id', 'slug', 'name', 'type']);
+        $keys = rtrim($queryPlaceholder, ',');
+        DB::insert('insert into menu_items (menu_id,slug,name,type) values'.$keys, $queryValues);
         return 'success';
+
     }
 
     /**
@@ -104,7 +149,7 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
-        return Menu::where('id',$request->menuId)->update(['content'=>$request->content]);
+        return Menu::where('id', $request->menuId)->update(['content' => $request->content]);
     }
 
     /**
@@ -113,7 +158,7 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,Menu $menu)
+    public function destroy(Request $request, Menu $menu)
     {
         return $menu->delete();
     }

@@ -1,12 +1,16 @@
 <?php
 
-use App\Http\Controllers\Frontend\BlogController;
+use App\Http\Controllers\Frontend\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
 
-Route::get('/',[IndexController::class,'index'])->name('home');
 
-Route::prefix('/')->name('frontend.')->group(function () {
-    Route::get('/blogs',[BlogController::class,'index'])->name('blogs.index');
-    Route::get('/blogs/{slug}',[BlogController::class,'show'])->name('blogs.show');
+
+Route::name('frontend.')->group(function () {
+    Route::get('/',[IndexController::class,'index'])->name('home');
+    Route::get('/posts',[PostController::class,'index'])->name('posts.index');
+    Route::get('/{post}',[PostController::class,'show'])->name('posts.show');
+    Route::get('category/{category}',[PostController::class,'onCategory']);
 });
+
+

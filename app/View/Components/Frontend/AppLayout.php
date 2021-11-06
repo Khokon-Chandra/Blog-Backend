@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class AppLayout extends Component
 {
+
+    public $menus;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($menus)
     {
-        //
+        $this->menus = $menus;
     }
 
     /**

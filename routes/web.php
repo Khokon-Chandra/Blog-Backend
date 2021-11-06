@@ -2,7 +2,7 @@
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Backend\IndexController;

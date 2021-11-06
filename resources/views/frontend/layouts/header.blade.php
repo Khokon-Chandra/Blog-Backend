@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="logo-area">
-                        <a href="{{ route('home') }}"><img src="{{ asset('frontend/images/logo.png') }}" alt="logo"></a>
+                        <a href="{{ route('frontend.home') }}"><img src="{{ asset('frontend/images/logo.png') }}" alt="logo"></a>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -62,7 +62,7 @@
                             <div id="search-mobile" class="collapse search-box">
                                 <input type="text" class="form-control" placeholder="Search...">
                             </div>
-                        </div>    
+                        </div>
                     </div>
                     @include('frontend.layouts.navigation')
                 </div>
@@ -71,7 +71,7 @@
                     <div id="search" class="collapse search-box">
                         <input type="text" class="form-control" placeholder="Search...">
                     </div>
-                </div>                    
+                </div>
             </div>
         </div>
     </div>

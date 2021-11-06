@@ -32,7 +32,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <h1 class="title1"><a href="{{ route('frontend.blogs.index') }}">{{ $post->title }}</a></h1>
+                            <h1 class="title1"><a href="{{ route('frontend.posts.index') }}">{{ $post->title }}</a></h1>
                             <div class="title2">{{ Str::substr($post->excerpt, 0, 50) }}</div>
                         </div>
                     </div>

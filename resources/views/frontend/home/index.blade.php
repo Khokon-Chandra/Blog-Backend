@@ -1,4 +1,5 @@
-<x-frontend.app-layout>
+<x-frontend.app-layout :menus="$menus">
+
     <!-- Slider Section Start Here -->
     @include('frontend.home._homeslider')
     <!-- Slider Section end Here -->
@@ -9,7 +10,7 @@
             <div class="row">
                 @include('frontend.home._latest-news')
                 <!--Sidebar Start Here -->
-                @include('frontend.home._sidebar')
+                @include('frontend._sidebar')
             </div>
         </div>
     </div>

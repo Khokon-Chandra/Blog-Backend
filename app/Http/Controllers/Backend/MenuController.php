@@ -99,6 +99,16 @@ class MenuController extends Controller
     public function addToMenu(Request $request)
     {
 
+        if($request->type === 'custom'){
+            MenuItem::create([
+                'menu_id'=>$request->menu,
+                'slug'=>$request->target,
+                'name'=>$request->name,
+                'type'=>'custom',
+                'target'=>$request->target,
+            ]);
+            return true;
+        }
         $parentMenu = $request->menu;
         $menus = $request->data;
         $modelData = $request->type === 'category' ? Category::find($menus) : Post::find($menus);

@@ -48,7 +48,9 @@
     <!--Header area start here-->
     @include('frontend.layouts.header')
     <!--Header area end here-->
+
      {{ $slot }}
+
     <!-- Footer Area Section Start Here -->
     @include('frontend.layouts.footer')
 
@@ -58,10 +60,7 @@
     </div>
     <!-- End scrollUp  -->
 
-    <!-- Footer Area Section End Here -->
 
-    <!-- all js here -->
-	<script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
     <!-- jquery latest version -->
     <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
 	 <!-- jquery-ui js -->
@@ -81,12 +80,12 @@
     <script src="{{ asset('frontend/js/jquery.counterup.min.js') }}"></script>
     <script src="{{ asset('frontend/js/waypoints.min.js') }}"></script>
     <!-- jquery light box -->
-    <script src="{{ asset('frontend/') }}js/lightbox.min.js"></script>
+    <script src="{{ asset('frontend/js/lightbox.min.js') }}"></script>
     <!-- Nivo slider js -->
     <script src="{{ asset('frontend/inc/custom-slider/js/jquery.nivo.slider.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/inc/custom-slider/home.js') }}" type="text/javascript"></script>
     <!-- main js -->
-    <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <script src="{{ asset('frontend/js/main.js?ver=1.0.0') }}"></script>
 </body>
 
 

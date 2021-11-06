@@ -4,14 +4,14 @@
     ---------------------------------------*/
     //preloader
     $(window).load(function() {
-        $(".preloader").delay(2000).fadeOut(500);
+        $(".preloader").delay(100).fadeOut(100);
         $(".sk-cube-grid").click(function() {
         $(".preloader").fadeOut(500);
         })
     })
-    
 
-    /*-------------------------- 
+
+    /*--------------------------
         Current Date
     ---------------------------*/
     if($("#today").length) {
@@ -43,20 +43,20 @@
        -------------------------------------*/
     $("#author-slider-section").owlCarousel({
         // Most important owl features
-        items : 3,     
-        // Navigation 
+        items : 3,
+        // Navigation
         nav: true,
         navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
         dots: false,
         responsive:{
             0:{
-              items:1 // In this configuration 1 is enabled from 0px up to 479px screen size 
+              items:1 // In this configuration 1 is enabled from 0px up to 479px screen size
             },
 
             480:{
 
-              items:2, // from 480 to 677 
-              nav:false // from 480 to max 
+              items:2, // from 480 to 677
+              nav:false // from 480 to max
 
             },
 
@@ -70,7 +70,7 @@
 
               items:3, // from this breakpoint 960 to 1199
               margin:20, // and so on...
-              center:false 
+              center:false
 
             },
 
@@ -81,7 +81,7 @@
               margin: 0
 
             }
-        } 
+        }
     });
 
 
@@ -89,13 +89,13 @@
     /*-------------------------------------
        Header News Slider jQuery activation code
        -------------------------------------*/
-    
-   
+
+
         $("#top-news-slider").owlCarousel({
             // Most important owl features
-            items : 3,  
+            items : 3,
             nav: true,
-            navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],  
+            navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
             dots: false,
             loop: true,
             autoplay: true,
@@ -105,13 +105,13 @@
             responsive: true,
             responsive:{
     		    0:{
-    		      items:1 // In this configuration 1 is enabled from 0px up to 479px screen size 
+    		      items:1 // In this configuration 1 is enabled from 0px up to 479px screen size
     		    },
 
     		    480:{
 
-    		      items:1, // from 480 to 677 
-    		      nav:true // from 480 to max 
+    		      items:1, // from 480 to 677
+    		      nav:true // from 480 to max
 
     		    },
 
@@ -124,7 +124,7 @@
     		    960:{
     		      items:2, // from this breakpoint 960 to 1199
     		      margin:20, // and so on...
-    		      center:false 
+    		      center:false
 
     		    },
 
@@ -134,30 +134,30 @@
     		      margin: 0
 
     		    }
-    	    } 
+    	    }
         })
-    
 
-    
+
+
     /*-------------------------------------
        Fetuered Videos jQuery activation code
        -------------------------------------*/
     $("#featured-videos-section").owlCarousel({
         // Most important owl features
-        items : 3,     
-        // Navigation 
+        items : 3,
+        // Navigation
         nav: true,
         navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
         dots: false,
         responsive:{
 		    0:{
-		      items:1 // In this configuration 1 is enabled from 0px up to 479px screen size 
+		      items:1 // In this configuration 1 is enabled from 0px up to 479px screen size
 		    },
 
 		    480:{
 
-		      items:1, // from 480 to 677 
-		      nav:false // from 480 to max 
+		      items:1, // from 480 to 677
+		      nav:false // from 480 to max
 
 		    },
 
@@ -171,7 +171,7 @@
 
 		      items:2, // from this breakpoint 960 to 1199
 		      margin:20, // and so on...
-		      center:false 
+		      center:false
 
 		    },
 
@@ -182,7 +182,7 @@
 		      margin: 0
 
 		    }
-	    } 
+	    }
     });
 
 
@@ -198,27 +198,27 @@
         preloader: false,
 
         fixedContentPos: false
-    }); 
-   
+    });
+
 
     /*About Team Jquery*/
 
     $("#total-team").owlCarousel({
         // Most important owl features
-        items : 3,     
-        // Navigation 
+        items : 3,
+        // Navigation
         nav: false,
         navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
         dots: false,
         responsive:{
             0:{
-              items:1 // In this configuration 1 is enabled from 0px up to 479px screen size 
+              items:1 // In this configuration 1 is enabled from 0px up to 479px screen size
             },
 
             480:{
 
-              items:2, // from 480 to 677 
-              nav:false // from 480 to max 
+              items:2, // from 480 to 677
+              nav:false // from 480 to max
 
             },
 
@@ -232,7 +232,7 @@
 
               items:3, // from this breakpoint 960 to 1199
               margin:20, // and so on...
-              center:false 
+              center:false
 
             },
 
@@ -246,7 +246,7 @@
         }
 
     });
-	
+
 
 
     /*-------------------------------------
@@ -256,7 +256,7 @@
             var link = $(this);
 
             var item = link.parent("li");
-            
+
             if (item.hasClass("active")) {
                 item.removeClass("active").children("a").removeClass("active");
             } else {
@@ -266,7 +266,7 @@
             if (item.children("ul").length > 0) {
                 var href = link.attr("href");
                 link.attr("href", "#");
-                setTimeout(function () { 
+                setTimeout(function () {
                     link.attr("href", href);
                 }, 300);
                 e.preventDefault();
@@ -280,7 +280,7 @@
             }
     });
 
-        
+
     /*------------------------------------
     SideSlide menu Activation
     -------------------------------------*/
@@ -303,21 +303,21 @@
 
  /*-------------------------------
     Main menu sticky
-    ---------------------------------*/   
+    ---------------------------------*/
 
     var num = $('.header-top-area').innerHeight();
     var menu_height = $('.header-bottom-area').innerHeight();
-    $(window).bind('scroll', function () {    
+    $(window).bind('scroll', function () {
      if ($(window).scrollTop() >= num+menu_height) {
             $('.header-bottom-area').addClass('sticky-header');
       $('body').css({'padding-top':menu_height});
         } else {
             $('.header-bottom-area').removeClass('sticky-header');
       $('body').css({'padding-top':0});
-        }        
+        }
     });
-    
-    
+
+
     /*--------------------------
      ScrollTop init Activation Code
     ---------------------------- */
@@ -333,5 +333,5 @@
             scrollTop : 0                       // Scroll to top of body
         }, 500);
     });
-    
+
 })(jQuery);

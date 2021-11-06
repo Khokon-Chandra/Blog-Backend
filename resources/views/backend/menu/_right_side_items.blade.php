@@ -45,20 +45,21 @@
     <div class="form-group row">
         <label class="col-form-label col-sm-4 text-sm-left px-0">Url</label>
         <div class="col-sm-8 px-0">
-            <input type="text" class="form-control" placeholder="https://">
+            <input id="customMenuUrl" type="text" class="form-control" placeholder="https://" required>
         </div>
     </div>
 
     <div class="form-group row">
         <label class="col-form-label col-sm-4 text-sm-left px-0" for="text">Link Text</label>
         <div class="col-sm-8 px-0">
-            <input  id="text" type="text" class="form-control" placeholder="Menu Name">
+            <input id="customMenuText" type="text" class="form-control" placeholder="Menu Name">
         </div>
     </div>
 
     <div class="text-right p-0">
-        <input type="submit" class="btn btn-primary" value="Add to menu">
+        <input id="addCustomMenu" type="button" class="btn btn-primary" value="Add to menu" required>
     </div>
+
 </x-backend.collaps-card>
 
 {{--Custom links end here --}}

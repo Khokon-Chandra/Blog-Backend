@@ -89,6 +89,18 @@ $(document).ready(function () {
     })
 })
 
+
+$('#addCustomMenu').click(function(event){
+    $url = $('#url-addtomenu').text()
+    $data = {menu : $('#selectedMenu').text(), type:'custom', name:$('#customMenuText').val(), target: $('#customMenuUrl').val()}
+    axios.post($url,$data).then((response)=>{
+        location.reload();
+    }).catch((response)=>{
+        console.log(response);
+    })
+})
+
+
 $('#deleteMenu').click(function(event){
     event.preventDefault();
     axios.delete($('#url-delete').text(),{'delete':true})

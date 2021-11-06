@@ -14,7 +14,16 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::factory(10)->create();
+        Category::upsert([
+            ['slug'=>'business','name'=>'business'],
+            ['slug'=>'world','name'=>'world'],
+            ['slug'=>'fashion','name'=>'fashion'],
+            ['slug'=>'politics','name'=>'politics'],
+            ['slug'=>'sports','name'=>'sports'],
+            ['slug'=>'health','name'=>'health'],
+            ['slug'=>'science','name'=>'science'],
+            ['slug'=>'video','name'=>'video'],
+        ],['slug','name']);
     }
-    
+
 }

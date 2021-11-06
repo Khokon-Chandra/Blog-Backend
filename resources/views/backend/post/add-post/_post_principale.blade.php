@@ -9,7 +9,7 @@
         </div>
         <div class="form-group">
             <x-label for="description" :value="__('Description')" />
-            <textarea name="description" id="description" cols="30" rows="20"
+            <textarea name="description" id="description" rows="10"
                 class="form-control">{{ $post->description??old('description') }} </textarea>
             <x-backend.invalid-feedback attribute="description" />
         </div>

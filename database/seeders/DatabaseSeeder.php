@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PostSeeder::class,
             CategorySeeder::class,
-            MediaSeeder::class,
+            // MediaSeeder::class,
             CommentSeeder::class,
             TagSeeder::class,
             PostableSeeder::class,

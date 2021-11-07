@@ -1,4 +1,4 @@
-@props(['page'])
+@props(['pagename',''])
 
 <div class="inner-page-header">
     <div class="banner">
@@ -10,11 +10,11 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="header-page-locator">
                         <ul>
-                            <li><a href="{{ route('frontend.home') }}">Home <i class="fa fa-compress" aria-hidden="true"></i></a>{{ $page->name??'Single Post' }}</li>
+                            <li><a href="{{ route('frontend.home') }}"> Home <i class="fa fa-compress" aria-hidden="true"></i> </a> {{ $pagename }} </li>
                         </ul>
                     </div>
                     <div class="header-page-title">
-                        <h1>{{ $page->name??'Single Post' }}</h1>
+                        <h1>{{ $pagename }}</h1>
                     </div>
                     <div class="header-page-subtitle">
                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered

@@ -1,6 +1,6 @@
 <x-frontend.app-layout :menus="$menus">
 
-    <x-frontend.page-header :page="$category"/>
+    <x-frontend.page-header :pagename="$pageName"/>
     <!-- Inner Page Header serction end here -->
 
     <!-- Category Page Start Here -->

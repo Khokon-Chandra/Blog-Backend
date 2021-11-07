@@ -10,7 +10,11 @@ class PostServices
 {
     public function findByPostSlug($slug)
     {
-        $post = Post::with(['comments','author','tags'])->where('slug',$slug)->first();
+        $post = Post::with(['comments'=>function($query){
+            $query->with('author','childs');
+        },'author','categories'=>function($query){
+            $query->with('posts');
+        },'tags'])->where('slug',$slug)->first();
         if(!$post){
             throw new PostNotfoundException();
         }
@@ -28,10 +32,11 @@ class PostServices
 
     public function findByTag($slug)
     {
-        $tag = Tag::with('posts')->where('slug',$slug)->first();
+        $tag = Tag::with('posts')->whereSlug($slug)->first();
         if(!$tag){
             throw new PostNotfoundException();
         }
+
         return $tag;
     }
 }

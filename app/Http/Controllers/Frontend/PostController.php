@@ -26,8 +26,9 @@ class PostController extends Controller
     public function index()
     {
         return view('frontend.posts',[
+            'pageName'=>'Blogs',
             'menus'=>$this->menus,
-            'posts'=>Post::withCount('comments')->latest()->paginate(10),
+            'posts'=>Post::withCount('comments')->latest()->get(),
         ]);
     }
 
@@ -35,10 +36,11 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = $this->postServices->findByPostSlug($slug);
-        return view('frontend.post-single',[
+        return view('frontend.single_post.post-single',[
+            'pageName'=>'Single Post',
             'menus'=>$this->menus,
             'post'=>$post,
-            // 'relatedPosts'=>Post::where($category)
+
         ]);
     }
 
@@ -46,8 +48,8 @@ class PostController extends Controller
     {
         $category = $this->postServices->findByCategory($slug);
         return view('frontend.category',[
+            'pageName'=>'Category',
             'menus'=>$this->menus,
-            'category'=>$category,
             'posts'=>$category->posts,
         ]);
     }
@@ -55,9 +57,10 @@ class PostController extends Controller
     public function findByTag($slug)
     {
         $tag = $this->postServices->findByTag($slug);
+
         return view('frontend.posts',[
+            'pageName'=>'Tags',
             'menus'=>$this->menus,
-            'tag'=>$tag,
             'posts'=>$tag->posts,
         ]);
     }

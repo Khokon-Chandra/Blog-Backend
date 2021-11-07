@@ -5,7 +5,7 @@
             @foreach ($category->posts as $post)
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <div class="popular-post-img">
-                    <a href="#"><img src="{{ $post->feature_image }}" alt="Blog single photo"></a>
+                    <a href="{{ route('frontend.posts.show',$post->slug) }}"><img src="{{ $post->feature_image }}" alt="Blog single photo"></a>
                 </div>
                 <h3>
                     <a href="{{ route('frontend.posts.show',$post->slug) }}">{{ $post->title }}</a>

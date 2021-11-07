@@ -10,11 +10,20 @@ class Comment extends Model
 {
     use HasFactory,SoftDeletes;
 
+    protected $fillable  = [
+        'user_id',
+        'post_id',
+        'parent_id',
+        'message',
+        'approved',
+        'comment_type'
+    ];
+
     public function childs()
     {
         return $this->hasMany(Comment::class,'parent_id');
     }
-    
+
     public function author()
     {
         return $this->belongsTo(User::class,'user_id');
@@ -26,7 +35,7 @@ class Comment extends Model
     }
 
 
- 
+
 
 
 

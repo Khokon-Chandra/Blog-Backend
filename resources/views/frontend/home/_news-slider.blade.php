@@ -9,7 +9,7 @@
                         @foreach ($posts as $post)
                             @if ($post->type === 'news')
                             <div class="item">
-                                <a href="blog-single.html"> <img src="{{ $post->feature_image }}" alt="news image"> <span>{{ $post->title }}</span></a>
+                                <a href="{{ route('frontend.posts.show',$post->slug) }}"> <img src="{{ $post->feature_image }}" alt="news image"> <span>{{ $post->title }}</span></a>
                             </div>
                             @endif
                         @endforeach

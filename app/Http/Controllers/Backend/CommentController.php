@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -39,7 +41,11 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attr = $request->validate(['message'=>'required']);
+        $attr['user_id'] = Auth::user()->id;
+        $attr['post_id'] = Post::where('slug',$request->post_slug)->firstOrFail()->id;
+        Comment::create($attr);
+        return back()->with('success','Success fully commeted');
     }
 
     /**

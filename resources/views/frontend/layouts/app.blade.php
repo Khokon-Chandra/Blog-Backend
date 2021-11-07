@@ -85,7 +85,7 @@
     <script src="{{ asset('frontend/inc/custom-slider/js/jquery.nivo.slider.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/inc/custom-slider/home.js') }}" type="text/javascript"></script>
     <!-- main js -->
-    <script src="{{ asset('frontend/js/main.js?ver=1.0.0') }}"></script>
+    <script src="{{ asset('frontend/js/main.js') }}"></script>
 </body>
 
 

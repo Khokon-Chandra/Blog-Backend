@@ -1,12 +1,8 @@
-{{-- @php
-    $menu->add(Spatie\Menu\Laravel\Link::to('/', 'Home'));
-    echo $menu->render();
-@endphp --}}
 
 <nav id="sidebar" class="sidebar">
     <div class="sidebar-content js-simplebar">
 
-        <a class="sidebar-brand" href="{{ route('home') }}">
+        <a class="sidebar-brand" href="{{ route('frontend.home') }}">
             <span class="align-middle">Visit Website</span>
         </a>
 

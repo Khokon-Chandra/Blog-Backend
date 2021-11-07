@@ -1,4 +1,4 @@
-<x-frontend.app-layout>
+<x-frontend.app-layout :menus="$menus">
     <!-- Inner Page Header serction start here -->
     <div class="inner-page-header">
         <div class="banner">

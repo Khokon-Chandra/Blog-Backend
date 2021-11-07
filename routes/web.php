@@ -12,6 +12,10 @@ use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\TagController;
 
+
+
+
+
 Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(){
 
     Route::get('/',[IndexController::class,'dashboard'])->name('dashboard');

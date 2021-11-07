@@ -53,7 +53,7 @@
                         <div class="right-content">
                             <span class="category"><a class="cat-link" href="blog.html">Business</a></span>
                             <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"> </i>{{ $post->created_at }}</span>
-                            <h3><a href="blog-single.html">{{ $post->title }}</a></h3>
+                            <h3><a href="{{ route('frontend.posts.show',$post->slug) }}">{{ $post->title }}</a></h3>
                         </div>
                         <div class="right-image"><a href="blog-single.html"><img src="{{ $post->feature_image }}" alt="sidebar image"></a></div>
                     </li>

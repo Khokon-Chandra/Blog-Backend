@@ -12,74 +12,25 @@
         <div class="recent-post-area hot-news">
             <h3 class="title-bg">Recent Post</h3>
             <ul class="news-post">
+                @foreach ($recentPost as $post)
                 <li>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
                             <div class="item-post">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-right-none">
-                                        <a href="blog-single.html"><img src="images/popular/1.jpg" alt="" title="News image" /></a>
+                                        <a href="{{ route('frontend.posts.show',$post->slug) }}"><img src="{{ $post->feature_image }}" alt="" title="News image" /></a>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <h4><a href="blog-single.html"> US should prepare for<br/> Russian election</a></h4>
-                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
+                                        <h4><a href="{{ route('frontend.posts.show',$post->slug) }}">{{ $post->title }}</a></h4>
+                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>{{ $post->created_at->format('d M Y') }}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </li>
-                  <li>
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
-                            <div class="item-post">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-right-none">
-                                        <a href="blog-single.html"><img src="images/popular/2.jpg" alt="" title="News image" /></a>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <h4><a href="blog-single.html">Pellentesque Odio Nisi <br/>Euismod In Pharet</a></h4>
-                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>June 28, 2017</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                  <li>
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
-                            <div class="item-post">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-right-none">
-                                        <a href="blog-single.html"><img src="images/popular/3.jpg" alt="" title="News image" /></a>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <h4><a href="blog-single.html"> Erant Aeque Neius No <br/>Numes Electram</a></h4>
-                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                  <li>
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
-                            <div class="item-post">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-right-none">
-                                        <a href="blog-single.html"><img src="images/popular/4.jpg" alt="" title="News image" /></a>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <h4><a href="blog-single.html">Erant Aeque Neius No <br/>Numes Electram</a></h4>
-                                        <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>June 28, 2017</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                @endforeach
             </ul>
         </div>
         <div class="trending-post-area">
@@ -87,24 +38,14 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul>
+                        @foreach ($trandingCategory as $category)
+
                         <li>
-                            <a href="category.html" class="hvr-bounce-to-right team-btn">The team</a><br/>
+                            <a href="{{ route('frontend.posts.category',$category->slug) }}" class="hvr-bounce-to-right team-btn">{{ $category->name }}</a><br/>
                             <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                            <h4><a href="category.html"> Jake Dribbler Announced The <br />Reting Next Month </a></h4>
-                            <p>Lorem ipsum dolor sit amet, consectet dipis cing elit. Vivamus tincidunt quam eget trisp  nunc sed mattis phasellus.</p>
+                            <h4><a href="{{ route('frontend.posts.category',$category->slug) }}">{{ $category->posts[0]->excerpt }}</p>
                         </li>
-                        <li>
-                            <a href="category.html" class="hvr-bounce-to-right team-btn">The team</a><br/>
-                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                            <h4><a href="category.html"> Jake Dribbler Announced The <br />Reting Next Month </a></h4>
-                            <p>Lorem ipsum dolor sit amet, consectet dipis cing elit. Vivamus tincidunt quam eget trisp  nunc sed mattis phasellus.</p>
-                        </li>
-                        <li>
-                            <a href="category.html" class="hvr-bounce-to-right team-btn">The team</a><br/>
-                            <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>
-                            <h4><a href="category.html"> Jake Dribbler Announced The <br />Reting Next Month </a></h4>
-                            <p>Lorem ipsum dolor sit amet, consectet dipis cing elit. Vivamus tincidunt quam eget trisp  nunc sed mattis phasellus.</p>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

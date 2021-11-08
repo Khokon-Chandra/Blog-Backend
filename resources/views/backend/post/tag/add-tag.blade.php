@@ -1,5 +1,6 @@
 <x-backend.app-layout>
     <x-page-title pagename="Create New Tag" />
+    <a href="{{ route('tags.index') }}" class="btn btn-primary mb-3">Go to lists</a>
         <x-backend.content-card >
             <x-alert /> <!-- alert -->
             <div class="card-body">
@@ -30,7 +31,7 @@
                     </div>
 
                     <div class="mb-3">
-                    <input type="submit" class="btn btn-dark" value="Save">
+                    <input type="submit" class="btn btn-primary" value="Save">
                     </div>
 
                 </form>

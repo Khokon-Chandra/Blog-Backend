@@ -35,12 +35,14 @@ class PostController extends Controller
 
     public function show($slug)
     {
+
         $post = $this->postServices->findByPostSlug($slug);
         return view('frontend.single_post.post-single',[
             'pageName'=>'Single Post',
             'menus'=>$this->menus,
             'post'=>$post,
-
+            'recentPost'=>Post::latest()->limit(4)->get(),
+            'trandingCategory'=>Category::with('posts')->latest()->limit(4)->get(),
         ]);
     }
 
@@ -51,6 +53,8 @@ class PostController extends Controller
             'pageName'=>'Category',
             'menus'=>$this->menus,
             'posts'=>$category->posts,
+            'recentPost'=>Post::latest()->limit(4)->get(),
+            'trandingCategory'=>Category::with('posts')->latest()->limit(4)->get(),
         ]);
     }
 

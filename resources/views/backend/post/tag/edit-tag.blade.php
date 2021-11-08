@@ -1,8 +1,7 @@
 <x-backend.app-layout>
 
     <x-page-title pagename="Edit Category" />
-        <a href="{{ route('tags.create') }}" class="btn btn-primary mb-3">Add New Tag</a>
-        <x-backend.content-card >
+    <a href="{{ route('categories.index') }}" class="btn btn-primary mb-3">Go to lists</a>        <x-backend.content-card >
         <x-alert />
             <div class="card-body">
                 <form action="{{ route('tags.update',['tag'=>$tag->id]) }}" method="POST">
@@ -31,7 +30,7 @@
                     </div>
 
                     <div class="mb-3">
-                    <input type="submit" class="btn btn-dark" value="Save change">
+                    <input type="submit" class="btn btn-primary" value="Save change">
                     </div>
 
                 </form>

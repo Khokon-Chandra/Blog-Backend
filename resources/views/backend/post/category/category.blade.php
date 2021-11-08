@@ -3,9 +3,9 @@
 
     <x-alert /> <!-- alert -->
 
-    <div class="mb-3"><a class="btn btn-dark" href="{{ route('categories.create') }}">Add new</a></div>
+    <div class="mb-3"><a class="btn btn-primary" href="{{ route('categories.create') }}">Add new</a></div>
 
-    <x-backend.content-card :title="__('Category Table')" :subTitle="__('Category Table subtitle')">
+    <x-backend.content-card >
         <table class="table table-striped">
             <thead>
                 <tr>

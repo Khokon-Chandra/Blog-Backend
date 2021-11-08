@@ -1,7 +1,8 @@
 <x-backend.app-layout>
 
     <x-page-title pagename="Edit Category" />
-        <x-backend.content-card :title="__('Edit Category')" :subTitle="__('Category addition form')">
+    <a href="{{ route('categories.index') }}" class="btn btn-primary mb-3">Go to lists</a>
+        <x-backend.content-card >
         <x-alert />
             <div class="card-body">
                 <form action="{{ route('categories.update',['category'=>$category->id]) }}" method="POST">
@@ -32,7 +33,7 @@
                     </div>
 
                     <div class="mb-3">
-                    <input type="submit" class="btn btn-dark" value="Save change">
+                    <input type="submit" class="btn btn-primary" value="Save change">
                     </div>
 
                 </form>

@@ -1,6 +1,6 @@
-<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+<div id="sidebar-wrapper" class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
     <!-- Blog Single Sidebar Start Here -->
-    <div class="sidebar-area">
+    <div class="sidebar-area theiaStickySidebar">
         <div class="like-box-area">
             <ul>
                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i> <span class="like-page">like our facebook page <br/>210,956 likes</span> <span class="like"><i class="fa fa-plus" aria-hidden="true"></i></span></a></li>

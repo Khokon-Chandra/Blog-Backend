@@ -16,7 +16,7 @@ class IndexController extends Controller
     {
 
         $posts = Post::withCount('comments')->get();
-        $randomPosts = DB::select("select `posts`.*, (select count(*) from `comments` where `posts`.`id` = `comments`.`post_id` and `comments`.`deleted_at` is null) as `comments_count` from `posts` where `posts`.`deleted_at` is null order by rand() desc limit 5;");
+        $randomPosts = DB::select("SELECT `posts`.*, (SELECT count(*) FROM `comments` WHERE `posts`.`id` = `comments`.`post_id` AND `comments`.`deleted_at` IS NULL) AS `comments_count` FROM `posts` WHERE `posts`.`deleted_at` IS NULL ORDER BY RAND() DESC LIMIT 5;");
 
         return view('frontend.home.index', [
             'menus'=> Menu::first(),

@@ -86,8 +86,22 @@
     <script src="{{ asset('frontend/inc/custom-slider/home.js') }}" type="text/javascript"></script>
     <!-- main js -->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+
+
+    {{-- Scripts for sticky sidebar --}}
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js' type='text/javascript'></script>
+    <script src='//cdn.jsdelivr.net/npm/theia-sticky-sidebar@1/dist/theia-sticky-sidebar.min.js' type='text/javascript'>
+    </script>
+    <script type='text/javascript'>
+        //<![CDATA[
+        $("#main-wrapper, #sidebar-wrapper").each(function() {
+            $(this).theiaStickySidebar()
+        })
+        //]]>
+    </script>
+
+    {{-- sticky sidebar --}}
+
+
 </body>
-
-
-<!-- Mirrored from rstheme.com/products/html/news24/news-magazine/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 May 2021 18:53:01 GMT -->
 </html>

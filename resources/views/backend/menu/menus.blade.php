@@ -16,18 +16,21 @@
         <div class="col-lg-8 col-md-8 col-12">
             <h5 class="bg-theme text-white d-inline-block mb-0 p-2">Menu Structure</h5>
             <hr class="bg-theme mt-0 p-0 ">
-            @if ($selectedMenu->menuItems->isEmpty() === false)
-                <ul class=" pl-0" id="sortable">
-                    @foreach ($selectedMenu->menuItems as $item)
-                        <li data-id="{{ $item->id }}" class=" bg-white border p-2 mb-1">{{ $item->name }}
-                            <ul></ul>
-                        </li>
-                    @endforeach
-                </ul>
-                <div class="text-right"><button id="saveMenu" class="btn btn-primary">Save menu</button></div>'
-            @else
-                <p>Add menu items form the column on the left</p>
-            @endif
+            @isset($selectedMenu)
+                @if ($selectedMenu->menuItems->isEmpty() === false)
+                    <ul class=" pl-0" id="sortable">
+                        @foreach ($selectedMenu->menuItems as $item)
+                            <li data-id="{{ $item->id }}" class=" bg-white border p-2 mb-1">{{ $item->name }}
+                                <ul></ul>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <div class="text-right"><button id="saveMenu" class="btn btn-primary">Save menu</button></div>'
+                @else
+                    <p>Add menu items form the column on the left</p>
+                @endif
+
+            @endisset
         </div>
     </div>
 

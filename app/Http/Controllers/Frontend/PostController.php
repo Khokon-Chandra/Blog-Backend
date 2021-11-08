@@ -28,7 +28,7 @@ class PostController extends Controller
         return view('frontend.posts',[
             'pageName'=>'Blogs',
             'menus'=>$this->menus,
-            'posts'=>Post::withCount('comments')->latest()->get(),
+            'posts'=>Post::withCount('comments')->latest()->paginate(10),
         ]);
     }
 
@@ -56,12 +56,12 @@ class PostController extends Controller
 
     public function findByTag($slug)
     {
-        $tag = $this->postServices->findByTag($slug);
+        $posts = $this->postServices->findByTag($slug);
 
         return view('frontend.posts',[
             'pageName'=>'Tags',
             'menus'=>$this->menus,
-            'posts'=>$tag->posts,
+            'posts'=>$posts,
         ]);
     }
 

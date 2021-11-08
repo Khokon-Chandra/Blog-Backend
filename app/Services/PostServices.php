@@ -32,11 +32,14 @@ class PostServices
 
     public function findByTag($slug)
     {
-        $tag = Tag::with('posts')->whereSlug($slug)->first();
-        if(!$tag){
+        $posts = Post::with(['tags'=>function($query) use($slug) {
+            $query->where('slug',$slug)->first();
+        }])->paginate(10);
+
+        if(!$posts){
             throw new PostNotfoundException();
         }
 
-        return $tag;
+        return $posts;
     }
 }

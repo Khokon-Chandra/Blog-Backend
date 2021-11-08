@@ -22,7 +22,7 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'slug'=>$this->faker->unique()->sentence(),
+            'slug'=>$this->faker->unique()->word(),
             'name'=>$this->faker->word(),
             'description'=>$this->faker->paragraph(),
         ];

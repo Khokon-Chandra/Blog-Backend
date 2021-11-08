@@ -14,40 +14,6 @@ class MenuController extends Controller
 {
 
 
-
-    public function recursive($arr)
-    {
-        foreach ($arr as $value) {
-            if (is_array($value) || is_object($value)) {
-                if (is_object($value)) {
-                    echo $value->id;
-                    $this->recursive($value->children);
-                } else {
-                    $this->recursive($value);
-                }
-            }
-        }
-    }
-
-
-    public function processMenuContent($content)
-    {
-        foreach ($content as $key => $value) {
-            if (is_array($value) || is_object($value)) {
-                if (is_object($value)) {
-                    echo $value->id;
-                    $this->recursive($value->children);
-                } else {
-                    $this->recursive($value);
-                }
-            }
-        }
-    }
-
-
-
-
-
     public function index(Request $request)
     {
 
@@ -58,7 +24,6 @@ class MenuController extends Controller
             $selectedMenu->content = !is_null($selectedMenu->content) ? json_decode($selectedMenu->content) : null;
 
         }
-
 
 
         return view('backend.menu.menus', [

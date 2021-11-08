@@ -40,7 +40,7 @@
                                 <li><a href="{{ route('login') }}">Sign In / Join</a></li>
                             @endif
 
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{{ route('frontend.contactPage') }}">Contact</a></li>
 
                         </ul>
                     </div>

@@ -17,12 +17,28 @@
             <h5 class="bg-theme text-white d-inline-block mb-0 p-2">Menu Structure</h5>
             <hr class="bg-theme mt-0 p-0 ">
             @isset($selectedMenu)
-                @if ($selectedMenu->menuItems->isEmpty() === false)
-                    <ul class=" pl-0" id="sortable">
+                @if ($selectedMenu->menuItems !== null)
+                    <ul id="sortable">
                         @foreach ($selectedMenu->menuItems as $item)
+                            @empty($selectedMenu->content)
                             <li data-id="{{ $item->id }}" class=" bg-white border p-2 mb-1">{{ $item->name }}
                                 <ul></ul>
                             </li>
+                            @else
+                            <li data-id="{{ $item->parent->id }}" class=" bg-white border p-2 mb-1">{{ $item->parent->name }}
+                                @isset($item->child)
+                                <ul>
+                                    @foreach ($item->child as $child)
+                                    <li data-id="{{ $child->id }}" class=" bg-white border p-2 mb-1">
+                                        {{ $child->name }}
+                                        <ul></ul>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                                @endisset
+                                <ul></ul>
+                            </li>
+                            @endempty
                         @endforeach
                     </ul>
                     <div class="text-right"><button id="saveMenu" class="btn btn-primary">Save menu</button></div>'

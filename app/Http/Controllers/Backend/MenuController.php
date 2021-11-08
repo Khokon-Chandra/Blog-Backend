@@ -14,16 +14,33 @@ class MenuController extends Controller
 {
 
 
+    public function menuItemsProcessor($content)
+    {
+        $itemsArr = [];
+        $content = json_decode($content);
+        foreach ($content[0] as $menuItem) {
+            $menuItem->parent = MenuItem::find($menuItem->id);
+            if(!empty($menuItem->children)){
+               foreach($menuItem->children as $child){
+                   foreach($child as $item){
+                    $menuItem->child[] = MenuItem::find($item->id);
+                   }
+               }
+            }
+        }
+
+       return $content[0];
+
+    }
+
+
     public function index(Request $request)
     {
-
         $selectedMenu = Menu::find($request->menu);
-
-        if (!is_null($selectedMenu)) {
-
-            $selectedMenu->content = !is_null($selectedMenu->content) ? json_decode($selectedMenu->content) : null;
-
+        if (isset($selectedMenu->content) && $selectedMenu->content !== '') {
+            $selectedMenu->menuItems = $this->menuItemsProcessor($selectedMenu->content);
         }
+
 
 
         return view('backend.menu.menus', [
@@ -64,13 +81,13 @@ class MenuController extends Controller
     public function addToMenu(Request $request)
     {
 
-        if($request->type === 'custom'){
+        if ($request->type === 'custom') {
             MenuItem::create([
-                'menu_id'=>$request->menu,
-                'slug'=>$request->target,
-                'name'=>$request->name,
-                'type'=>'custom',
-                'target'=>$request->target,
+                'menu_id' => $request->menu,
+                'slug' => $request->target,
+                'name' => $request->name,
+                'type' => 'custom',
+                'target' => $request->target,
             ]);
             return true;
         }
@@ -87,9 +104,8 @@ class MenuController extends Controller
             $queryValues[] = $request->type;
         }
         $keys = rtrim($queryPlaceholder, ',');
-        DB::insert('insert into menu_items (menu_id,slug,name,type) values'.$keys, $queryValues);
+        DB::insert('insert into menu_items (menu_id,slug,name,type) values' . $keys, $queryValues);
         return 'success';
-
     }
 
     /**

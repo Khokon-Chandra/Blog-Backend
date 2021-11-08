@@ -21,11 +21,13 @@
                     <ul id="sortable">
                         @foreach ($selectedMenu->menuItems as $item)
                             @empty($selectedMenu->content)
-                            <li data-id="{{ $item->id }}" class=" bg-white border p-2 mb-1">{{ $item->name }}
+                            <li data-id="{{ $item->id }}">
+                                <span class="d-block p-2 mb-1 bg-white border">{{ $item->name }}</span>
                                 <ul></ul>
                             </li>
                             @else
-                            <li data-id="{{ $item->parent->id }}" class=" bg-white border p-2 mb-1">{{ $item->parent->name }}
+                            <li data-id="{{ $item->parent->id }}">
+                                <span class="d-block p-2 mb-1 bg-white border">{{ $item->parent->name }}</span>
                                 @isset($item->child)
                                 <ul>
                                     @foreach ($item->child as $child)

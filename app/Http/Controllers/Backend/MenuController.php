@@ -20,17 +20,16 @@ class MenuController extends Controller
         $content = json_decode($content);
         foreach ($content[0] as $menuItem) {
             $menuItem->parent = MenuItem::find($menuItem->id);
-            if(!empty($menuItem->children)){
-               foreach($menuItem->children as $child){
-                   foreach($child as $item){
-                    $menuItem->child[] = MenuItem::find($item->id);
-                   }
-               }
+            if (!empty($menuItem->children)) {
+                foreach ($menuItem->children as $child) {
+                    foreach ($child as $item) {
+                        $menuItem->child[] = MenuItem::find($item->id);
+                    }
+                }
             }
         }
 
-       return $content[0];
-
+        return $content[0];
     }
 
 

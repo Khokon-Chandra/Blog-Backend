@@ -26,6 +26,9 @@
                                         </form>
                                     </li>
                                 @else
+                                <li>
+                                    <img style="width: 30px;height:auto;border-radius:50%" src="{{ Auth::user()->avatar }}" alt="">
+                                </li>
                                     <li>
                                         <form action="/logout" method="POST" class="dropdown-item">
                                             @csrf

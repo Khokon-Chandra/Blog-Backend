@@ -47,7 +47,8 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $attribute            = $request->only(['title','description','feature_image','excerpt']);
+
+        $attribute            = $request->validated();
         $attribute['slug']    = $request->createUniqueSlug();
         $attribute['user_id'] = Auth::id();
         $post['post_status']  = $request->isInherit();

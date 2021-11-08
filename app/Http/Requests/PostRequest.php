@@ -35,6 +35,12 @@ class PostRequest extends FormRequest
             'feature_image'=>'nullable',
             'categories'=>'nullable',
             'tags'=>'nullable',
+            'post_status'=>'nullable',
+            'type'=>'nullable',
+            'is_featured'=>'nullable',
+            'meta_title'=>'nullable',
+            'meta_keyword'=>'nullable',
+            'meta_description'=>'nullable',
         ];
     }
 

@@ -24,59 +24,76 @@
                 @include('backend.post.add-post._post_excerpt')
             </div>
         </div>
-{{-- Post Meta Info --}}
+
         <div class="card">
+            <h4 class="card-header">Post Visibility</h4>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="form-group">
-                            <label for="metatitle">Meta Title</label>
-                            <input name="meta_title" type="text" class="form-control" id="metatitle" >
-                        </div>
-                        <div class="form-group">
-                            <label for="metaKeywords">Meta Keywords</label>
-                            <input name="meta_title" type="text" class="form-control" id="metaKeywords">
-                        </div>
-                        <div class="form-group">
-                            <label for="metaDescription">Meta Description</label>
-                            <textarea name="meta_description" class="form-control" id="metaDescription" rows="3"></textarea>
-                        </div>
+                <div class="d-flex border-bottom mb-3">
+                    <div class="mr-5">Post Status:</div>
+                    <div class="d-flex">
+                        <label class="mx-3" for="publish"> Publish
+                            <input id="publish" value="publish" type="radio" name="post_status">
+                        </label>
+                        <label class="mx-3" for="in"> Inherit
+                            <input id="in" value="inherit" type="radio" name="post_status">
+                        </label>
                     </div>
-                    {{-- col-8 --}}
-                    <div class="col-4">
-                        <div class="form-group">
-                            <label for="freatured">Is Featured</label>
-                            <select name="is_featured" id="featured" class="form-control">
-                                <option value="" >is featured</option>
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="freatured">Post Type</label>
-                            <select name="is_featured" id="featured" class="form-control">
-                                <option value="" >post type</option>
-                                <option value="news">News</option>
-                                <option value="video">Video</option>
-                                <option value="article">Article</option>
-                                <option value="feature">Feature</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="postStatus">Post Status</label>
-                            <select name="is_featured" id="postStatus" class="form-control">
-                                <option value="" >post status</option>
-                                <option value="publish">publish</option>
-                                <option value="inherit">inherit</option>
-                            </select>
-                        </div>
-
-                    </div>
-
                 </div>
+                <div class="d-flex border-bottom mb-3">
+                    <div class="mr-5">Is Featured:</div>
+                    <div class="d-flex">
+                        <label class="mx-3" for="yes"> Yes
+                            <input id="yes" value="1" type="radio" name="is_featured">
+                        </label>
+                        <label class="mx-3" for="no"> No
+                            <input id="no" value="0" type="radio" name="is_featured">
+                        </label>
+                    </div>
+                </div>
+                <div class="d-flex border-bottom mb-3">
+                    <div class="mr-5">Post type:</div>
+                    <div class="d-flex">
+                        <label class="mx-3" for="article"> Article
+                            <input id="article" value="article" type="radio" name="type">
+                        </label>
+                        <label class="mx-3" for="news"> News
+                            <input id="news" value="news" type="radio" name="type">
+                        </label>
+                        <label class="mx-3" for="video"> Video
+                            <input id="video" value="video" type="radio" name="type">
+                        </label>
+                        <label class="mx-3" for="feature"> Feature
+                            <input id="feature" value="feature" type="radio" name="type">
+                        </label>
+                    </div>
+                </div>
+
             </div>
         </div>
-        {{-- Post Meta Info end--}}
+
+
+        {{-- Post Meta Info --}}
+        <div class="card">
+            <h4 class="card-header">Post meta details (SEO)</h4>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-6 col-xs-12">
+                        <label for="metatitle">Meta Title</label>
+                        <input name="meta_title" type="text" class="form-control" id="metatitle">
+                    </div>
+                    <div class="form-group col-6 col-xs-12">
+                        <label for="metaKeywords">Meta Keywords</label>
+                        <input name="meta_title" type="text" class="form-control" id="metaKeywords">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="metaDescription">Meta Description</label>
+                    <textarea name="meta_description" class="form-control" id="metaDescription" rows="3"></textarea>
+                </div>
+
+            </div>
+        </div>
+
     </form>
     <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js?ver=1.0.0"></script>
     <script>

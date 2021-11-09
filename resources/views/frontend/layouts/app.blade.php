@@ -1,16 +1,15 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from rstheme.com/products/html/news24/news-magazine/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 May 2021 18:52:00 GMT -->
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('img/icons/icon-48x48.png') }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Darpan | Home</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="apple-touch-icon" href="apple-touch-icon.html">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/images/fav.png') }}">
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
     <!-- bootstrap v3.3.6 css -->
@@ -40,7 +39,7 @@
     <script src="{{ asset('frontend/js/modernizr-2.8.3.min.js') }}"></script>
 </head>
 
-<body class="home">
+<body >
 	<!--Preloader area Start here-->
 	{{-- @include('frontend.layouts.preloader') --}}
 	<!--Preloader area end here-->

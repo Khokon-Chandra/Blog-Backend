@@ -19,7 +19,7 @@
 
             <!-- Dropdown link -->
 
-            <x-backend.dropdown :trigger="__('Posts')" :active="__('posts.categories.tags')" :id="__('posts')" :icon="__('users')">
+            <x-backend.dropdown :trigger="__('Posts')" :active="__('posts.categories.tags')" :id="__('posts')" :icon="__('aperture')">
                 <x-slot name="content">
                     <x-backend.dropdown-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">{{ __('All Posts') }}</x-backend.dropdown-link>
 
@@ -29,6 +29,14 @@
                     <x-backend.dropdown-link :href="route('tags.index')" :active="request()->routeIs('tags.index')">{{ __('Tag') }}</x-backend.dropdown-link>
                 </x-slot>
             </x-backend.dropdown>
+
+            <x-backend.nav-link :icon="__('layers')" :href="route('menus.index')" :active="request()->routeIs('menus.index')">
+                {{ __('Menu') }}
+            </x-backend.nav-link>
+
+            <x-backend.nav-link :icon="__('folder')" :href="route('media.index')" :active="request()->routeIs('media.index')">
+                {{ __('Media') }}
+            </x-backend.nav-link>
 
             <x-backend.nav-link :icon="__('message-square')" :href="route('comments.index')" :active="is_int(strpos(Route::currentRouteName(),'comments'))">
                 {{ __('Comments') }}
@@ -44,15 +52,6 @@
                     <x-backend.dropdown-link :href="route('users.create')" :active="request()->routeIs('users.create')">{{ __('Add New') }}</x-backend.dropdown-link>
                 </x-slot>
             </x-backend.dropdown>
-
-
-            <x-backend.nav-link :icon="__('layers')" :href="route('menus.index')" :active="request()->routeIs('menus.index')">
-                {{ __('Menu') }}
-            </x-backend.nav-link>
-
-            <x-backend.nav-link :icon="__('folder')" :href="route('media.index')" :active="request()->routeIs('media.index')">
-                {{ __('Media') }}
-            </x-backend.nav-link>
 
             <x-backend.nav-link :icon="__('settings')" :href="route('settings')" :active="request()->routeIs('settings')">
                 {{ __('Settings') }}

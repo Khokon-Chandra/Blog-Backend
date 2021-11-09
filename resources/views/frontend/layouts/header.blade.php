@@ -3,15 +3,15 @@
         <div class="container">
             {{-- Email verification status --}}
             @if (session('status') == 'verification-link-sent')
-            <div class="alert alert-warning" role="alert">
-                A new verification link has been sent to the email address you provided during registration.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <div class="alert alert-warning" role="alert">
+                    A new verification link has been sent to the email address you provided during registration.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
 
-              </div>
-        @endif
-        {{-- Email verification status --}}
+                </div>
+            @endif
+            {{-- Email verification status --}}
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                     <div class="header-top-left">
@@ -26,9 +26,10 @@
                                         </form>
                                     </li>
                                 @else
-                                <li>
-                                    <img style="width: 30px;height:auto;border-radius:50%" src="{{ Auth::user()->avatar }}" alt="">
-                                </li>
+                                    <li>
+                                        <img style="width: 30px;height:auto;border-radius:50%"
+                                            src="{{ Auth::user()->avatar }}" alt="">
+                                    </li>
                                     <li>
                                         <form action="/logout" method="POST" class="dropdown-item">
                                             @csrf
@@ -39,9 +40,7 @@
                             @else
                                 <li><a href="{{ route('login') }}">Sign In / Join</a></li>
                             @endif
-
                             <li><a href="{{ route('frontend.contactPage') }}">Contact</a></li>
-
                         </ul>
                     </div>
                 </div>

@@ -12,7 +12,7 @@
                             <img src="{{ $post->feature_image }}" alt="Blog single photo">
                         </div>
                         <h3>{{ $post->title }}</h3>
-                        <p>{{ $post->description }}</p>
+                        <p>{!! $post->description !!}</p>
                         <div class="share-section">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 life-style">

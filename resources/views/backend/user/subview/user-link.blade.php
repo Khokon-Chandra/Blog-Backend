@@ -1,5 +1,4 @@
 <div class="col-md-3 col-xl-2">
-
     <div class="card">
         <div class="card-header">
             <h5 class="card-title mb-0">Profile Settings</h5>

@@ -13,6 +13,7 @@
     <!-- Place favicon.ico in the root directory -->
     <!-- all css here -->
     <!-- bootstrap v3.3.6 css -->
+
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <!-- font-awesome css -->
     <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}">

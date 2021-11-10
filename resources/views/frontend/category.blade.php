@@ -82,7 +82,9 @@
 
                 </li>
                 </ul>
-
+                <div class="text-center">
+                    {{ $posts->links() }}
+                </div>
             </div>
 
             @include('frontend._category_sidebar')

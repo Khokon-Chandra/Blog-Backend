@@ -48,11 +48,11 @@ class PostController extends Controller
 
     public function findByCategory($slug)
     {
-        $category = $this->postServices->findByCategory($slug);
+        $posts = $this->postServices->findByCategory($slug);
         return view('frontend.category',[
             'pageName'=>'Category',
             'menus'=>$this->menus,
-            'posts'=>$category->posts,
+            'posts'=>$posts,
             'recentPost'=>Post::latest()->limit(4)->get(),
             'trandingCategory'=>Category::with('posts')->latest()->limit(4)->get(),
         ]);

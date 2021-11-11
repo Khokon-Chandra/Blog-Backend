@@ -20,123 +20,30 @@
         <img src="{{ asset('frontend/images/add/2.jpg') }}" alt="add image">
     </div>
     <!--Add Box End Here -->
-    
+
     <!--Newsletter Start Here -->
+
     <div class="newsletter-info">
-        <form>
+        @error('email')
+        <div class="invalid-feedback text-danger bg-white">{{ $message }}</div>
+    @enderror
+        <x-alert />
+        <form method="POST" action="{{ route('subscription.store') }}">
+            @csrf
             <fieldset>
                 <div class="form-group">
-                    <h4>Subscribe to Newsletter</h4>                                
+                    <h4>Subscribe to Newsletter</h4>
                     <div class="newsletter">
-                    <input class="form-control" placeholder="Email address..." type="text">
+                    <input class="form-control" placeholder="Email address..." type="email" name="email">
                     <button class="btn-send" type="submit">Subscribe</button>
                     <p>Get the latest news stories in your inbox</p>
-                    </div> 
-                </div>                                       
+                    </div>
+                </div>
             </fieldset>
         </form>
     </div>
 
     <!--Newsletter End Here -->
-
-    <!--popular Post Start Here -->
-    <div class="sidebar popular">
-        <h3 class="title-bg">Popular Now</h3>
-        <ul>
-            <li>
-                <a href="category.html" class="category-btn hvr-bounce-to-right">Business</a>
-                <div class="post-image"><img src="{{ asset('frontend/images/sidebar/1.jpg') }}" alt="News image"></div>
-                <div class="content">
-                    <h4>
-                        <a href="#">The exhibition Bankasy doesn’t want you to see</a>
-                    </h4>
-                    <span class="date"> 
-                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017 
-                    </span> 
-                    <span class="comment">
-                        <a href="#">
-                            <i class="fa fa-comment-o" aria-hidden="true"></i> 50
-                        </a>
-                    </span>
-                </div>
-            </li>
-        </ul> 
-    </div>
-     
-
-    <div class="hot-news popular-related">
-        <ul class="news-post">
-            <li>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
-                        <div class="item-post">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-3 paddimg-right-none">
-                                    <img src="{{ asset('frontend/images/popular/1.jpg') }}" alt="" title="News image">
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-9">
-                                    <h4><a href="#"> US should prepare for <br /> Russian election</a></h4>
-                                    <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
-                        <div class="item-post">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-3 paddimg-right-none">
-                                    <img src="{{ asset('frontend/images/popular/2.jpg') }}" alt="" title="News image">
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-9">
-                                    <h4><a href="blog-single.html"> Pellentesque Odio Nisi<br /> Euismod In Pharet</a></h4>
-                                    <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
-                        <div class="item-post">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-3 paddimg-right-none">
-                                    <img src="{{ asset('frontend/images/popular/3.jpg') }}" alt="" title="News image">
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-9">
-                                    <h4><a href="blog-single.html"> Erant Aeque Neius No <br />Numes Electram</a></h4>
-                                    <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
-                        <div class="item-post">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-3 paddimg-right-none">
-                                    <img src="{{ asset('frontend/images/popular/4.jpg') }}" alt="" title="News image">
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-9">
-                                    <h4><a href="blog-single.html"> Erant Aeque Neius No <br />Numes Electram</a></h4>
-                                    <span class="date"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> June 28, 2017</span>                                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div> 
-    <!--popular Post End Here --> 
 
     <!--Recent comments Start Here -->
         <div class="recent-comments separator-large">
@@ -158,28 +65,19 @@
                                 <span class="news-arrow-right"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                             </a>
                         </div>
-                    </div>    
+                    </div>
                 </div>
                 <div class="carousel-inner">
-                    <div class="item active">
+                    @foreach ($recentComments as $comment)
+                    <div class="item {{ $loop->index<1?'active':'' }}">
                         <div class="dsc">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipe isicing elit, sed do they eiusmod tempor incidin dunt ut labore et dolore</p>
-                            <span>- Thesera Minton</span>
+                            <p>{{ $comment->message }}</p>
+                            <span>- {{ $comment->author->name }}</span>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="dsc">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipe isicing elit, sed do they eiusmod tempor incidin dunt ut labore et dolore</p>
-                            <span>- Jon Min</span>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-        </div>  
+        </div>
     <!--Recent comments Start Here -->
-     <!--Add Start Here -->
-    <div class="add-section add-section2">
-        <img src="{{ asset('frontend/images/add/3.jpg') }}" alt="add image">
-    </div>
-    <!--Add Box End Here -->          
 </div>

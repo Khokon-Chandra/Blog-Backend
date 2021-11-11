@@ -58,6 +58,15 @@ class PostController extends Controller
         ]);
     }
 
+    public function categoryList()
+    {
+        return view('frontend.categories',[
+            'menus'=>$this->menus,
+            'pageName'=>'Category List',
+            'categories'=>Category::paginate(10),
+        ]);
+    }
+
     public function findByTag($slug)
     {
         $posts = $this->postServices->findByTag($slug);

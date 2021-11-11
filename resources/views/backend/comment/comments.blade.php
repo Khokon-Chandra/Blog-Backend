@@ -16,7 +16,7 @@
                 <tbody>
                     @forelse($comments as $comment)
                     <tr>
-                        <td> {{ $comment->author->name}} </td>
+                        <td> {{ $comment->author->name??'unknown'}} </td>
                         <td> {{ Str::substr($comment->message, 0, 100) }} </td>
                         <td> {{ $comment->post->title??'' }} </td>
                         <td class="d-none d-md-table-cell"> {{ $comment->created_at->format("j F  Y") }} </td>

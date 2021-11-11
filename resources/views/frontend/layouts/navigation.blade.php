@@ -6,7 +6,11 @@
             @else
                 @foreach ($menus->menuItems as $item)
                     @if ($item->type !== 'custom')
-                        <li><a href="{{ url($item->type . '/' . $item->slug) }}">{{ $item->name }}</a></li>
+                        @if ($item->type === 'category')
+                        <li><a href="{{ route('frontend.posts.category',$item->slug) }}">{{ $item->name }}</a></li>
+                        @else
+                        <li><a href="{{ route('frontend.posts.index') }}">{{ $item->name }}</a></li>
+                        @endif
                     @else
                         <li><a href="{{ url($item->slug) }}">{{ $item->name }}</a></li>
                     @endif

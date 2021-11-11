@@ -234,71 +234,40 @@
                         </li>
                     </ul>
                 </div>
-                {{-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none">
+                {{-- sidebar --}}
+               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none">
                     <h3 class="title-bg featured-title">Featured News</h3>
                     <div class="sidebar">
                         <ul>
+                            @foreach ($featuredNews as $news)
                             <li>
-                                <a href="#" class="category-btn hvr-bounce-to-right">Business</a>
-                                <div class="post-image"><a href="blog-single.html"><img src="{{ asset('frontend') }}/images/sidebar/1.jpg" alt="News image" /></a></div>
+                                <a href="{{ route('frontend.posts.category',$news->categories[0]->slug) }}" class="category-btn hvr-bounce-to-right">{{ $news->categories[0]->name }}</a>
+                                <div class="post-image"><a href="{{ route('frontend.posts.show',$news->slug) }}"><img src="{{ $news->feature_image }}" alt="News image" /></a></div>
                                 <div class="content">
-                                    <h4><a href="blog-single.html">The exhibition Bankasy doesn’t want you to see</a></h4>
+                                    <h4><a href="{{ route('frontend.posts.show',$news->slug) }}">{{ $news->title }}</a></h4>
                                     <span class="date">
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017
+                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $news->created_at->format('d M, Y') }}
                                     </span>
                                     <span class="comment">
-                                        <a href="#">
-                                            <i class="fa fa-comment-o" aria-hidden="true"></i> 50
+                                        <a href="{{ route('frontend.posts.show',$news->slug) }}">
+                                            <i class="fa fa-comment-o" aria-hidden="true"></i> {{ $news->comments_count }}
                                         </a>
                                     </span>
 
                                 </div>
                             </li>
-                            <li>
-                                <a href="category-health.html" class="category-btn hvr-bounce-to-right">Health</a>
-                                <div class="post-image"><a href="blog-single.html"><img src="{{ asset('frontend') }}/images/sidebar/2.jpg" alt="News image" /></a></div>
-                                <div class="content">
-                                    <h4><a href="#">The exhibition Bankasy doesn’t want you to see</a></h4>
-                                    <span class="date">
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017
-                                    </span>
-                                    <span class="comment">
-                                        <a href="#">
-                                            <i class="fa fa-comment-o" aria-hidden="true"></i> 50
-                                        </a>
-                                    </span>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#" class="category-btn hvr-bounce-to-right">Fashion</a>
-                                <div class="post-image"><a href="blog-single.html"><img src="{{ asset('frontend') }}/images/sidebar/3.jpg" alt="News image" /></a></div>
-                                <div class="content">
-                                    <h4><a href="#">The exhibition Bankasy doesn’t want you to see</a></h4>
-                                    <span class="date">
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> November 28, 2017
-                                    </span>
-                                    <span class="comment">
-                                        <a href="#">
-                                            <i class="fa fa-comment-o" aria-hidden="true"></i> 50
-                                        </a>
-                                    </span>
-
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                         <div class="categories-home separator-large3">
                             <h3 class="title-bg">Categories</h3>
                             <ul>
-                                <li><a href="category.html"> <i class="fa fa-angle-right" aria-hidden="true"></i> Business <span>45</span></a></li>
-                                <li><a href="category-world.html"><i class="fa fa-angle-right" aria-hidden="true"></i> World <span>70</span></a></li>
-                                <li><a href="category-fashion.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Fashion <span>45</span></a></li>
-                                <li><a href="category-politics.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Politics <span>55</span></a></li>
-                                <li><a href="category-sports.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Sports <span>50</span></a></li>
-                                <li><a href="category-health.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Health <span>65</span></a></li>
+                                @foreach ($categories as $category)
+                                <li><a href="{{ route('frontend.posts.category',$category->slug) }}"> <i class="fa fa-angle-right" aria-hidden="true"></i> {{ $category->name }} <span>{{ $category->posts_count }}</span></a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>

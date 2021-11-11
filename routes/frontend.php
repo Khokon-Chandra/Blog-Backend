@@ -18,6 +18,7 @@ Route::name('frontend.')->group(function () {
     Route::post('/contactus',[ContactInfoController::class,'store'])->name('contactPage.store');
 });
 
+
 Route::post('/subcribe',[SubscriptionController::class,'store'])->name('subscription.store');
 
 Route::fallback(function(){

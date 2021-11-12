@@ -5,6 +5,7 @@ use App\Exceptions\PostNotfoundException;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use GuzzleHttp\Psr7\Request;
 
 class PostServices
 {
@@ -21,15 +22,15 @@ class PostServices
         return $post;
     }
 
-    public function findByCategory($slug)
+    public function findByCategory($request,$slug)
     {
-        // $category = Category::with('posts')->where('slug',$slug)->first();
         $posts = Post::with(['categories'=>function($query) use($slug) {
             $query->where('slug',$slug)->first();
         }])->paginate(10);
         if(!$posts){
             throw new PostNotfoundException();
         }
+        $request->visitor()->visit();
         return $posts;
     }
 

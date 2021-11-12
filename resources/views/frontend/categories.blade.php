@@ -1,6 +1,5 @@
 <x-frontend.app-layout :menus="$menus">
     <x-frontend.page-header :pagename="$pageName" />
-
     <div class="container" style="margin-top: 20px">
         <div class="row">
             @foreach ($categories as $category)

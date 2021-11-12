@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\SubscriptionController;
 use App\Models\Menu;
+use Illuminate\Http\Request;
 
 Route::name('frontend.')->group(function () {
     Route::get('/',[IndexController::class,'index'])->name('home');
@@ -16,6 +17,11 @@ Route::name('frontend.')->group(function () {
     Route::get('tag/{tag}',[PostController::class,'findByTag'])->name('posts.tag');
     Route::get('/contactus',[ContactInfoController::class,'index'])->name('contactPage');
     Route::post('/contactus',[ContactInfoController::class,'store'])->name('contactPage.store');
+});
+
+
+Route::get('visitor',function(Request $request){
+
 });
 
 

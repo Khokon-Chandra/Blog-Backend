@@ -25,57 +25,58 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('frontend.posts',[
-            'pageName'=>'Blogs',
-            'menus'=>$this->menus,
-            'posts'=>Post::withCount('comments')->latest()->paginate(10),
+        return view('frontend.posts', [
+            'pageName' => 'Blogs',
+            'menus' => $this->menus,
+            'posts' => Post::withCount('comments')->latest()->paginate(10),
         ]);
     }
 
 
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
 
         $post = $this->postServices->findByPostSlug($slug);
-        return view('frontend.single_post.post-single',[
-            'pageName'=>'Single Post',
-            'menus'=>$this->menus,
-            'post'=>$post,
-            'recentPost'=>Post::latest()->limit(4)->get(),
-            'trandingCategory'=>Category::with('posts')->latest()->limit(4)->get(),
+        $request->visitor()->visit($post);
+        return view('frontend.single_post.post-single', [
+            'pageName' => 'Single Post',
+            'menus' => $this->menus,
+            'post' => $post,
+            'recentPost' => Post::latest()->limit(4)->get(),
+            'trandingCategory' => Category::with('posts')->latest()->limit(4)->get(),
         ]);
     }
 
-    public function findByCategory($slug)
+    public function findByCategory(Request $request, $slug)
     {
-        $posts = $this->postServices->findByCategory($slug);
-        return view('frontend.category',[
-            'pageName'=>'Category',
-            'menus'=>$this->menus,
-            'posts'=>$posts,
-            'recentPost'=>Post::latest()->limit(4)->get(),
-            'trandingCategory'=>Category::with('posts')->latest()->limit(4)->get(),
+        $posts = $this->postServices->findByCategory($request , $slug);
+
+        return view('frontend.category', [
+            'pageName' => 'Category',
+            'menus' => $this->menus,
+            'posts' => $posts,
+            'recentPost' => Post::latest()->limit(4)->get(),
+            'trandingCategory' => Category::with('posts')->latest()->limit(4)->get(),
         ]);
     }
 
     public function categoryList()
     {
-        return view('frontend.categories',[
-            'menus'=>$this->menus,
-            'pageName'=>'Category List',
-            'categories'=>Category::paginate(10),
+        return view('frontend.categories', [
+            'menus' => $this->menus,
+            'pageName' => 'Category List',
+            'categories' => Category::paginate(10),
         ]);
     }
 
-    public function findByTag($slug)
+    public function findByTag(Request $request, $slug)
     {
         $posts = $this->postServices->findByTag($slug);
-
-        return view('frontend.posts',[
-            'pageName'=>'Tags',
-            'menus'=>$this->menus,
-            'posts'=>$posts,
+        $request->visitor()->visit();
+        return view('frontend.posts', [
+            'pageName' => 'Tags',
+            'menus' => $this->menus,
+            'posts' => $posts,
         ]);
     }
-
 }

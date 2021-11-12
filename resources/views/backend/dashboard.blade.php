@@ -8,8 +8,8 @@
                         <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title mb-4">Sales</h5>
-                                    <h1 class="display-5 mt-1 mb-3">2.382</h1>
+                                    <h5 class="card-title mb-4">Total Post</h5>
+                                    <h1 class="display-5 mt-1 mb-3">{{ $posts_count }}</h1>
                                     <div class="mb-1">
                                         <span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
                                         <span class="text-muted">Since last week</span>
@@ -30,8 +30,8 @@
                         <div class="col-sm-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title mb-4">Earnings</h5>
-                                    <h1 class="display-5 mt-1 mb-3">$21.300</h1>
+                                    <h5 class="card-title mb-4">Comments</h5>
+                                    <h1 class="display-5 mt-1 mb-3">{{ $comments_count }}</h1>
                                     <div class="mb-1">
                                         <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
                                         <span class="text-muted">Since last week</span>

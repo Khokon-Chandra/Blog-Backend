@@ -15,7 +15,7 @@ class IndexController extends Controller
     public function dashboard(Request $request)
     {
 
-        return view('backend.dashboard',[
+        echo view('backend.dashboard',[
             'posts_count'=>Post::count(),
             'comments_count'=>Comment::count(),
 

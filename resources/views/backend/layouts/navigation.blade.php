@@ -43,13 +43,23 @@
             </x-backend.nav-link>
 
 
-            <!-- Dropdown link -->
+            <!-- Dropdown link  Users section-->
 
             <x-backend.dropdown :trigger="__('Users')" :active="__('users')" :id="__('user')" :icon="__('users')">
                 <x-slot name="content">
                     <x-backend.dropdown-link :href="route('users.show',['user'=>Auth::user()->username])" :active="request()->routeIs('user.show')">{{ __('Profile') }}</x-backend.dropdown-link>
                     <x-backend.dropdown-link :href="route('users.index')" :active="request()->routeIs('users.index')">{{ __('All Users') }}</x-backend.dropdown-link>
                     <x-backend.dropdown-link :href="route('users.create')" :active="request()->routeIs('users.create')">{{ __('Add New') }}</x-backend.dropdown-link>
+                </x-slot>
+            </x-backend.dropdown>
+
+             <!-- Roles and Permissions Dropdown link -->
+
+             <x-backend.dropdown :trigger="__('Roles & Permissions')" :active="__('access_control')" :id="__('rolespermissions')" :icon="__('lock')">
+                <x-slot name="content">
+                    <x-backend.dropdown-link :href="route('access_control.roles',['user'=>Auth::user()->username])" :active="request()->routeIs('access_control.roles')">Roles</x-backend.dropdown-link>
+                    <x-backend.dropdown-link :href="route('access_control.permissions')" :active="request()->routeIs('access_control.permissions')">Permissions</x-backend.dropdown-link>
+
                 </x-slot>
             </x-backend.dropdown>
 

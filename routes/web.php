@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\MediaController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\MenuController;
+use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\TagController;
 
 
@@ -41,6 +42,11 @@ Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(
     Route::resource('media', MediaController::class);
     Route::resource('menus', MenuController::class);
     Route::post('/menus/add-to-menu',[MenuController::class,'addToMenu'])->name('menus.addToMenu');
+
+    Route::name('access_control')->group(function () {
+        Route::get('/roles',[PermissionController::class,'listOfRoles'])->name('roles');
+        Route::get('/roles',[PermissionController::class,'listOfPermissions'])->name('permissions');
+    });
 
     Route::get('/settings',function(){
         return view('backend.page');

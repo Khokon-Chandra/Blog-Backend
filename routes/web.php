@@ -45,7 +45,9 @@ Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(
 
     Route::name('access_control.')->group(function () {
         Route::get('/roles',[RolePermissionController::class,'listOfRoles'])->name('roles');
+        Route::get('/roles/create',[RolePermissionController::class,'createRole'])->name('roles.create');
         Route::get('/permissions',[RolePermissionController::class,'listOfPermissions'])->name('permissions');
+        Route::get('/permissions/create',[RolePermissionController::class,'createPermission'])->name('permissions.create');
     });
 
     Route::get('/settings',function(){

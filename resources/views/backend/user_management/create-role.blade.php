@@ -5,7 +5,7 @@
         <div class="col-md-4">
             <div class="p-3 bg-white">
                 <p>Insert role name</p>
-                <form action="">
+                <form id="createRole" action="{{ route('access_control.roles.store') }}" method="POST">
                     <div class="mb-3">
                         <label for="role">Role *</label>
                         <input type="text" name="role" id="role" class="form-control">
@@ -41,4 +41,19 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+    <script>
+        $('#createRole').submit(function(event){
+
+            event.preventDefault();
+            let url = this.action
+            let data = {name:$(this).find('input:text').val()}
+            axios.post(url,data).then((response)=>{
+                toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+            }).catch((response)=>{
+                toastr.error('Please Insert valid data', 'Inconceivable!')
+            })
+        });
+    </script>
+    @endpush
 </x-backend.app-layout>

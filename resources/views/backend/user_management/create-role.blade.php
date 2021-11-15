@@ -1,6 +1,8 @@
 <x-backend.app-layout>
     <x-page-title pagename="Add New Role" />
-
+    <div class="dflex">
+        <a href="{{ route('access_control.roles') }}" class="btn btn-primary">Go to Roles</a>
+    </div>
     <div class="row">
         <div class="col-md-4">
             <div class="p-3 bg-white">
@@ -49,7 +51,7 @@
             let url = this.action
             let data = {name:$(this).find('input:text').val()}
             axios.post(url,data).then((response)=>{
-                toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+                toastr.success('Successfully a new role created')
             }).catch((response)=>{
                 toastr.error('Please Insert valid data', 'Inconceivable!')
             })

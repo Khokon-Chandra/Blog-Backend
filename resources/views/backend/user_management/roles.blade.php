@@ -3,7 +3,23 @@
 
     <x-backend.content-card>
 
-        <h1 class="p-4 text-center display-4">Comming soon</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Role</th>
+                    <th>Permisions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($roles as $role)
+                    <tr>
+                        <td>{{ $role->name }}</td>
+                        <td>permisions</td>
+                        {{-- <td>{{ $role->permisions }}</td> --}}
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
 
     </x-backend.content-card>
 </x-backend.app-layout>

@@ -1,6 +1,6 @@
 <x-backend.app-layout>
     <x-page-title pagename="Add New Role" />
-    <div class="dflex">
+    <div class="mb-3">
         <a href="{{ route('access_control.roles') }}" class="btn btn-primary">Go to Roles</a>
     </div>
     <div class="row">

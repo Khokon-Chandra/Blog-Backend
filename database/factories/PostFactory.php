@@ -23,6 +23,7 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+
         return [
             'slug'=>$this->faker->unique()->slug,
             'user_id'=>rand(1,User::count()),

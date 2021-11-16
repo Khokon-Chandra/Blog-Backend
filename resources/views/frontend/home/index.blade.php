@@ -27,7 +27,8 @@
                     <div class="row">
                         @foreach ($CategorySlider as $category)
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <div id="news-Carousel{{ $loop->iteration }}" class="carousel carousel-news slide" data-ride="carousel">
+                                <div id="news-Carousel{{ $loop->iteration }}" class="carousel carousel-news slide"
+                                    data-ride="carousel">
                                     <!-- Wrapper for slides -->
                                     <!-- Left and right controls -->
                                     <div class="next-prev-top">
@@ -38,12 +39,13 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-3 next-prev col-xs-3">
-                                                <a class="left news-control" href="#news-Carousel{{ $loop->iteration }}" data-slide="prev">
+                                                <a class="left news-control"
+                                                    href="#news-Carousel{{ $loop->iteration }}" data-slide="prev">
                                                     <span class="news-arrow-left"><i class="fa fa-angle-left"
                                                             aria-hidden="true"></i></span>
                                                 </a>
-                                                <a class="right news-control" href="#news-Carousel{{ $loop->iteration }}"
-                                                    data-slide="next">
+                                                <a class="right news-control"
+                                                    href="#news-Carousel{{ $loop->iteration }}" data-slide="next">
                                                     <span class="news-arrow-right"><i class="fa fa-angle-right"
                                                             aria-hidden="true"></i></span>
                                                 </a>
@@ -87,7 +89,8 @@
                                 <h3 class="title-bg">Around the world</h3>
                             </div>
                             <div class="col-sm-4 text-right">
-                                <a href="{{ route('frontend.categories.list') }}">View More <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                <a href="{{ route('frontend.categories.list') }}">View More <i
+                                        class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
@@ -235,26 +238,37 @@
                     </ul>
                 </div>
                 {{-- sidebar --}}
-               <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 paddimg-left-none">
                     <h3 class="title-bg featured-title">Featured News</h3>
                     <div class="sidebar">
                         <ul>
                             @foreach ($featuredNews as $news)
-                            <li>
-                                <a href="{{ route('frontend.posts.category',$news->categories[0]->slug) }}" class="category-btn hvr-bounce-to-right">{{ $news->categories[0]->name }}</a>
-                                <div class="post-image"><a href="{{ route('frontend.posts.show',$news->slug) }}"><img src="{{ $news->feature_image }}" alt="News image" /></a></div>
-                                <div class="content">
-                                    <h4><a href="{{ route('frontend.posts.show',$news->slug) }}">{{ $news->title }}</a></h4>
-                                    <span class="date">
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $news->created_at->format('d M, Y') }}
-                                    </span>
-                                    <span class="comment">
-                                        <a href="{{ route('frontend.posts.show',$news->slug) }}">
-                                            <i class="fa fa-comment-o" aria-hidden="true"></i> {{ $news->comments_count }}
-                                        </a>
-                                    </span>
+                                <li>
+                                    @foreach ($news->categories as $cat)
+                                        @if ($loop->index<=0)
+                                        <a href="{{ route('frontend.posts.category', $cat->slug) }}"
+                                            class="category-btn hvr-bounce-to-right">{{ $cat->name }}</a>
+                                        @endif
 
-                                </div>
+                                    @endforeach
+                            <div class="post-image"><a href="{{ route('frontend.posts.show', $news->slug) }}"><img
+                                        src="{{ $news->feature_image }}" alt="News image" /></a></div>
+                            <div class="content">
+                                <h4><a
+                                        href="{{ route('frontend.posts.show', $news->slug) }}">{{ $news->title }}</a>
+                                </h4>
+                                <span class="date">
+                                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                    {{ $news->created_at->format('d M, Y') }}
+                                </span>
+                                <span class="comment">
+                                    <a href="{{ route('frontend.posts.show', $news->slug) }}">
+                                        <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                        {{ $news->comments_count }}
+                                    </a>
+                                </span>
+
+                            </div>
                             </li>
                             @endforeach
                         </ul>
@@ -262,7 +276,10 @@
                             <h3 class="title-bg">Categories</h3>
                             <ul>
                                 @foreach ($categories as $category)
-                                <li><a href="{{ route('frontend.posts.category',$category->slug) }}"> <i class="fa fa-angle-right" aria-hidden="true"></i> {{ $category->name }} <span>{{ $category->posts_count }}</span></a></li>
+                                    <li><a href="{{ route('frontend.posts.category', $category->slug) }}"> <i
+                                                class="fa fa-angle-right" aria-hidden="true"></i>
+                                            {{ $category->name }} <span>{{ $category->posts_count }}</span></a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>

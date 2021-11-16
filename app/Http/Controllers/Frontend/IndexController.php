@@ -18,7 +18,6 @@ class IndexController extends Controller
     {
         $posts = Post::withCount('comments')->get();
         $randomPosts = DB::select("SELECT `posts`.*, (SELECT count(*) FROM `comments` WHERE `posts`.`id` = `comments`.`post_id` AND `comments`.`deleted_at` IS NULL) AS `comments_count` FROM `posts` WHERE `posts`.`deleted_at` IS NULL ORDER BY RAND() DESC LIMIT 5;");
-
         return view('frontend.home.index', [
             'menus'=> Menu::first(),
             'posts' => $posts,
@@ -30,7 +29,9 @@ class IndexController extends Controller
             'CategorySlider'=>Category::with(['posts'=>function($query){
                 $query->limit(5);
             }])->limit(2)->get(),
-            'featuredNews'=>Post::with('categories')->withCount('comments')->where('is_featured',true)->limit(3)->get(),
+            'featuredNews'=>Post::with(['categories'=>function($query){
+                $query->first();
+            }])->withCount('comments')->where('is_featured',true)->limit(3)->get(),
             'categories'=>Category::withCount('posts')->limit(10)->get(),
         ]);
     }

@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
-
-
     public function menuItemsProcessor($content)
     {
         $itemsArr = [];
@@ -39,8 +37,6 @@ class MenuController extends Controller
         if (isset($selectedMenu->content) && $selectedMenu->content !== '') {
             $selectedMenu->menuItems = $this->menuItemsProcessor($selectedMenu->content);
         }
-
-
 
         return view('backend.menu.menus', [
             'selectedMenu' => $selectedMenu,

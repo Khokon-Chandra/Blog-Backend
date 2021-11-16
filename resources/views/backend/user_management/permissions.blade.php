@@ -3,7 +3,11 @@
 
     <x-backend.content-card>
 
-        <h1 class="p-4 text-center display-4">Comming soon</h1>
+        <ul>
+            @foreach ($permissions as $permission)
+            <li class="bg-white p-2">{{ $permission->name }}</li>
+            @endforeach
+        </ul>
 
     </x-backend.content-card>
 </x-backend.app-layout>

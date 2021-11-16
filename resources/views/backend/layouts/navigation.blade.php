@@ -59,8 +59,8 @@
                 <x-slot name="content">
                     <x-backend.dropdown-link :href="route('access_control.roles')" :active="request()->routeIs('access_control.roles')">Roles</x-backend.dropdown-link>
                     <x-backend.dropdown-link :href="route('access_control.roles.create')" :active="request()->routeIs('access_control.roles.create')">Add new Role</x-backend.dropdown-link>
-                    <x-backend.dropdown-link :href="route('access_control.permissions')" :active="request()->routeIs('access_control.permissions.create')">Permissions</x-backend.dropdown-link>
-                    <x-backend.dropdown-link :href="route('access_control.permissions')" :active="request()->routeIs('access_control.permissions.create')">Add new Permission</x-backend.dropdown-link>
+                    <x-backend.dropdown-link :href="route('access_control.permissions')" :active="request()->routeIs('access_control.permissions')">Permissions</x-backend.dropdown-link>
+                    <x-backend.dropdown-link :href="route('access_control.permissions.create')" :active="request()->routeIs('access_control.permissions.create')">Add new Permission</x-backend.dropdown-link>
 
                 </x-slot>
             </x-backend.dropdown>

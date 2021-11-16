@@ -13,8 +13,9 @@ class RolePermissionController extends Controller
 
     public function listOfRoles()
     {
+
         return view('backend.user_management.roles',[
-            'roles'=>Role::all(),
+            'roles'=>Role::with('permissions')->get(),
         ]);
     }
 
@@ -26,11 +27,37 @@ class RolePermissionController extends Controller
     }
 
 
-
     public function storeRole(Request $request)
     {
-        Role::create($request->validate(['name'=>'required']));
-        return response()->json(['success'=>'Successfully Role created'],200);
+        $validator = Validator::make($request->all(),[
+            'name'=>'required|unique:roles,name',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(),422);
+        }
+        Role::create(['name'=>$request->name]);
+        return response()->json(['success'=>'Successfully roles created'],200);
+
+    }
+
+
+
+    public function editRole($id)
+    {
+        $role = Role::findOrFail($id);
+        return view('backend.user_management.edit-role',['role'=>$role]);
+    }
+
+    public function updateRole(Request $request)
+    {
+        return back()->with('success','successfully role updated');
+    }
+
+
+    public function destroyRole($id)
+    {
+        return back();
     }
 
     /**

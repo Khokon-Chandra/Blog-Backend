@@ -1,5 +1,6 @@
 <x-backend.app-layout>
-    <x-page-title pagename="Add New Role" />
+    <x-page-title pagename="Edit Role" />
+    <x-alert />
     <div class="mb-3">
         <a href="{{ route('access_control.roles.index') }}" class="btn btn-primary">Go to Roles</a>
     </div>
@@ -7,13 +8,13 @@
         <div class="col-md-4">
             <div class="p-3 bg-white">
                 <p>Insert role name</p>
-                <form id="createRole" action="{{ route('access_control.roles.store') }}" method="POST">
+                <form id="createRole" action="{{ route('access_control.roles.update',$role->id) }}" method="POST">
                     <div class="mb-3">
                         <label for="role">Role *</label>
-                        <input type="text" name="role" id="role" class="form-control">
+                        <input type="text" name="role" id="role" class="form-control" value="{{ $role->name }}">
                     </div>
                     <div class="mb-3 text-right">
-                        <input type="submit" class="btn btn-primary" value="Create">
+                        <input type="submit" class="btn btn-primary" value="Save Role">
                     </div>
                 </form>
             </div>
@@ -46,15 +47,14 @@
     @push('scripts')
     <script>
         $('#createRole').submit(function(event){
+
             event.preventDefault();
             let url = this.action
             let data = {name:$(this).find('input:text').val()}
-            axios.post(url,data).then((response)=>{
-                $(this).find('input:text').removeClass('is-invalid');
-                toastr.success('Successfully a new permission created')
-            }).catch((error)=>{
-                $(this).find('input:text').addClass('form-control is-invalid');
-                toastr.error(error.response.data.name[0])
+            axios.put(url,data).then((response)=>{
+                toastr.success('Successfully a new role created')
+            }).catch((response)=>{
+                toastr.error('Please Insert valid data', 'Inconceivable!')
             })
         });
     </script>

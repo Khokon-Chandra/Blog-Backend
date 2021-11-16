@@ -52,8 +52,10 @@ Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(
             Route::post('',[RolePermissionController::class,'storeRole'])->name('store');
 
             Route::get('/{id}/edit',[RolePermissionController::class,'editRole'])->name('edit');
-            Route::put('{id}',[RolePermissionController::class,'updateRole'])->name('update');
+            Route::put('/',[RolePermissionController::class,'updateRole'])->name('update');
             Route::delete('{id}',[RolePermissionController::class,'destroyRole'])->name('destroy');
+
+            Route::post('/givepermission',[RolePermissionController::class,'givePermissionTo'])->name('givePermission');
         });
 
 

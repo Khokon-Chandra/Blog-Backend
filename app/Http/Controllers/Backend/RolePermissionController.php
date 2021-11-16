@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -45,13 +46,26 @@ class RolePermissionController extends Controller
 
     public function editRole($id)
     {
-        $role = Role::findOrFail($id);
-        return view('backend.user_management.edit-role',['role'=>$role]);
+        $role = Role::with('permissions')->where('id',$id)->firstOrFail();
+        return view('backend.user_management.edit-role',[
+            'role'=>$role,
+            'permissions'=>Permission::all(),
+        ]);
     }
 
     public function updateRole(Request $request)
     {
-        return back()->with('success','successfully role updated');
+        $validator = Validator::make($request->all(),[
+            'name'=>'required|unique:roles,name',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(),422);
+        }
+
+        Role::findOrFail($request->id)->update(['name'=>$request->name]);
+
+        return response()->json(['success'=>'Successfully role updated'],200);
     }
 
 
@@ -60,13 +74,43 @@ class RolePermissionController extends Controller
         return back();
     }
 
+
+
+    public function givePermissionTo(Request $request)
+    {
+        $role = Role::findOrFail($request->role);
+        $permission = Permission::findOrFail($request->permission);
+        if($request->status){
+            $role->givePermissionTo($permission);
+            return 'permission assigned';
+        }
+        $role->revokePermissionTo($permission);
+        return 'permission removed';
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * permission methods are start here
      */
 
     public function listOfPermissions()
     {
-        return view('backend.user_management.permissions',['permissions'=>Permission::all()]);
+
+        return view('backend.user_management.permissions',[
+            'permissions'=>Permission::with('roles')->get(),
+        ]);
     }
 
     public function createPermission()

@@ -19,9 +19,9 @@
                         <td>{{ $role->name }}</td>
                         <td>
                             @forelse ($role->permissions as $permission)
-                                <span class="bg-light p-1 m-1">{{ $permission->name }}</span>
+                                <span class="border p-1 ml-1">{{ $permission->name }}</span>
                             @empty
-                                <p >No permissions are available is there</p>
+                                <p>No permissions are available is there</p>
                             @endforelse
                         </td>
                         <td class="table-action">

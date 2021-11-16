@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Menu;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
@@ -25,6 +26,8 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('00000000'), // password
                 'remember_token' => Str::random(10),
         ]);
+
+        Menu::create(['name'=>'Main menu']);
 
         User::factory(10)->create();
         $this->call([

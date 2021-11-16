@@ -26,7 +26,7 @@ class RolePermissionSeeder extends Seeder
 
         Permission::firstOrCreate(['name' => 'read_backend']);
         Permission::firstOrCreate(['name' => 'read_post']);
-        Permission::firstOrCreate(['name' => 'write_post']);
-        Permission::firstOrCreate(['name' => 'delete_post']);
+        Permission::firstOrCreate(['name' => 'delete_comment']);
+        Permission::firstOrCreate(['name' => 'delete_category']);
     }
 }

@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable,SoftDeletes;
+    use HasFactory, Notifiable,SoftDeletes,HasRoles;
 
     protected $guard = [];
     /**
@@ -56,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Post::class);
     }
 
-   
+
     public function scopeFilter($query, array $filters)
     {
         $query->when( $filters['search'] ?? false, fn($query,$search)=>
@@ -68,9 +68,9 @@ class User extends Authenticatable implements MustVerifyEmail
                         'posted' => Post::selectRaw('COUNT(*)')
                                 ->whereColumn('user_id', 'users.id')
                     ]);
-        
+
     }
 
-    
+
 
 }

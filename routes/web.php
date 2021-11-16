@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\MediaController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\MenuController;
+use App\Http\Controllers\Backend\RolePermissionController;
 use App\Http\Controllers\Backend\TagController;
 
 
@@ -41,6 +42,17 @@ Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(
     Route::resource('media', MediaController::class);
     Route::resource('menus', MenuController::class);
     Route::post('/menus/add-to-menu',[MenuController::class,'addToMenu'])->name('menus.addToMenu');
+
+    Route::name('access_control.')->group(function () {
+
+        Route::get('/roles',[RolePermissionController::class,'listOfRoles'])->name('roles');
+        Route::get('/roles/create',[RolePermissionController::class,'createRole'])->name('roles.create');
+        Route::post('/roles',[RolePermissionController::class,'storeRole'])->name('roles.store');
+
+        Route::get('/permissions',[RolePermissionController::class,'listOfPermissions'])->name('permissions');
+        Route::get('/permissions/create',[RolePermissionController::class,'createPermission'])->name('permissions.create');
+        Route::post('/permissions',[RolePermissionController::class,'storePermission'])->name('permissions.store');
+    });
 
     Route::get('/settings',function(){
         return view('backend.page');

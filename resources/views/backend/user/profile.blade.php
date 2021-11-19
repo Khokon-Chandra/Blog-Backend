@@ -10,23 +10,25 @@
             <h5 class="card-title mb-0">{{ $user->name }}</h5>
             <div class="text-muted mb-2">Lead Developer</div>
 
-            <div>
-                <a class="btn btn-primary btn-sm" href="#">Edit Profile</a>
+            <div class="mb-3">
+                <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->username) }}">Edit Profile</a>
                 <a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span>Message</a>
+            </div>
+            <hr class="my-0" />
+            <div class="card-body">
+                {{ $profile->bio??'' }}
             </div>
         </div>
         <hr class="my-0" />
         <div class="card-body">
             <h5 class="h6 card-title">Skills</h5>
-            <a href="#" class="badge badge-primary mr-1 my-1">HTML</a>
-            <a href="#" class="badge badge-primary mr-1 my-1">JavaScript</a>
-            <a href="#" class="badge badge-primary mr-1 my-1">Sass</a>
-            <a href="#" class="badge badge-primary mr-1 my-1">Angular</a>
-            <a href="#" class="badge badge-primary mr-1 my-1">Vue</a>
-            <a href="#" class="badge badge-primary mr-1 my-1">React</a>
-            <a href="#" class="badge badge-primary mr-1 my-1">Redux</a>
-            <a href="#" class="badge badge-primary mr-1 my-1">UI</a>
-            <a href="#" class="badge badge-primary mr-1 my-1">UX</a>
+            @forelse (json_decode($profile->skills??'{}') as $skill)
+                <a href="#" class="badge badge-primary mr-1 my-1">{{ $skill }}</a>
+            @empty
+                <p>No skills available</p>
+            @endforelse
+
+
         </div>
         <hr class="my-0" />
         <div class="card-body">
@@ -45,16 +47,36 @@
         <div class="card-body">
             <h5 class="h6 card-title">Elsewhere</h5>
             <ul class="list-unstyled mb-0">
-                <li class="mb-1"><span class="fas fa-globe fa-fw mr-1"></span> <a href="#">staciehall.co</a>
+                <li class="mb-1"><span class="fas fa-globe fa-fw mr-1"></span> <a href="{{ $profile->url_website??'' }}">WebSite link</a>
                 </li>
-                <li class="mb-1"><span class="fab fa-twitter fa-fw mr-1"></span> <a href="#">Twitter</a>
+                <li class="mb-1"><span class="fab fa-twitter fa-fw mr-1"></span> <a href="{{ $profile->url_twitter??'' }}">Twitter</a>
                 </li>
-                <li class="mb-1"><span class="fab fa-facebook fa-fw mr-1"></span> <a href="#">Facebook</a>
+                <li class="mb-1"><span class="fab fa-facebook fa-fw mr-1"></span> <a href="{{ $profile->url_facebook??'' }}">Facebook</a>
                 </li>
-                <li class="mb-1"><span class="fab fa-instagram fa-fw mr-1"></span> <a href="#">Instagram</a>
+                <li class="mb-1"><span class="fab fa-instagram fa-fw mr-1"></span> <a href="{{ $profile->url_instagram??'' }}">Instagram</a>
                 </li>
-                <li class="mb-1"><span class="fab fa-linkedin fa-fw mr-1"></span> <a href="#">LinkedIn</a>
+                <li class="mb-1"><span class="fab fa-linkedin fa-fw mr-1"></span> <a href="{{ $profile->url_linkedin??'' }}">LinkedIn</a>
                 </li>
+            </ul>
+        </div>
+
+        <hr class="my-0" />
+        <div class="card-body">
+            <h5 class="h6 card-title">Contact Information</h5>
+            <ul class="list-unstyled mb-0">
+                <li><span class="px-3 fa fa-envelope"></span>{{ $user->email }}</li>
+                <li><span class="px-3 fa fa-phone"></span>{{ $profile->phone??'' }}</li>
+                <li><span class="px-3 fa fa-globe"></span>{{ $profile->address??'' }}</li>
+            </ul>
+        </div>
+
+        <hr class="my-0" />
+        <div class="card-body">
+            <h5 class="h6 card-title">Personal Information</h5>
+            <ul class="list-unstyled mb-0">
+                <li><span class="px-3">Gendar:</span>{{ $profile->gender??'' }}</li>
+                <li><span class="px-3">Last IP:</span>{{ $profile->last_ip??'' }}</li>
+                <li><span class="px-3">Login Count:</span>{{ $profile->login_count??'' }}</li>
             </ul>
         </div>
     </div>

@@ -19,6 +19,7 @@ class ProfileFactory extends Factory
             'last_name'=>$this->faker->name,
             'mobile'=>$this->faker->phoneNumber(),
             'gender'=>$this->faker->randomElement(['male','female']),
+            'skills'=>json_encode(['html','css','javascript','php','laravel']),
             'url_website'=>$this->faker->url(),
             'url_facebook'=>$this->faker->url(),
             'url_twitter'=>$this->faker->url(),

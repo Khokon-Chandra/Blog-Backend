@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
             PostableSeeder::class,
             RolePermissionSeeder::class,
+            ProfileSeeder::class,
         ]);
 
     }

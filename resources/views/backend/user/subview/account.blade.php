@@ -6,11 +6,11 @@
             <h5 class="card-title mb-0">Public info</h5>
         </div>
         <div class="card-body">
-            <form>
+            <form action="" method="POST" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label for="inputUsername">Username</label>
+                            <label for="inputUsername">Display Name</label>
                             <input type="text" name="name" class="form-control" id="inputUsername" placeholder="Username" value="{{ old('name',$user->name)}} ">
                         </div>
                         <div class="form-group">
@@ -20,9 +20,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="text-center">
-                            <img alt="Charles Hall" src="img/avatars/avatar.jpg" class="rounded-circle img-responsive mt-2" width="128" height="128" />
+                            <img alt="Charles Hall" src="{{ $user->avatar }}" class="rounded-circle img-responsive mt-2" width="128" height="128" />
                             <div class="mt-2">
-                                <span class="btn btn-primary"><i class="fas fa-upload"></i> Upload</span>
+                                <label for="avatar" class="btn btn-primary"><i class="fas fa-upload"></i> Upload</label>
+                                <input class="d-none" type="file" name="avatar" id="avatar">
                             </div>
                             <small>For best results, use an image at least 128px by
                                 128px in .jpg format</small>

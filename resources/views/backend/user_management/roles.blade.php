@@ -3,6 +3,7 @@
     <div class="mb-3">
         <a href="{{ route('access_control.roles.create') }}" class="btn btn-primary">Add new Role</a>
     </div>
+    <x-alert />
     <x-backend.content-card>
 
         <table class="table">

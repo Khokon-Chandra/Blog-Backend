@@ -241,7 +241,8 @@
                         <ul>
                             @foreach ($featuredNews as $news)
                             <li>
-                                <a href="{{ route('frontend.posts.category',$news->categories[0]->slug) }}" class="category-btn hvr-bounce-to-right">{{ $news->categories[0]->name }}</a>
+
+                                {{-- <a href="{{ route('frontend.posts.category',$news->categories->first()->toArray['slug']) }}" class="category-btn hvr-bounce-to-right">{{ $news->categories->first()->name }}</a> --}}
                                 <div class="post-image"><a href="{{ route('frontend.posts.show',$news->slug) }}"><img src="{{ $news->feature_image }}" alt="News image" /></a></div>
                                 <div class="content">
                                     <h4><a href="{{ route('frontend.posts.show',$news->slug) }}">{{ $news->title }}</a></h4>

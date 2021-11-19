@@ -71,7 +71,9 @@ class RolePermissionController extends Controller
 
     public function destroyRole($id)
     {
-        return back();
+        $role = Role::where('id',$id)->firstOrFail();
+        $role->delete();
+        return back()->with('success','Successfully role deleted');
     }
 
 

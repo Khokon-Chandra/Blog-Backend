@@ -12,7 +12,7 @@ class PostServices
     public function findByPostSlug($slug)
     {
         $post = Post::with(['comments'=>function($query){
-            $query->with('author','childs');
+            $query->with('author','childs')->where('parent_id',null);
         },'author','categories'=>function($query){
             $query->with('posts');
         },'tags'])->where('slug',$slug)->first();

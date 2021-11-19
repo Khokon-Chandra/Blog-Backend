@@ -45,9 +45,19 @@ Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(
 
     Route::name('access_control.')->group(function () {
 
-        Route::get('/roles',[RolePermissionController::class,'listOfRoles'])->name('roles');
-        Route::get('/roles/create',[RolePermissionController::class,'createRole'])->name('roles.create');
-        Route::post('/roles',[RolePermissionController::class,'storeRole'])->name('roles.store');
+        Route::prefix('roles')->name('roles.')->group(function () {
+            Route::get('/',[RolePermissionController::class,'listOfRoles'])->name('index');
+
+            Route::get('/create',[RolePermissionController::class,'createRole'])->name('create');
+            Route::post('',[RolePermissionController::class,'storeRole'])->name('store');
+
+            Route::get('/{id}/edit',[RolePermissionController::class,'editRole'])->name('edit');
+            Route::put('/',[RolePermissionController::class,'updateRole'])->name('update');
+            Route::delete('{id}',[RolePermissionController::class,'destroyRole'])->name('destroy');
+
+            Route::post('/givepermission',[RolePermissionController::class,'givePermissionTo'])->name('givePermission');
+        });
+
 
         Route::get('/permissions',[RolePermissionController::class,'listOfPermissions'])->name('permissions');
         Route::get('/permissions/create',[RolePermissionController::class,'createPermission'])->name('permissions.create');

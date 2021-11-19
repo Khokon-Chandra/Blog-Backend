@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,13 +30,15 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('user.profile');
+        return view('backend.user.profile');
 
     }
 
     public function show($username)
     {
-        return view('backend.user.profile');
+        return view('backend.user.profile',[
+            'user'=>User::with('profile')->where('username',$username)->firstOrFail(),
+        ]);
     }
 
     public function edit($user)

@@ -84,6 +84,7 @@
     <!-- Nivo slider js -->
     <script src="{{ asset('frontend/inc/custom-slider/js/jquery.nivo.slider.js') }}" type="text/javascript"></script>
     <script src="{{ asset('frontend/inc/custom-slider/home.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/axios.min.js') }}"></script>
     <!-- main js -->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 
@@ -101,6 +102,7 @@
     </script>
 
     {{-- sticky sidebar --}}
+    @stack('scripts')
 
 
 </body>

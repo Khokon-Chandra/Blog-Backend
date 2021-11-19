@@ -1,7 +1,7 @@
 <x-backend.app-layout>
     <x-page-title pagename="Add New Role" />
     <div class="mb-3">
-        <a href="{{ route('access_control.roles') }}" class="btn btn-primary">Go to Roles</a>
+        <a href="{{ route('access_control.roles.index') }}" class="btn btn-primary">Go to Roles</a>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -46,14 +46,15 @@
     @push('scripts')
     <script>
         $('#createRole').submit(function(event){
-
             event.preventDefault();
             let url = this.action
             let data = {name:$(this).find('input:text').val()}
             axios.post(url,data).then((response)=>{
-                toastr.success('Successfully a new role created')
-            }).catch((response)=>{
-                toastr.error('Please Insert valid data', 'Inconceivable!')
+                $(this).find('input:text').removeClass('is-invalid');
+                toastr.success('Successfully a new permission created')
+            }).catch((error)=>{
+                $(this).find('input:text').addClass('form-control is-invalid');
+                toastr.error(error.response.data.name[0])
             })
         });
     </script>

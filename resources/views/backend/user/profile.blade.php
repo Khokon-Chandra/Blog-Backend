@@ -35,7 +35,7 @@
             <h5 class="h6 card-title">About</h5>
             <ul class="list-unstyled mb-0">
                 <li class="mb-1"><span data-feather="home" class="feather-sm mr-1"></span> Lives in <a
-                        href="#">San Francisco, SA</a></li>
+                        href="#">{{ $profile->address??'' }}</a></li>
 
                 <li class="mb-1"><span data-feather="briefcase" class="feather-sm mr-1"></span> Works
                     at <a href="#">GitHub</a></li>
@@ -65,7 +65,7 @@
             <h5 class="h6 card-title">Contact Information</h5>
             <ul class="list-unstyled mb-0">
                 <li><span class="px-3 fa fa-envelope"></span>{{ $user->email }}</li>
-                <li><span class="px-3 fa fa-phone"></span>{{ $profile->phone??'' }}</li>
+                <li><span class="px-3 fa fa-phone"></span>{{ $profile->mobile??'' }}</li>
                 <li><span class="px-3 fa fa-globe"></span>{{ $profile->address??'' }}</li>
             </ul>
         </div>

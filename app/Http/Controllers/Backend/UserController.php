@@ -48,16 +48,22 @@ class UserController extends Controller
     }
 
 
-    public function edit($user)
+    public function edit($username)
     {
-        $user = User::where('username', $user)->firstOrFail();
-        return view('backend.user.edit-user', ['user' =>$user,'profile'=>$user->profile ]);
+        $user = User::with('profile')->where('username', $username)->firstOrFail();
+        return view('backend.user.edit-user', ['user' => $user, 'profile' => $user->profile]);
     }
 
 
-    public function update()
+    public function update(Request $request)
     {
 
+        if (isset($request->publicInfo)) {
+            return $this->userService->updatePublicInfo($request);
+        }
+        if (isset($request->privateInfo)) {
+            return $this->userService->updatePrivateInfo($request);
+        }
     }
 
 

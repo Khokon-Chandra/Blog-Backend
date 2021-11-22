@@ -50,6 +50,7 @@ Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(
 
 
     Route::resource('media', MediaController::class);
+    Route::post('/media/storeOnce',[MediaController::class,'storeSingleFile'])->name('media.single.store');
     Route::resource('menus', MenuController::class);
     Route::post('/menus/add-to-menu',[MenuController::class,'addToMenu'])->name('menus.addToMenu');
 

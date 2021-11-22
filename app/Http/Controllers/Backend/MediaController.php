@@ -18,7 +18,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return view('backend.media.media',['media'=>Media::all()]);
+        return view('backend.media.media', ['media' => Media::all()]);
     }
 
     /**
@@ -40,15 +40,27 @@ class MediaController extends Controller
     public function store(Request $request)
     {
         $data = [];
-        $files = $request->validate(['media'=>'required']);
-        foreach($files['media'] as $image){
-            $filename = uniqid().".".$image->getClientOriginalExtension();
-            $directory = uniqid()."_".now()->timestamp;
-            $image->storeAs('public/'.$directory, $filename);
-            $data[] = ['link'=>Storage::disk('public')->url($directory."/".$filename)];
+        $files = $request->validate(['media' => 'required']);
+        foreach ($files['media'] as $file) {
+            $filename = uniqid() . "." . $file->getClientOriginalExtension();
+            $directory = uniqid() . "_" . now()->timestamp;
+            $file->storeAs('public/' . $directory, $filename);
+            $data[] = ['link' => Storage::disk('public')->url($directory . "/" . $filename)];
         }
-        Media::upsert($data,['link']);
-        return back()->with('success','Successfully Files Uploaded');
+        Media::upsert($data, ['link']);
+        return back()->with('success', 'Successfully Files Uploaded');
+    }
+
+    public function storeSingleFile(Request $request)
+    {
+        $file = $request->file('file');
+        $filename = uniqid().".".$file->getClientOriginalExtension();
+        $directory = uniqid() . "_" . now()->timestamp;
+        $file->storeAs('public/' . $directory, $filename);
+        $link = Storage::disk('public')->url($directory . "/" . $filename);
+        $data = ['link' => $link];
+        Media::create($data);
+        return $link;
     }
 
     /**

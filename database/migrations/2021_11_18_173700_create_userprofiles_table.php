@@ -15,9 +15,9 @@ class CreateUserprofilesTable extends Migration
     {
         Schema::create('userprofiles', function (Blueprint $table) {
             $table->id('id');
-            $table->integer('user_id');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->foreignId('user_id')->constrained();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('mobile')->nullable();
             $table->string('gender')->nullable();
             $table->text('skills')->nullable();

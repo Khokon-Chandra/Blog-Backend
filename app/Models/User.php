@@ -14,11 +14,14 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory, Notifiable,SoftDeletes,HasRoles;
 
     protected $guard = [];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
+     *
      */
+
     protected $fillable = [
         'username',
         'name',

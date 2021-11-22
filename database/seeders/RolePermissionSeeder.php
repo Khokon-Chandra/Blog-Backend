@@ -76,5 +76,7 @@ class RolePermissionSeeder extends Seeder
             ['name' => 'delete_media','guard_name'=>'web'],
         ]);
 
+
+
     }
 }

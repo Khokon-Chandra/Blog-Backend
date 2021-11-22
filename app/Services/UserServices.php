@@ -54,4 +54,16 @@ class UserServices
 
         return true;
     }
+
+
+    public function AssignRole($request)
+    {
+        $user = User::where('username',$request->username)->first();
+        if($request->assign){
+            $user->assignRole($request->role);
+            return 'Successfully user role assigned !!';
+        }
+        $user->removeRole($request->role);
+        return 'User Role removed successfully!!';
+    }
 }

@@ -13,6 +13,7 @@ use App\Services\UserServices;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -40,7 +41,7 @@ class UserController extends Controller
 
     public function show($username)
     {
-        $user = User::with('profile')->where('username', $username)->firstOrFail();
+        $user = User::with(['profile','roles'])->where('username', $username)->firstOrFail();
         return view('backend.user.profile', [
             'user' => $user,
             'profile' => $user->profile ?? null,
@@ -50,8 +51,14 @@ class UserController extends Controller
 
     public function edit($username)
     {
-        $user = User::with('profile')->where('username', $username)->firstOrFail();
-        return view('backend.user.edit-user', ['user' => $user, 'profile' => $user->profile]);
+        $roles = Role::with('permissions')->get();
+        $user = User::with(['profile','roles'])->where('username', $username)->firstOrFail();
+
+        return view('backend.user.edit-user', [
+            'user' => $user,
+            'profile' => $user->profile,
+            'roles'=>$roles,
+        ]);
     }
 
 
@@ -63,6 +70,9 @@ class UserController extends Controller
         }
         if (isset($request->privateInfo)) {
             return $this->userService->updatePrivateInfo($request);
+        }
+        if($request->assignRole){
+            return $this->userService->AssignRole($request);
         }
     }
 

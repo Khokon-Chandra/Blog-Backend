@@ -8,7 +8,13 @@
             <img src="{{ $user->avatar }}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128"
                 height="128" />
             <h5 class="card-title mb-0">{{ $user->name }}</h5>
-            <div class="text-muted mb-2">Lead Developer</div>
+            <div class="text-muted mb-2">
+                @forelse ($user->roles as $role)
+                    <span class="p-1">{{ $role->name }}</span>
+                @empty
+                No role assigned yet
+                @endforelse
+            </div>
 
             <div class="mb-3">
                 <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->username) }}">Edit Profile</a>

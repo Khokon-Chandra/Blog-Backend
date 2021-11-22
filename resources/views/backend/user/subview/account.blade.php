@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="account" role="tabpanel">
+<div class="tab-pane fade" id="account" role="tabpanel">
 
     <div class="card">
         <div class="card-header">

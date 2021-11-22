@@ -5,14 +5,14 @@
         </div>
 
         <div class="list-group list-group-flush" role="tablist">
-            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account" role="tab">
+            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account" role="tab">
                 Account
             </a>
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#password" role="tab">
                 Password
             </a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#privacy" role="tab">
-                Privacy and safety
+            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#privacy" role="tab">
+                Assign Roles
             </a>
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#notifications" role="tab">
                 Notifications

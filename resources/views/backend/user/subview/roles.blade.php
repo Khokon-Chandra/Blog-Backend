@@ -51,10 +51,7 @@
         let username = "{{ $user->username }}"
         let role = $(this).attr('id')
         let url = "{{ route('users.update',$user->username) }}"
-        let data = {assignRole:true, username:username, role:role, assign:false}
-        if($(this).is(':checked')){
-            data.assign = true
-        }
+        let data = {assignRole:true, username:username, role:role}
 
         axios.put(url,data).then((response)=>{
             toastr.success(response.data);

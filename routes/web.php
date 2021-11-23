@@ -17,7 +17,7 @@ use App\Http\Controllers\Backend\TagController;
 
 
 
-Route::group(['middleware'=>['auth:web','verified'],'prefix'=>'admin'],function(){
+Route::group(['middleware'=>['auth:web','verified','permission:read_dashboard'],'prefix'=>'admin'],function(){
 
     Route::get('/',[IndexController::class,'dashboard'])->name('dashboard');
     Route::resource('posts',PostController::class);

@@ -10,9 +10,11 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +22,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        Gate::authorize('read_post');
         $posts = Post::with(['categories:name','author',])->withCount('comments')->latest()
-        ->filter(request(['search']))->get();
+        ->filter(request(['search']))->paginate(20);
         return view('backend.post.posts',['posts'=>$posts]);
     }
 
@@ -47,7 +50,7 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-
+        Gate::authorize('write_post');
         $attribute            = $request->validated();
         $attribute['slug']    = $request->createUniqueSlug();
         $attribute['user_id'] = Auth::id();
@@ -126,6 +129,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        Gate::authorize('delete_post');
         $post->delete();
         return redirect()->route('posts.index')->with('success','Successfully Deleted');
     }

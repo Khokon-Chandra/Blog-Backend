@@ -14,11 +14,12 @@ class PostPolicy
      * Determine whether the user can view any models.
      *
      * @param  \App\Models\User  $user
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
+        return $user->hasPermissionTo('read_post');
     }
 
     /**
@@ -26,22 +27,22 @@ class PostPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Post  $post
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function view(User $user, Post $post)
     {
-        //
+
     }
 
     /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
     {
-        return in_array($user->role,[1,2,3,4,5]);
+        //
     }
 
     /**
@@ -49,11 +50,11 @@ class PostPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Post  $post
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, Post $post)
     {
-        return $user->role === 1;
+        //
     }
 
     /**
@@ -61,11 +62,11 @@ class PostPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Post  $post
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user, Post $post)
     {
-        return $user->role === 1;
+        //
     }
 
     /**
@@ -73,7 +74,7 @@ class PostPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Post  $post
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function restore(User $user, Post $post)
     {
@@ -85,7 +86,7 @@ class PostPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Post  $post
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function forceDelete(User $user, Post $post)
     {

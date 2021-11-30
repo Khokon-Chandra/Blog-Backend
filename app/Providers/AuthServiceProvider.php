@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
 use App\Models\User;
+use App\Policies\PostPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
-        'App\Models\Post' => 'App\Policies\PostPolicy',
+        // Post::class => PostPolicy::class,
     ];
 
     /**
@@ -27,9 +29,11 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        Gate::define('can-delete',function(User $user){
-            return $user->role === 1;
+        Gate::before(function (User $user, $permission) {
+            if($user->hasRole('super admin')){
+                return true;
+            }
+            return $user->hasPermissionTo($permission);
         });
     }
 }

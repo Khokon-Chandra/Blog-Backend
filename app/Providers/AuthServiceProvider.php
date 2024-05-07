@@ -8,6 +8,7 @@ use App\Policies\PostPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Spatie\Permission\Models\Permission;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,10 +30,19 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
         Gate::before(function (User $user, $permission) {
-            if($user->hasRole('super admin')){
+
+            if ($user->hasRole('super admin')) {
                 return true;
             }
+            
+            $permissions = Permission::where('name', $permission)->get();
+
+            if ($permissions->count() == 0) {
+                Permission::create(['name' => $permission]);
+            }
+
             return $user->hasPermissionTo($permission);
         });
     }

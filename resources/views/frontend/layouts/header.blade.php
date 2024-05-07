@@ -18,6 +18,7 @@
                         <ul>
                             <li><span id="today"></span></li>
                             @if (Auth::check())
+                                
                                 @if (Auth::user()->email_verified_at == null)
                                     <li>
                                         <form method="POST" action="{{ route('verification.send') }}">
@@ -33,12 +34,21 @@
                                     <li>
                                         <form action="/logout" method="POST" class="dropdown-item">
                                             @csrf
-                                            <input type="submit" value="Log out" class="btn btn-block text-left">
+                                            <input type="submit" value="Log out" class="btn btn-block btn-danger text-left">
                                         </form>
                                     </li>
                                 @endif
+
+                                @if (Auth::user()->type == 'admin')
+                                    <li><a href="{{ route('dashboard') }}" class="btn btn-sm btn-success">Dashboard</a></li>
+                                @endif
+
                             @else
-                                <li><a href="{{ route('login') }}">Sign In / Join</a></li>
+                                <li>
+                                    <a href="{{ route('login') }}">Sign In</a>
+                                    /
+                                    <a href="{{ route('register') }}">Join</a>
+                                </li>
                             @endif
                             <li><a href="{{ route('frontend.contactPage') }}">Contact</a></li>
                         </ul>

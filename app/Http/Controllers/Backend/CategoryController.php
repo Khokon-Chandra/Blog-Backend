@@ -6,9 +6,11 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Traits\Authorizable;
 
 class CategoryController extends Controller
 {
+    use Authorizable;
 
     public function index()
     {
@@ -32,8 +34,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate(['name' => 'required']);
+        
         Category::create([
             'slug' => Str::slug($request->name) . (Category::max('id') + random_int(99, 99999)),
             'name' => $request->name,

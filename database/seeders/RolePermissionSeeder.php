@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -19,11 +21,7 @@ class RolePermissionSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
         // Create Roles
-        // $super_admin = Role::create(['name' => 'super admin']);
-        // $admin = Role::create(['name' => 'admin']);
-        // $manager = Role::create(['name' => 'editor']);
-        // $executive = Role::create(['name' => 'viewer']);
-        // $user = Role::create(['name' => 'user']);
+       
         DB::table('roles')->insert([
             ['name' => 'super admin','guard_name'=>'web'],
             ['name' => 'admin','guard_name'=>'web'],
@@ -77,6 +75,39 @@ class RolePermissionSeeder extends Seeder
         ]);
 
 
+
+        $superAdmin = User::create([
+            'username' => 'superadmin',
+            'name' => 'Khokon Chandra',
+            'email' => 'super@admin.com',
+            'email_verified_at' => now(),
+            'type' => 'admin',
+            'password' => Hash::make('super'), // password
+        ]);
+
+
+        $admin = User::create([
+            'username' => 'admin',
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'email_verified_at' => now(),
+            'type' => 'admin',
+            'password' => Hash::make('admin'), // password
+        ]);
+
+
+        $visitor = User::create([
+            'username' => 'visitor',
+            'name' => 'visitor',
+            'email' => 'visitor@visitor.com',
+            'email_verified_at' => now(),
+            'type' => 'user',
+            'password' => Hash::make('visitor'), // password
+        ]);
+
+
+        $superAdmin->assignRole('super admin');
+        $admin->assignRole('admin');
 
     }
 }

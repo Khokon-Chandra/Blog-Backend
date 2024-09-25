@@ -38,7 +38,7 @@
                                     </li>
                                 @endif
                             @else
-                                <li><a href="{{ route('login') }}">Sign In / Join</a></li>
+                                <li><a href="{{ route('login') }}">Sign In</a> / <a href="{{ route('register') }}">Join</a></li>
                             @endif
                             <li><a href="{{ route('frontend.contactPage') }}">Contact</a></li>
                         </ul>

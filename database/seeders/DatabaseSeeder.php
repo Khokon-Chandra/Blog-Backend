@@ -17,15 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'username' => 'khokon1234',
-            'name' => 'Khokon Chandra',
-            'email' => 'cram3632@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('00000000'), // password
-            'remember_token' => Str::random(10),
-        ]);
-
         Menu::create(['name' => 'Main menu']);
 
         $this->call([
@@ -38,5 +29,21 @@ class DatabaseSeeder extends Seeder
             PostableSeeder::class,
             RolePermissionSeeder::class,
         ]);
+
+
+        $user = User::create([
+            'guard' => 'admin',
+            'username' => 'super-admin',
+            'name' => 'Super Admin',
+            'email' => 'super.admin@admin.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('00000000'), // password
+            'remember_token' => Str::random(10),
+        ]);
+
+
+        $user->assignRole("super admin");
+
+
     }
 }

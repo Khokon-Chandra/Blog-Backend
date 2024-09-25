@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Services\UserServices;
+use App\Trait\Authorizable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +18,8 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    use Authorizable;
+    
     private $userService;
 
     public function __construct()
@@ -82,7 +85,6 @@ class UserController extends Controller
     public function create()
     {
         return view('backend.user.add-user');
-        // return view('auth.register');
     }
 
 
@@ -98,9 +100,7 @@ class UserController extends Controller
 
     public function destroy($user)
     {
-        // if(Gate::denies('can-delete')){
-        //     return view('403');
-        // }
+       
         if (User::where('username', $user)->delete()) {
             return redirect()->route('users.index')
                 ->with('success', 'user deleted successfully');

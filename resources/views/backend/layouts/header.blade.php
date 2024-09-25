@@ -158,7 +158,7 @@
     </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="{{ route('users.show',['user'=>Auth::user()->username]) }}"><i class="align-middle mr-1" data-feather="user"></i> Profile</a>
-                    <a class="dropdown-item" href="{{ route('dashboard') }}"><i class="align-middle mr-1" data-feather="pie-chart"></i> Analytics</a>
+                    <a class="dropdown-item" href="{{ route('dashboard.index') }}"><i class="align-middle mr-1" data-feather="pie-chart"></i> Analytics</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href=" {{ route('settings') }} "><i class="align-middle mr-1" data-feather="settings"></i> Settings & Privacy</a>
                     

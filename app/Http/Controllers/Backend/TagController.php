@@ -6,9 +6,12 @@ use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Trait\Authorizable;
 
 class TagController extends Controller
 {
+    use Authorizable;
+    
     /**
      * Display a listing of the resource.
      *

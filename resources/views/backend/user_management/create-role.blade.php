@@ -1,13 +1,13 @@
 <x-backend.app-layout>
     <x-page-title pagename="Add New Role" />
     <div class="mb-3">
-        <a href="{{ route('access_control.roles.index') }}" class="btn btn-primary">Go to Roles</a>
+        <a href="{{ route('roles.index') }}" class="btn btn-primary">Go to Roles</a>
     </div>
     <div class="row">
         <div class="col-md-4">
             <div class="p-3 bg-white">
                 <p>Insert role name</p>
-                <form id="createRole" action="{{ route('access_control.roles.store') }}" method="POST">
+                <form id="createRole" action="{{ route('roles.store') }}" method="POST">
                     <div class="mb-3">
                         <label for="role">Role *</label>
                         <input type="text" name="role" id="role" class="form-control">

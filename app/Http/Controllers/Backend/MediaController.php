@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Media;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Trait\Authorizable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class MediaController extends Controller
 {
+    use Authorizable;
+    
     /**
      * Display a listing of the resource.
      *

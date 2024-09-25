@@ -4,7 +4,7 @@
     <x-backend.content-card>
 
         <div class="col-md-6 offset-md-3 p-3">
-            <form id="createPermission" action="{{ route('access_control.permissions.store') }}" method="POST">
+            <form id="createPermission" action="{{ route('permissions.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="permission">Permission</label>

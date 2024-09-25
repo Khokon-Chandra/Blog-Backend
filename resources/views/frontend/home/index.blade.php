@@ -243,29 +243,12 @@
                     <div class="sidebar">
                         <ul>
                             @foreach ($featuredNews as $news)
-<<<<<<< HEAD
                                 <li>
                                     @foreach ($news->categories as $cat)
                                         @if ($loop->index<=0)
                                         <a href="{{ route('frontend.posts.category', $cat->slug) }}"
                                             class="category-btn hvr-bounce-to-right">{{ $cat->name }}</a>
                                         @endif
-=======
-                            <li>
-
-                                {{-- <a href="{{ route('frontend.posts.category',$news->categories->first()->toArray['slug']) }}" class="category-btn hvr-bounce-to-right">{{ $news->categories->first()->name }}</a> --}}
-                                <div class="post-image"><a href="{{ route('frontend.posts.show',$news->slug) }}"><img src="{{ $news->feature_image }}" alt="News image" /></a></div>
-                                <div class="content">
-                                    <h4><a href="{{ route('frontend.posts.show',$news->slug) }}">{{ $news->title }}</a></h4>
-                                    <span class="date">
-                                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{ $news->created_at->format('d M, Y') }}
-                                    </span>
-                                    <span class="comment">
-                                        <a href="{{ route('frontend.posts.show',$news->slug) }}">
-                                            <i class="fa fa-comment-o" aria-hidden="true"></i> {{ $news->comments_count }}
-                                        </a>
-                                    </span>
->>>>>>> user_management
 
                                     @endforeach
                             <div class="post-image"><a href="{{ route('frontend.posts.show', $news->slug) }}"><img

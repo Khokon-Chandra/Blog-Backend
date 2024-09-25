@@ -18,12 +18,7 @@ class RolePermissionSeeder extends Seeder
     public function run()
     {
         Schema::disableForeignKeyConstraints();
-        // Create Roles
-        // $super_admin = Role::create(['name' => 'super admin']);
-        // $admin = Role::create(['name' => 'admin']);
-        // $manager = Role::create(['name' => 'editor']);
-        // $executive = Role::create(['name' => 'viewer']);
-        // $user = Role::create(['name' => 'user']);
+        
         DB::table('roles')->insert([
             ['name' => 'super admin','guard_name'=>'web'],
             ['name' => 'admin','guard_name'=>'web'],

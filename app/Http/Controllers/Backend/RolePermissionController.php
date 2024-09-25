@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Trait\Authorizable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -11,6 +12,8 @@ use Spatie\Permission\Models\Role;
 
 class RolePermissionController extends Controller
 {
+
+    use Authorizable;
 
     public function listOfRoles()
     {

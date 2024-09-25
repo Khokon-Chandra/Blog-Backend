@@ -6,9 +6,11 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Trait\Authorizable;
 
 class CategoryController extends Controller
 {
+    Use Authorizable;
 
     public function index()
     {

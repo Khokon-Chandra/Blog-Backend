@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Trait\Authorizable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Models\Category;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
+    use Authorizable;
 
     /**
      * Display a listing of the resource.
@@ -22,7 +24,6 @@ class PostController extends Controller
      */
     public function index()
     {
-        Gate::authorize('read_post');
         $posts = Post::with(['categories:name','author',])->withCount('comments')->latest()
         ->filter(request(['search']))->paginate(20);
         return view('backend.post.posts',['posts'=>$posts]);
@@ -50,7 +51,6 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        Gate::authorize('write_post');
         $attribute            = $request->validated();
         $attribute['slug']    = $request->createUniqueSlug();
         $attribute['user_id'] = Auth::id();
@@ -129,7 +129,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        Gate::authorize('delete_post');
         $post->delete();
         return redirect()->route('posts.index')->with('success','Successfully Deleted');
     }

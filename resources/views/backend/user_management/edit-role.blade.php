@@ -2,13 +2,13 @@
     <x-page-title pagename="Edit Role" />
     <x-alert />
     <div class="mb-3">
-        <a href="{{ route('access_control.roles.index') }}" class="btn btn-primary">Go to Roles</a>
+        <a href="{{ route('roles.index') }}" class="btn btn-primary">Go to Roles</a>
     </div>
     <div class="row">
         <div class="col-md-4">
             <div class="p-3 bg-white">
                 <p>Insert role name</p>
-                <form id="updateRole" action="{{ route('access_control.roles.update') }}" method="POST">
+                <form id="updateRole" action="{{ route('roles.update') }}" method="POST">
                     <div class="mb-3">
                         <label for="role">Role *</label>
                         <input type="text" name="role" id="role" class="form-control" value="{{ $role->name }}">
@@ -55,7 +55,7 @@
                     permission: permission_id,
                     status:checked,
                 }
-                var url = "{{ route('access_control.roles.givePermission') }}"
+                var url = "{{ route('roles.givePermission') }}"
                 axios.post(url,data).then((response)=>{
                     toastr.success(response.data)
                 })

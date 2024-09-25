@@ -6,10 +6,12 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Trait\Authorizable;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    use Authorizable;
     /**
      * Display a listing of the resource.
      *

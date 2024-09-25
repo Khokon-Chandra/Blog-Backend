@@ -1,7 +1,7 @@
 <x-backend.app-layout>
     <x-page-title pagename="Roles" />
     <div class="mb-3">
-        <a href="{{ route('access_control.roles.create') }}" class="btn btn-primary">Add new Role</a>
+        <a href="{{ route('roles.create') }}" class="btn btn-primary">Add new Role</a>
     </div>
     <x-alert />
     <x-backend.content-card>
@@ -26,8 +26,8 @@
                             @endforelse
                         </td>
                         <td class="table-action">
-                            <x-backend.edit-action :action="route('access_control.roles.edit',$role->id)" />
-                            <x-backend.delete-action :action="route('access_control.roles.destroy',$role->id)" />
+                            <x-backend.edit-action :action="route('roles.edit',$role->id)" />
+                            <x-backend.delete-action :action="route('roles.destroy',$role->id)" />
                         </td>
                     </tr>
                 @endforeach

@@ -7,11 +7,14 @@ use App\Models\Category;
 use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Post;
+use App\Trait\Authorizable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
+    use Authorizable;
+    
     public function menuItemsProcessor($content)
     {
         $itemsArr = [];

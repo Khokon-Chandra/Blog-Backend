@@ -65,7 +65,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="logo-area">
-                        <a href="{{ route('frontend.home') }}"><img src="{{ asset('frontend/images/logo.png') }}"
+                        <a href="{{ route('frontend.home') }}"><img src="{{ asset('frontend/images/logo.png') }}" style="height: 80px"
                                 alt="logo"></a>
                     </div>
                 </div>

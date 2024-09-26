@@ -2,8 +2,8 @@
 <nav id="sidebar" class="sidebar">
     <div class="sidebar-content js-simplebar">
 
-        <a class="sidebar-brand" href="{{ route('frontend.home') }}">
-            <span class="align-middle">Visit Website</span>
+        <a class="sidebar-brand" href="javascript:void(0)">
+            <span class="align-middle">Admin Panel</span>
         </a>
 
         <ul class="sidebar-nav">
@@ -34,7 +34,7 @@
                 {{ __('Menu') }}
             </x-backend.nav-link>
 
-            <x-backend.nav-link :icon="__('folder')" :href="route('media.index')" :active="request()->routeIs('media.index')">
+            <x-backend.nav-link :icon="__('folder')" :href="route('media.index')" :active="request()->routeIs('media.index') || request()->routeIs('media.create')">
                 {{ __('Media') }}
             </x-backend.nav-link>
 
@@ -59,7 +59,7 @@
                 <x-slot name="content">
                     <x-backend.dropdown-link :href="route('roles.index')" :active="request()->routeIs('roles.index')">Roles</x-backend.dropdown-link>
                     <x-backend.dropdown-link :href="route('roles.create')" :active="request()->routeIs('roles.create')">Add new Role</x-backend.dropdown-link>
-                    <x-backend.dropdown-link :href="route('permissions')" :active="request()->routeIs('permissions')">Permissions</x-backend.dropdown-link>
+                    <x-backend.dropdown-link :href="route('permissions.index')" :active="request()->routeIs('permissions')">Permissions</x-backend.dropdown-link>
                     <x-backend.dropdown-link :href="route('permissions.create')" :active="request()->routeIs('permissions.create')">Add new Permission</x-backend.dropdown-link>
 
                 </x-slot>

@@ -3,18 +3,19 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\UserController;
-use App\Http\Controllers\Backend\IndexController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\MediaController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\MenuController;
-use App\Http\Controllers\Backend\RolePermissionController;
+use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\TagController;
 
 
 
 
-Route::get('/', [IndexController::class, 'dashboard'])->name('dashboard.index');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 Route::resource('posts', PostController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('tags', TagController::class);
@@ -40,23 +41,12 @@ Route::resource('menus', MenuController::class);
 Route::post('/menus/add-to-menu', [MenuController::class, 'addToMenu'])->name('menus.addToMenu');
 
 
-Route::prefix('roles')->name('roles.')->group(function () {
-    Route::get('/', [RolePermissionController::class, 'listOfRoles'])->name('index');
-    Route::get('/create', [RolePermissionController::class, 'createRole'])->name('create');
-    Route::post('', [RolePermissionController::class, 'storeRole'])->name('store');
+Route::resource('roles', RoleController::class);
+Route::post('roles/givepermission', [RoleController::class, 'givePermissionTo'])->name('roles.givePermission');
 
-    Route::get('/{id}/edit', [RolePermissionController::class, 'editRole'])->name('edit');
-    Route::put('/', [RolePermissionController::class, 'updateRole'])->name('update');
-    Route::delete('{id}', [RolePermissionController::class, 'destroyRole'])->name('destroy');
-
-    Route::post('/givepermission', [RolePermissionController::class, 'givePermissionTo'])->name('givePermission');
-});
-
-Route::get('/permissions', [RolePermissionController::class, 'listOfPermissions'])->name('permissions');
-Route::get('/permissions/create', [RolePermissionController::class, 'createPermission'])->name('permissions.create');
-Route::post('/permissions', [RolePermissionController::class, 'storePermission'])->name('permissions.store');
+Route::resource('permissions', PermissionController::class);
 
 
 Route::get('/settings', function () {
-    return view('backend.page');
+    return view('backend.setting.index');
 })->name('settings');

@@ -10,6 +10,7 @@
             <table id="datatable" class="display table table-striped hover" style="width: 100%">
                 <thead>
                     <tr>
+                        <th style="width: 10%">Image</th>
                         <th style="width:35%;">Title</th>
                         <th style="width:15%">Author</th>
                         <th style="width:15%">Category</th>
@@ -22,6 +23,7 @@
 
                     @forelse($posts as $post)
                     <tr>
+                        <td><img src="{{ $post->feature_image }}" alt="" style="height: 50px; width:50px"></td>
                         <td> {{ $post->title }} </td>
                         <td> {{ $post->author->name??'  ' }} </td>
                         <td>

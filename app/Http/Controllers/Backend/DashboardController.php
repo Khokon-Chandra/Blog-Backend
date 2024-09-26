@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
-class IndexController extends Controller
+class DashboardController extends Controller
 {
     Use Authorizable;
     
-    public function dashboard(Request $request)
+    public function index(Request $request)
     {
 
         return  view('backend.dashboard',[

@@ -8,7 +8,7 @@
         <div class="col-md-4">
             <div class="p-3 bg-white">
                 <p>Insert role name</p>
-                <form id="updateRole" action="{{ route('roles.update') }}" method="POST">
+                <form id="updateRole" action="{{ route('roles.update',$role->id) }}" method="POST">
                     <div class="mb-3">
                         <label for="role">Role *</label>
                         <input type="text" name="role" id="role" class="form-control" value="{{ $role->name }}">
